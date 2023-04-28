@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap");
+
+/* Tailwind */
+@import "./tailwind.css";
+
+/* HTML Basic Styles Change: body, html, etc */
+@import "./htmlStyles.css";
+
+/* Global Styles: Box-Shadows, etc */
+@import "./global.css";

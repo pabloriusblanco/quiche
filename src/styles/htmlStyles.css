@@ -1,0 +1,16 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin: 0;
+    font-size: 14px;
+    padding: 0;
+    background-color: #fdfdfd;
+    letter-spacing: 0.1em;
+}
+
+button {
+    letter-spacing: inherit;
+}
+p {
+    letter-spacing: normal;
+}
