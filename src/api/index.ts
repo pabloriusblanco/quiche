@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_URL = 'https://api.example.com/';
+import axios from "axios";
 
 export const api = axios.create({
-  baseURL: API_URL,
+  baseURL: process.env.API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
