@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700 &display=swap");
 
 /* Tailwind */
 @import "./tailwind.css";
@@ -8,3 +8,6 @@
 
 /* Global Styles: Box-Shadows, etc */
 @import "./global.css";
+
+/* Animations */
+@import "./animations.css";

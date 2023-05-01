@@ -1,0 +1,16 @@
+/* Fade in animation with some translation from bottom to top */
+
+.fade-in-bottom {
+  animation: fade-in-bottom 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@keyframes fade-in-bottom {
+  0% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

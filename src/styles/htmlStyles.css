@@ -5,12 +5,18 @@ body {
     font-size: 14px;
     padding: 0;
     background-color: #fdfdfd;
-    letter-spacing: 0.1em;
+    /* letter-spacing: 0.1em; */
 }
 
 button {
     letter-spacing: inherit;
 }
 p {
+    letter-spacing: normal;
+}
+label {
+    letter-spacing: normal;
+}
+span {
     letter-spacing: normal;
 }

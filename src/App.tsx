@@ -1,5 +1,5 @@
 import WebRoutes from "./Routes";
-import Layout from "./pages/layout/Layout";
+import Layout from "./components/organisms/layout/Layout";
 
 function App() {
   return (

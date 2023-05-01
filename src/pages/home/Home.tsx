@@ -11,6 +11,7 @@ const Home: React.FC = () => {
         <li>Receta 3</li>
         {/* ... */}
       </ul>
+
     </div>
   );
 };

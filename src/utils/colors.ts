@@ -23,7 +23,12 @@ export const Colors = {
     light: "#9CA3AF",
     DEFAULT: '#4D4D4D',
     dark: "#1F2937",
-  }
+  },
+  gray: {
+    light: "#D0D0D0",
+    DEFAULT: '#A9A9A9',
+    dark: "#8B8B8B",
+  },
 };
 
 export type ColorTypes = keyof typeof Colors;
