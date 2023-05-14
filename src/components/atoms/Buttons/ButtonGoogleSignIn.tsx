@@ -1,17 +1,24 @@
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../../api/auth/googlePublic";
-import { api } from "../../../api";
+import { useUser } from "../../../hooks/useUser";
 
 interface AccesToken {
   access_token: string;
 }
 
-const ButtonGoogleSignIn = ({ extraClasses = "", ...props }) => {
+type Props = {
+  extraClasses?: string;
+  closeModal: () => void;
+};
+
+const ButtonGoogleSignIn = ({ extraClasses = "", closeModal, ...props }: Props) => {
   const [accessToken, setAccessToken] = useState<AccesToken>();
-    
+  const { handleLogin } = useUser();
+
+
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setAccessToken(codeResponse),
+    onSuccess: (codeResponse) => setAccessToken({access_token: codeResponse.access_token}),
     onError: (error) => console.log("Login Failed:", error),
   });
 
@@ -20,8 +27,10 @@ const ButtonGoogleSignIn = ({ extraClasses = "", ...props }) => {
       getUserInfo(accessToken.access_token)
         .then((userInfo) => {
           console.log(userInfo);
+          handleLogin(userInfo.email, userInfo.id);
           googleLogout();
           setAccessToken(undefined);
+          closeModal();
         })
         .catch((err) => console.log(err));
     }
@@ -32,7 +41,7 @@ const ButtonGoogleSignIn = ({ extraClasses = "", ...props }) => {
       onClick={() => login()}
       type="button"
       {...props}
-      className={` flex w-full items-center justify-center rounded-xl bg-[#4285F4] px-4 py-2 font-medium text-white text-white transition-all hover:bg-[#71a8ff] ${extraClasses}`}
+      className={` flex w-full items-center justify-center rounded-xl bg-[#4285F4] px-4 py-2 font-medium  text-white transition-all hover:bg-[#71a8ff] ${extraClasses}`}
     >
       <svg
         className="mr-4 h-4 w-4"

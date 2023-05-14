@@ -1,11 +1,14 @@
-import WebRoutes from "./Routes";
+import WebRoutes from "./routes/Routes";
 import Layout from "./components/organisms/layout/Layout";
+import { UserProvider } from "./context/user/UserProvider";
 
 function App() {
   return (
-    <Layout>
-      <WebRoutes />
-    </Layout>
+    <UserProvider>
+      <Layout>
+        <WebRoutes />
+      </Layout>
+    </UserProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import RecipeDetails from "./pages/recipe/RecipeDetails";
+import Home from "../pages/home/Home";
+import RecipeDetails from "../pages/recipe/RecipeDetails";
 
 const WebRoutes: React.FC = () => {
   return (

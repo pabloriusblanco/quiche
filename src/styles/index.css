@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700 &display=swap");
 
+/* Tooltip */
+@import "react-tooltip/dist/react-tooltip.css";
+
 /* Tailwind */
 @import "./tailwind.css";
 
@@ -11,3 +14,6 @@
 
 /* Animations */
 @import "./animations.css";
+
+/* Home */
+/* @import "./home/home.css"; */

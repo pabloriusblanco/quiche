@@ -1,12 +1,20 @@
 import React, { InputHTMLAttributes } from "react";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>;
+// input props type that extends from input html attributes and add extra props
 
-const Input: React.FC<InputProps> = (props) => {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  validationError?: boolean;
+}
+
+const Input: React.FC<InputProps> = ({ validationError, ...props }) => {
+  const borderClasses = validationError
+    ? "border-danger hover:border-danger-dark focus:border-danger-dark focus-visible:border-danger-dark"
+    : "border-gray hover:border-primary focus:border-primary focus-visible:border-primary";
+
   return (
     <input
       autoComplete="off"
-      className="w-full rounded-xl border border-gray px-3 py-[10px] text-[12px] text-black placeholder:text-[12px] placeholder:italic placeholder:text-gray hover:border-primary focus:border-primary focus:outline-none focus-visible:border-primary"
+      className={`w-full rounded-xl border px-3 py-[10px] text-[12px] text-black placeholder:text-[12px] placeholder:italic placeholder:text-gray focus:outline-none ${borderClasses}`}
       {...props}
     />
   );

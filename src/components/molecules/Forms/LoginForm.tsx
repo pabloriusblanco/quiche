@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
+import Button from "../../atoms/Buttons/Button";
 import ButtonGoogleSignIn from "../../atoms/Buttons/ButtonGoogleSignIn";
 import Input from "../../atoms/Inputs/Input";
 import Label from "../../atoms/Inputs/Label";
-import Button from "../../atoms/Buttons/Button";
-import LoginFormContainer from "./LoginFormContainer";
 import Separator from "../../atoms/Separator/Separator";
+import LoginFormContainer from "./LoginFormContainer";
 
 interface LoginFormProps {
-  onSubmit: (email: string, password: string) => void;
+  onSubmit: (values: { email: string; password: string }) => void;
   closeModal: () => void;
   handleRegisterClick: () => void;
 }
@@ -17,18 +19,40 @@ const LoginForm: React.FC<LoginFormProps> = ({
   closeModal,
   handleRegisterClick,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const auth = useAuth(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(email, password);
+  const executeSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const { email, password } = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+    const result = await auth.signIn(email, password);
+    if (result.success) {
+      console.log(result);
+      closeModal();
+    } else {
+      console.log(result);
+      alert(result.message);
+    }
   };
+
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   const values = {
+  //     email: formData.get("email") as string,
+  //     password: formData.get("password") as string,
+  //   };
+  //   onSubmit(values);
+  // };
 
   return (
     <LoginFormContainer key={"loginFormContainer"}>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={executeSignIn}
         className="col-span-12 grid grid-cols-12 gap-5"
       >
         <div className="col-span-12">
@@ -36,9 +60,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <Input
             type="email"
             id="email"
+            name="email"
+            defaultValue={"pabloriusblanco@gmail.com"}
             placeholder="juanperez@ejemplo.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -47,9 +71,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <Input
             type="password"
             id="password"
+            name="password"
             placeholder="*******"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            defaultValue={"101693518573633141042"}
             required
           />
         </div>
@@ -61,7 +85,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
           Iniciar Sesión
         </Button>
         <Separator text="o utiliza" />
-        <ButtonGoogleSignIn extraClasses="col-span-12 w-full" />
+        <ButtonGoogleSignIn
+          extraClasses="col-span-12 w-full"
+          closeModal={closeModal}
+        />
         <div className="col-span-12">
           <p className="col-span-12 cursor-pointer text-right text-sm text-gray">
             ¿No tienes cuenta?
