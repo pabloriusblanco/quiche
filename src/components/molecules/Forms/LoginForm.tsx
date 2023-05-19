@@ -78,7 +78,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           />
         </div>
         <Button
-          buttonType="primary"
+          color="primary"
           type="submit"
           extraClasses="w-full col-span-12"
         >

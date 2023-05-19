@@ -10,7 +10,15 @@ export default {
       variants: ["responsive", "hover", "focus", "active", "group-hover"],
     },
     {
-      pattern: /grid-cols-(1|2|3|4|5|6)?/,
+      pattern: /grid-cols-(1|2|3|4|5|6|8|9|10|11|12)?/,
+      variants: ["sm", "md", "lg", "xl", "2xl"],
+    },
+    {
+      pattern: /col-(1|2|3|4|5|6|8|9|10|11|12)?/,
+      variants: ["sm", "md", "lg", "xl", "2xl"],
+    },
+    {
+      pattern: /gap-(1|2|3|4|5|6|8|9|10|11|12)?/,
       variants: ["sm", "md", "lg", "xl", "2xl"],
     },
     {
@@ -18,7 +26,12 @@ export default {
       variants: ["responsive", "hover", "focus", "active", "group-hover"],
     },
   ],
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./src/**/**/*.{js,ts,jsx,tsx}", "./src/**/**/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/**/*.{js,ts,jsx,tsx}",
+    "./src/**/**/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {

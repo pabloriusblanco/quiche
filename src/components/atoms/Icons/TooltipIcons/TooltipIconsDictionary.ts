@@ -1,6 +1,12 @@
 import { IconsNames } from "..";
 
 export const CategoryDictionary: TagValues = {
+  breakfast: {
+    name: "Desayuno",
+    icon: "breakfast",
+    description:
+      "El desayuno es una comida importante del día ya que provee energía y nutrientes necesarios para mantener un buen rendimiento físico y mental durante la jornada. Además, puede ayudar a mantener un peso saludable y prevenir enfermedades relacionadas con la alimentación.",
+  },
   lunch: {
     name: "Almuerzo",
     icon: "lunch",
@@ -9,7 +15,7 @@ export const CategoryDictionary: TagValues = {
   },
   dinner: {
     name: "Cena",
-    icon: "lunch", //TODO
+    icon: "dinner",
     description:
       "La cena es una comida importante del día ya que provee energía y nutrientes necesarios para mantener un buen rendimiento físico y mental durante la jornada. Además, puede ayudar a mantener un peso saludable y prevenir enfermedades relacionadas con la alimentación.",
   },
@@ -47,14 +53,14 @@ export const DifficultyDictionary: TagValues = {
       "Este plato es muy fácil de preparar, ideal para principiantes.",
   },
   medium: {
-    name: "Medio",
-    icon: "easy", //TODO
+    name: "Regular",
+    icon: "regular",
     description:
-      "Este plato es de dificultad media, ideal para personas con algo de experiencia en la cocina.",
+      "Este plato es de dificultad regular, ideal para personas con algo de experiencia en la cocina.",
   },
   hard: {
     name: "Difícil",
-    icon: "easy", //TODO
+    icon: "hard",
     description:
       "Este plato es de dificultad alta, ideal para personas con experiencia en la cocina.",
   },

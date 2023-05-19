@@ -1,9 +1,10 @@
 import BackgroundImage from "../../../assets/images/background.jpg";
 import MemoQuicheLogoPrimary from "../../../assets/logos/quiche-logo-primary";
+import Icon from "../../atoms/Icons";
 
 const BackgroundHeader = () => {
   return (
-    <div
+    <section
       className="background-header relative flex h-[322px] w-full items-center justify-center border-b-8 border-b-primary"
       style={{
         backgroundImage: `url(${BackgroundImage})`,
@@ -13,9 +14,9 @@ const BackgroundHeader = () => {
       }}
     >
       <div className="mb-12 w-[194px]">
-        <MemoQuicheLogoPrimary fill="primary" />
+        <Icon name="quiche" className="fill-primary h-full" />
       </div>
-    </div>
+    </section>
   );
 };
 

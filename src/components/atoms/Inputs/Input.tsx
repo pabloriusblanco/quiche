@@ -1,9 +1,10 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, Ref } from "react";
 
 // input props type that extends from input html attributes and add extra props
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   validationError?: boolean;
+  forwardedRef?: Ref<HTMLInputElement>
 }
 
 const Input: React.FC<InputProps> = ({ validationError, ...props }) => {

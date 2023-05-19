@@ -10,6 +10,7 @@ import RegisterForm from "../../../molecules/Forms/RegisterForm";
 import Modal from "../../../molecules/Modal/Modal";
 import NavLinksContainer from "./NavLinksContainer";
 import { ProvideAuth } from "../../../../hooks/useAuth";
+import Icon from "../../../atoms/Icons";
 
 const Navbar: React.FC = () => {
   const loginModal = useModal();
@@ -31,7 +32,7 @@ const Navbar: React.FC = () => {
         <nav className="shadow-light relative z-50 bg-white p-0 lg:p-4">
           <div className="container flex items-center justify-between">
             <LinkContainer className="w-[106px]" to="/">
-              <MemoQuicheLogoPrimary fill="primary" hover="primary-light" />
+              <Icon name="quiche" className="h-full fill-primary hover:fill-primary-light" />
             </LinkContainer>
             <NavLinksContainer>
               <LinkBasic to="/">Home</LinkBasic>
@@ -39,13 +40,13 @@ const Navbar: React.FC = () => {
               <LinkBasic to="/">Crear Recetas</LinkBasic>
               <LinkBasic to="/">Nosotros</LinkBasic>
               {!user && (
-                <Button buttonType="primary" onClick={handleLoginClick}>
+                <Button color="primary" onClick={handleLoginClick}>
                   {" "}
                   Login{" "}
                 </Button>
               )}
               {user && (
-                <Button buttonType="primary" onClick={handleLogout}>
+                <Button color="primary" onClick={handleLogout}>
                   {" "}
                   Cerrar Sesión{" "}
                 </Button>

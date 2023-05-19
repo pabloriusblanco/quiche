@@ -18,7 +18,7 @@ const TooltipSimple = ({
   return (
     <Tooltip
       id={id}
-      className="rounded-lg bg-black opacity-[80]"
+      className="rounded-lg bg-black opacity-[80] shadow-light z-50"
       place={place}
     >
       <div className="max-w-[200px]">

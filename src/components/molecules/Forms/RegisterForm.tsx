@@ -175,7 +175,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           )}
         </div>
         <Button
-          buttonType={!formik.isValid ? "gray" : "primary"}
+          color={!formik.isValid ? "gray" : "primary"}
           type="submit"
           extraClasses="w-full col-span-12"
         >

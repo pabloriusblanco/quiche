@@ -1,0 +1,16 @@
+.slick-list {
+    width: calc(100% + 22px);
+    height: calc(100% + 20px);
+    padding: 10px 10px;
+    margin-left: -10px;
+    margin-top: -10px;
+    /* overflow: hidden; */
+}
+
+.slick-prev:before {
+    content: initial;
+}
+
+.slick-next:before {
+    content: initial;
+}
