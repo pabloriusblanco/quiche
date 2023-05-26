@@ -2,11 +2,13 @@ import React from "react";
 // import background from assets
 
 import BackgroundHeader from "../../components/molecules/Background/Background";
-import SimpleCard from "../../components/molecules/Cards/Simple/SimpleCard";
 import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import { useAuth } from "../../hooks/useAuth";
-import Carousel from "../../components/molecules/Carousel/Carousel";
 import PopularesMes from "./sections/PopularesMes";
+import CategoriesHome from "./sections/CategoriesHome";
+import DestacadosDia from "./sections/DestacadosDia";
+import BannerAdvanceSearch from "../../components/organisms/banners/BannerAdvanceSearch";
+import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -24,7 +26,13 @@ const Home: React.FC = () => {
         )}
       </div>
       <HomeSearch />
-      <PopularesMes title="Recetas más populares del mes" />
+      <div className="space-y-8">
+        <CategoriesHome title="Ver recetas por Categorías" />
+        <DestacadosDia title="Recetas destacadas del día" />
+        <BannerAdvanceSearch />
+        <PopularesMes title="Recetas más populares del mes" />
+        <BannerQuicheApp />
+      </div>
     </>
   );
 };

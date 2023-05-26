@@ -1,20 +1,28 @@
 import BackgroundImage from "../../../assets/images/background.jpg";
-import MemoQuicheLogoPrimary from "../../../assets/logos/quiche-logo-primary";
-import Icon from "../../atoms/Icons";
+import Icon from "../../atoms/Icons/Icons";
 
-const BackgroundHeader = () => {
+type BackgroundHeaderProps = {
+  sectionHeight?: string;
+  iconWidth?: string;
+};
+
+const BackgroundHeader = ({
+  sectionHeight = "322px",
+  iconWidth = "194px",
+}: BackgroundHeaderProps) => {
   return (
     <section
-      className="background-header relative flex h-[322px] w-full items-center justify-center border-b-8 border-b-primary"
+      className="background-header relative flex w-full items-center justify-center border-b-8 border-b-primary"
       style={{
         backgroundImage: `url(${BackgroundImage})`,
         backgroundSize: "repeat",
         backgroundOrigin: "center",
         backgroundPosition: "center",
+        height: sectionHeight,
       }}
     >
-      <div className="mb-12 w-[194px]">
-        <Icon name="quiche" className="fill-primary h-full" />
+      <div className="mb-12" style={{ width: iconWidth }}>
+        <Icon name="quiche" className="h-full fill-primary" />
       </div>
     </section>
   );

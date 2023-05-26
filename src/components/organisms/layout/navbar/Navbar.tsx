@@ -10,7 +10,7 @@ import RegisterForm from "../../../molecules/Forms/RegisterForm";
 import Modal from "../../../molecules/Modal/Modal";
 import NavLinksContainer from "./NavLinksContainer";
 import { ProvideAuth } from "../../../../hooks/useAuth";
-import Icon from "../../../atoms/Icons";
+import Icon from "../../../atoms/Icons/Icons";
 
 const Navbar: React.FC = () => {
   const loginModal = useModal();
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
   return (
     <ProvideAuth>
       <GoogleOAuthProvider clientId="36326234671-nju0jvcnqshbokbfc3qe1tl55gd5vdhv.apps.googleusercontent.com">
-        <nav className="shadow-light relative z-50 bg-white p-0 lg:p-4">
+        <nav className="shadow-light relative z-[1] bg-white p-0 lg:p-4">
           <div className="container flex items-center justify-between">
             <LinkContainer className="w-[106px]" to="/">
               <Icon name="quiche" className="h-full fill-primary hover:fill-primary-light" />

@@ -16,7 +16,7 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = ({
           text="Iniciar sesión"
           weight={TextWeightType.SemiBold}
           titleType={TitleType.H3}
-          extraClasses="col-span-12"
+          className="col-span-12"
         />
         <p className="text-[12px] text-gray">
           ¡Ingresa el Email y Password que utilizaste para

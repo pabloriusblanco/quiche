@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { SimpleSearchResults, simpleSearch } from "../../../../api/search";
 import Button from "../../../atoms/Buttons/Button";
-import Icon from "../../../atoms/Icons";
+import Icon from "../../../atoms/Icons/Icons";
 import Input from "../../../atoms/Inputs/Input";
 import ModalSearchResults from "./ModalSearchResults";
-import { SimpleSearchResults, simpleSearch } from "../../../../api/search";
 
 interface HomeSearchProps {
   id?: string;
@@ -26,9 +26,9 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
     clearTimeout(timeoutId);
 
     if (value.length > 3) {
+      setIsLoading(true);
+      showResults();
       const timeout = setTimeout(() => {
-        setIsLoading(true);
-        showResults();
         simpleSearch(value).then((res) => {
           setIsLoading(false);
           return setResults(res);
@@ -69,14 +69,16 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
         className="shadow-light container relative z-20 flex -translate-y-10 justify-center gap-5 rounded-2xl bg-white p-5"
       >
         <Input
-          placeholder="Escribe el nombre de una receta, ingrediente, usuario"
+          placeholder="Escribe el nombre de una receta, ingrediente o categoría"
           value={searchQuery}
           onChange={handleInputChange}
-          onFocus={handleInputChange}
+          onFocus={() => {
+            !showingResults ? handleInputChange : "";
+          }}
         />
         <Button
           color="primary"
-          extraClasses="rounded-lg py-0 px-0 flex items-center justify-center"
+          className="rounded-lg py-0 px-0 flex items-center justify-center"
         >
           <Icon name="search" className="w-4 fill-white" />
         </Button>

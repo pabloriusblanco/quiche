@@ -11,15 +11,21 @@ export async function simpleSearch(
   query: string
 ): Promise<SimpleSearchResults> {
   console.log("simpleSearch", query);
-    // const response = await api.get(`/search?query=${query}`);
-    // return response.data;
+  // const response = await api.get(`/search?query=${query}`);
+  // return response.data;
 
   return new Promise<SimpleSearchResults>((resolve, reject) => {
     setTimeout(() => {
       resolve(mockSimpleSearchResults);
-    }, 3000);
+    }, 1000);
   });
 }
+
+// const mockSimpleSearchResults: SimpleSearchResults = {
+//   posts: [],
+//   categories: [],
+//   ingredients: [],
+// };
 
 const mockSimpleSearchResults: SimpleSearchResults = {
   posts: [
@@ -28,11 +34,11 @@ const mockSimpleSearchResults: SimpleSearchResults = {
       recipe: {
         id: 564738291,
         name: "Pasta con salsa de tomate",
-        description: "Un plato de pasta con salsa de tomate, queso y albahaca",
+        description:
+          "Un delicioso plato de pasta con una exquisita salsa de tomate casera, generosamente cubierto con queso rallado y decorado con hojas frescas de albahaca. Esta combinación clásica de sabores te transportará a la auténtica cocina italiana. Cada bocado te brindará la suavidad de la pasta al dente, el sabor vibrante y ligeramente ácido de la salsa de tomate, el toque cremoso y gratinado del queso, y el aroma fresco y herbáceo de la albahaca. ¡Prepárate para disfrutar de una explosión de sabores en cada cucharada!",
         steps:
           "1. Hervir la pasta en agua con sal. 2. Calentar la salsa de tomate. 3. Servir la pasta con la salsa de tomate y decorar con queso y albahaca.",
-        image:
-          "https://www.recetasdesbieta.com/wp-content/uploads/2019/03/pasta-con-salsa-de-tomate-y-albahaca.jpg",
+        image: "",
         ingredients: [
           {
             id: 669,
@@ -60,34 +66,42 @@ const mockSimpleSearchResults: SimpleSearchResults = {
           },
         ],
         mainCategory: {
-          id: 5669,
-          name: "dinner",
-          displayName: "Cena",
-          icon: "dinner",
+          id: 328,
+          name: "italiana",
+          displayName: "Comida Italiana",
+          icon: "italian",
+          description:
+            "La comida italiana es conocida en todo el mundo por su sencillez y sabores auténticos. Desde la pasta y las pizzas hasta las salsas y los quesos, la cocina italiana se basa en ingredientes frescos y de calidad. Cada región de Italia tiene sus propias especialidades culinarias, lo que hace que la comida italiana sea diversa y deliciosa. Disfruta de los aromas y sabores de la comida italiana en tus platos favoritos.",
         },
         subCategory: [
           {
-            id: 328,
-            name: "comida-italiana",
-            displayName: "Comida Italiana",
-            icon: "italian",
+            id: 5669,
+            name: "dinner",
+            displayName: "Cena",
+            icon: "dinner",
+            description:
+              "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
           },
         ],
         time: {
           id: 1123,
-          name: "medio",
-          displayName: "Medio",
-          icon: "medium",
-          maxTime: 35,
+          name: "short",
+          displayName: "Corto",
+          icon: "short",
+          value: 35,
         },
-        difficulty: "Fácil",
+        difficulty: {
+          id: 1123,
+          name: "easy",
+          displayName: "Fácil",
+          icon: "easy",
+        },
       },
       owner: {
         id: 123456789,
         firstName: "Juan",
         lastName: "Perez",
       },
-
       favs: 36,
       comments: [
         {
@@ -111,7 +125,7 @@ const mockSimpleSearchResults: SimpleSearchResults = {
         id: 876543210,
         name: "Pasta al pesto",
         description:
-          "Un plato de pasta con salsa de pesto, piñones y queso parmesano",
+          "Un exquisito plato de pasta con una irresistible salsa de pesto casera, acompañada de piñones tostados y generosamente espolvoreado con queso parmesano rallado. La combinación de sabores te transportará directamente a la hermosa región de Liguria en Italia, donde el pesto tiene su origen. Cada bocado de esta pasta al dente estará impregnado con el intenso sabor del pesto, elaborado a base de albahaca fresca, aceite de oliva, ajo y queso parmesano. Los piñones tostados añadirán una textura crujiente y un sabor ligeramente dulce, mientras que el queso parmesano se derretirá sobre la pasta, aportando un toque salado y sabroso. ¡Prepárate para disfrutar de una experiencia culinaria llena de aromas y sabores deliciosos con este plato de pasta con salsa de pesto, piñones y queso parmesano!",
         steps:
           "1. Cocinar la pasta al dente en agua con sal. 2. Preparar la salsa de pesto mezclando albahaca, piñones, ajo, queso parmesano y aceite de oliva en un procesador de alimentos. 3. Mezclar la pasta cocida con la salsa de pesto y servir caliente.",
         image: "https://www.example.com/pasta-al-pesto.jpg",
@@ -155,9 +169,11 @@ const mockSimpleSearchResults: SimpleSearchResults = {
         ],
         mainCategory: {
           id: 5669,
-          name: "dinner",
-          displayName: "Cena",
-          icon: "dinner",
+          name: "lunch",
+          displayName: "Almuerzo",
+          icon: "lunch",
+          description:
+            "El almuerzo es una comida clave durante el día, ya que aporta energía y nutrientes esenciales para mantener un buen rendimiento físico y mental. Disfrutar de un almuerzo balanceado contribuye a mantener un peso saludable y prevenir enfermedades relacionadas con la alimentación.",
         },
         subCategory: [
           {
@@ -165,16 +181,23 @@ const mockSimpleSearchResults: SimpleSearchResults = {
             name: "comida-italiana",
             displayName: "Comida Italiana",
             icon: "italian",
+            description:
+              "La comida italiana es conocida en todo el mundo por su sencillez y sabores auténticos. Desde la pasta y las pizzas hasta las salsas y los quesos, la cocina italiana se basa en ingredientes frescos y de calidad. Cada región de Italia tiene sus propias especialidades culinarias, lo que hace que la comida italiana sea diversa y deliciosa. Disfruta de los aromas y sabores de la comida italiana en tus platos favoritos.",
           },
         ],
         time: {
           id: 1123,
-          name: "medio",
+          name: "medium",
           displayName: "Medio",
           icon: "medium",
-          maxTime: 30,
+          value: 30,
         },
-        difficulty: "Fácil",
+        difficulty: {
+          id: 1123,
+          name: "regular",
+          displayName: "Regular",
+          icon: "regular",
+        },
       },
       owner: {
         id: 987654321,
@@ -214,6 +237,8 @@ const mockSimpleSearchResults: SimpleSearchResults = {
       name: "pasta",
       displayName: "Pasta",
       icon: "pasta",
+      description:
+        "La pasta es un alimento versátil y popular que se disfruta en todo el mundo. Puedes encontrar una amplia variedad de pastas, como espaguetis, fettuccine, penne y lasaña, que se pueden combinar con diferentes salsas y ingredientes. La pasta es una opción deliciosa y reconfortante que se puede adaptar a diferentes gustos y preferencias.",
     },
   ],
   ingredients: [

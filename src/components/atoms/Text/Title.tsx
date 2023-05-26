@@ -7,7 +7,7 @@ type TitleProps = {
   text: string;
   color: ColorTypes | string;
   weight: TextWeightType;
-  extraClasses?: string;
+  className?: string;
 };
 
 const Title: React.FC<TitleProps> = ({
@@ -15,9 +15,9 @@ const Title: React.FC<TitleProps> = ({
   text,
   color,
   weight,
-  extraClasses,
+  className,
 }) => {
-  const classes = `font-${weight} text-${color} ${extraClasses}`;
+  const classes = `font-${weight} text-${color} ${className}`;
   let title: JSX.Element = <></>;
   switch (titleType) {
     case "h1":

@@ -1,53 +1,59 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getRecipe } from "../../api/recipes";
+import BackgroundHeader from "../../components/molecules/Background/Background";
+import Skeleton from "../../components/molecules/Skeleton/Skeleton";
+import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
+import { Post } from "../../types/Recipe";
+import RecipeInfo from "./sections/RecipeInfo";
 
-interface Recipe {
-  id: number;
-  name: string;
-  ingredients: string[];
-  instructions: string;
-}
+// interface RecipeDetailProps {
+//   postId: string;
+// }
 
-const RecipeDetails: React.FC = () => {
+const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [results, setResults] = useState<Post | null>(null);
+  const [similarPosts, setSimilarPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    // Llamada a la API para obtener los detalles de la receta con el ID correspondiente
-    const fetchRecipe = async () => {
-      try {
-        const response = await fetch(`/api/recipes/${id}`);
-        const data = await response.json();
-        setRecipe(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRecipe();
+    if (id) {
+      getRecipe(id).then((res) => {
+        console.log(res);
+        setResults(res);
+        // getSimilarRecipes(res.id).then((res) => {
+        //   setSimilarPosts(res);
+        // }
+      });
+    }
   }, [id]);
 
-  if (!recipe) {
-    return <div>Loading...</div>;
-  }
+  console.log(id);
 
   return (
-    <div className="container mx-auto">
-      <h1 className="my-8 text-3xl font-bold">{recipe.name}</h1>
-      <div className="my-4">
-        <h2 className="mb-2 text-xl font-bold">Ingredientes</h2>
-        <ul className="list-inside list-disc">
-          {recipe.ingredients.map((ingredient) => (
-            <li key={ingredient}>{ingredient}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="my-4">
-        <h2 className="mb-2 text-xl font-bold">Instrucciones</h2>
-        <p>{recipe.instructions}</p>
-      </div>
-    </div>
+    <>
+      <BackgroundHeader sectionHeight="215px"/>
+      <section className="container">
+        <HomeSearch />
+        {!results && (
+          <Skeleton
+            gap={2}
+            gridCols={12}
+            gridMatrix={[
+              [4, 8],
+              [1, 3, 8],
+            ]}
+            itemHeight={"20px"}
+          />
+        )}
+        {results && (
+          <div className="grid grid-cols-10">
+            <RecipeInfo post={results} />
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 
-export default RecipeDetails;
+export default RecipeDetail;

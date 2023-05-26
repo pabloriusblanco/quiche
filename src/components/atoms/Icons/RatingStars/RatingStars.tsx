@@ -1,4 +1,4 @@
-import Icon from "..";
+import Icon from "../Icons";
 
 type RatingStarsProps = {
   rating: number;

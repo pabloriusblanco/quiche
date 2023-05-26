@@ -80,7 +80,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <Button
           color="primary"
           type="submit"
-          extraClasses="w-full col-span-12"
+          className="w-full col-span-12"
         >
           Iniciar Sesión
         </Button>

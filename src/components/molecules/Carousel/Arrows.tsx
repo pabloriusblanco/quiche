@@ -1,5 +1,5 @@
 import { CustomArrowProps } from "react-slick";
-import Icon from "../../atoms/Icons";
+import Icon from "../../atoms/Icons/Icons";
 
 interface SampleArrowProps extends CustomArrowProps {
   className?: string;

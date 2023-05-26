@@ -1,10 +1,12 @@
+import { IconsMap } from "../components/atoms/Icons/Icons";
+
 export type Post = {
   id: number;
   recipe: Recipe;
   owner: Owner;
   favs: number;
   comments: Comment[];
-  rating: number;  
+  rating: number;
   date: Date;
 };
 
@@ -14,18 +16,19 @@ export type Recipe = {
   description: string;
   steps: string;
   image: string;
-  ingredients: Ingredient[] & { quantity: number }[];
+  ingredients: Array<Ingredient & { quantity: number | null }>;
   mainCategory: Category;
   subCategory: Category[];
   time: Duration;
-  difficulty: "Fácil" | "Regular" | "Difícil";
+  difficulty: Difficulty;
 };
 
 export type Category = {
   id: number;
   name: string;
   displayName: string;
-  icon: string;
+  icon: keyof IconsMap;
+  description: string;
 };
 
 export type Ingredient = {
@@ -34,12 +37,19 @@ export type Ingredient = {
   displayName: string;
 };
 
+export type Difficulty = {
+  id: number;
+  name: "easy" | "regular" | "hard";
+  displayName: "Fácil" | "Regular" | "Difícil";
+  icon: "easy" | "regular" | "hard";
+};
+
 export type Duration = {
   id: number;
-  name: "corto" | "medio" | "largo";
+  name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";
-  maxTime: number;
+  value: number;
 };
 
 export type Owner = {
