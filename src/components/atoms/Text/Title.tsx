@@ -4,19 +4,19 @@ import { ColorTypes } from "../../../utils/Colors";
 
 type TitleProps = {
   titleType?: TitleType;
-  text: string;
+  text: React.ReactNode;
   color: ColorTypes | string;
   weight: TextWeightType;
   className?: string;
 };
 
-const Title: React.FC<TitleProps> = ({
-  titleType = "h3",
-  text,
+const Title = ({
+  titleType = TitleType.H3,
+  text = "",
   color,
   weight,
   className,
-}) => {
+}: TitleProps) => {
   const classes = `font-${weight} text-${color} ${className}`;
   let title: JSX.Element = <></>;
   switch (titleType) {

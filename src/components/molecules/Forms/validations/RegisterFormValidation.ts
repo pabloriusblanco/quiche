@@ -1,7 +1,13 @@
 import * as Yup from "yup";
 
 export const registerFormValidationSchema = Yup.object({
-  name: Yup.string().required("Por favor ingrese su nombre"),
+  username: Yup.string()
+    .min(4, "El usuario debe contener al menos 4 carateres")
+    .required("Por favor ingrese su nombre")
+    .required("Por favor ingrese su nombre"),
+  name: Yup.string()
+    .min(3, "El nombre debe contener al menos 3 carateres")
+    .required("Por favor ingrese su nombre"),
   lastname: Yup.string().required("Por favor ingrese su apellido"),
   email: Yup.string()
     .email("Dirección de correo electrónico inválida")

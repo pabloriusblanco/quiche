@@ -30,14 +30,11 @@ const Button = ({
   buttonStyle = "filled",
   ...props
 }: ButtonProps) => {
-  const classes = "rounded-xl px-4 py-2 font-medium transition-all";
+  const classes = `rounded-xl px-4 py-2 font-medium transition-all ${extraClasses}`;
   const buttonStyleCalculated = calculateButtonStyle(buttonStyle, color);
 
   return (
-    <button
-      className={`${classes} ${buttonStyleCalculated} ${extraClasses}`}
-      {...props}
-    >
+    <button className={`${classes} ${buttonStyleCalculated}`} {...props}>
       {children}
     </button>
   );

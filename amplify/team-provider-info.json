@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-quiche-dev-152041-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396470657607:role/amplify-quiche-dev-152041-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396470657607:role/amplify-quiche-dev-152041-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-quiche-dev-152041-deployment",
+      "UnauthRoleName": "amplify-quiche-dev-152041-unauthRole",
+      "StackName": "amplify-quiche-dev-152041",
+      "StackId": "arn:aws:cloudformation:us-east-2:396470657607:stack/amplify-quiche-dev-152041/07942480-fbf2-11ed-b550-02784dddf5c3",
+      "AmplifyAppId": "dsrvbsdn7xgny"
+    },
+    "categories": {
+      "auth": {
+        "quiche2f14df5a": {
+          "userPoolId": "us-east-2_rsuoxkiju",
+          "userPoolName": "quiche-user-pool",
+          "webClientId": "4a1c7krevr14gq2416t5a9hb56",
+          "nativeClientId": "4a1c7krevr14gq2416t5a9hb56"
+        }
+      }
+    }
+  }
+}

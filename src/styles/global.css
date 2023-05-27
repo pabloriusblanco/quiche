@@ -1,4 +1,4 @@
-.container{
+.container {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
@@ -19,6 +19,24 @@
     }
 }
 
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-clip: content-box;
+    background-color: #9b9b9b;
+    border: 4px solid transparent;
+    height: 56px;
+    width: 56px;
+}
+
+::-webkit-scrollbar-track {
+    background-clip: content-box;
+    border: 4px solid transparent;
+    border-radius: 6px;
+}
 
 .shadow-light {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

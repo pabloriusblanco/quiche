@@ -20,7 +20,9 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = ({
         />
         <p className="text-[12px] text-gray">
           ¡Ingresa el Email y Password que utilizaste para
-          registrarte o utiliza tu cuenta de Google!
+          registrarte 
+          {/* o utiliza tu cuenta de Google */}
+          !
         </p>
       </div>
       {children}

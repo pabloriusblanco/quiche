@@ -1,7 +1,8 @@
 import { Amplify, Auth } from "aws-amplify";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import awsmobile from "../aws-exports";
-import { log } from "console";
+import { api } from "../api";
+import Cookies from "js-cookie";
 
 Amplify.configure(awsmobile);
 
@@ -10,8 +11,9 @@ interface UseAuth {
   isAuthenticated: boolean;
   username: string;
   signIn: (email: string, password: string) => Promise<Result>;
-  signOut: () => void;
+  signOut: () => Promise<Result>;
   signUp: (
+    username: string,
     name: string,
     lastname: string,
     email: string,
@@ -22,7 +24,7 @@ interface UseAuth {
 
 interface Result {
   success: boolean;
-  message: string;
+  message: any;
 }
 
 type Props = {
@@ -48,6 +50,13 @@ const useProvideAuth = (): UseAuth => {
   useEffect(() => {
     Auth.currentAuthenticatedUser()
       .then((result) => {
+        Cookies.set(
+          "authorization",
+          result.signInUserSession.idToken.jwtToken,
+          {
+            path: "/",
+          }
+        );
         setUsername(result.username);
         setIsAuthenticated(true);
         setIsLoading(false);
@@ -62,30 +71,34 @@ const useProvideAuth = (): UseAuth => {
   const signIn = async (email: string, password: string) => {
     try {
       const result = await Auth.signIn(email, password);
+      Cookies.set("authorization", result.signInUserSession.idToken.jwtToken, {
+        path: "/",
+      });
+      api.defaults.headers.common["Authorization"] =
+        result.signInUserSession.idToken.jwtToken;
       setUsername(result.username);
       setIsAuthenticated(true);
-      console.log(result);      
-      return { success: true, message: "" };
+      return { success: true, message: result };
     } catch (error) {
-      console.log(error);
       return {
         success: false,
-        message: "LOGIN FAIL",
+        message: error,
       };
     }
   };
 
   const signUp = async (
+    username: string,
     name: string,
     lastname: string,
     email: string,
     phone: string,
     password: string
   ) => {
-    console.log("try SignUp", name, lastname, email, phone, password);
+    console.log("try SignUp", username, name, lastname, email, phone, password);
     try {
       await Auth.signUp({
-        username: email,
+        username: username,
         password: password,
         attributes: {
           email: email,
@@ -96,10 +109,9 @@ const useProvideAuth = (): UseAuth => {
       });
       return { success: true, message: "" };
     } catch (error) {
-      console.log(error);
       return {
         success: false,
-        message: "SIGNUP FAIL",
+        message: error,
       };
     }
   };
@@ -107,13 +119,14 @@ const useProvideAuth = (): UseAuth => {
   const signOut = async () => {
     try {
       await Auth.signOut();
+      Cookies.remove("authorization");
       setUsername("");
       setIsAuthenticated(false);
-      return { success: true, message: "" };
+      return { success: true, message: "logout" };
     } catch (error) {
       return {
         success: false,
-        message: "LOGOUT FAIL",
+        message: error,
       };
     }
   };

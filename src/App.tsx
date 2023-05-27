@@ -1,14 +1,15 @@
 import WebRoutes from "./routes/Routes";
 import Layout from "./components/organisms/layout/Layout";
 import { UserProvider } from "./context/user/UserProvider";
+import { ProvideAuth } from "./hooks/useAuth";
 
 function App() {
   return (
-    <UserProvider>
+    <ProvideAuth>
       <Layout>
         <WebRoutes />
       </Layout>
-    </UserProvider>
+    </ProvideAuth>
   );
 }
 

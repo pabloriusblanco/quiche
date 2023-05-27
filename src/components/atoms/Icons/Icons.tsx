@@ -4,8 +4,10 @@ import { ReactComponent as quiche } from "./assets/quiche.svg";
 import { ReactComponent as ingredients } from "./assets/ingredients.svg";
 import { ReactComponent as steps } from "./assets/steps.svg";
 import { ReactComponent as userchecked } from "./assets/userchecked.svg";
+import { ReactComponent as recipes } from "./assets/recipes.svg";
 import { ReactComponent as likes } from "./assets/likes.svg";
 import { ReactComponent as star } from "./assets/star.svg";
+import { ReactComponent as logout } from "./assets/logout.svg";
 import { ReactComponent as breakfast } from "./assets/categories/breakfast.svg";
 import { ReactComponent as lunch } from "./assets/categories/lunch.svg";
 import { ReactComponent as easy } from "./assets/easy.svg";
@@ -52,6 +54,8 @@ const iconsMap = {
   quiche,
   userchecked,
   likes,
+  recipes,
+  logout,
   comments,
   star,
   easy,

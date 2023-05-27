@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "quiche2f14df5a": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_quiche2f14df5a_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "quiche2f14df5a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_quiche2f14df5a_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "quiche2f14df5a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_quiche2f14df5a_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "quiche2f14df5a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_quiche2f14df5a_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "quiche2f14df5a"
+        }
+      ]
+    }
+  }
+}

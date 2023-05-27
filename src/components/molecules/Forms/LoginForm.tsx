@@ -1,58 +1,41 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import Button from "../../atoms/Buttons/Button";
-import ButtonGoogleSignIn from "../../atoms/Buttons/ButtonGoogleSignIn";
+// import ButtonGoogleSignIn from "../../atoms/Buttons/ButtonGoogleSignIn";
+import { useFormik } from "formik";
 import Input from "../../atoms/Inputs/Input";
+import InputErrorText from "../../atoms/Inputs/InputErrorText";
 import Label from "../../atoms/Inputs/Label";
-import Separator from "../../atoms/Separator/Separator";
 import LoginFormContainer from "./LoginFormContainer";
+import { loginFormValidation } from "./validations/LoginFormValidation";
 
 interface LoginFormProps {
-  onSubmit: (values: { email: string; password: string }) => void;
+  onSubmitCallback: (email: string, password: string) => Promise<void>;
   closeModal: () => void;
   handleRegisterClick: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
   closeModal,
   handleRegisterClick,
+  onSubmitCallback,
 }) => {
-  const auth = useAuth(); 
-  const navigate = useNavigate();
-
-  const executeSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const { email, password } = {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-    };
-    const result = await auth.signIn(email, password);
-    if (result.success) {
-      console.log(result);
-      closeModal();
-    } else {
-      console.log(result);
-      alert(result.message);
-    }
-  };
-
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const formData = new FormData(event.currentTarget);
-  //   const values = {
-  //     email: formData.get("email") as string,
-  //     password: formData.get("password") as string,
-  //   };
-  //   onSubmit(values);
-  // };
+  const formik = useFormik({
+    initialValues: {
+      // username: "",
+      email: "test1@hotmail.com",
+      password: "123@Password!",
+    },
+    validationSchema: loginFormValidation,
+    onSubmit: (values) => {
+      onSubmitCallback(values.email, values.password);
+    },
+  });
 
   return (
     <LoginFormContainer key={"loginFormContainer"}>
       <form
-        onSubmit={executeSignIn}
+        onSubmit={formik.handleSubmit}
         className="col-span-12 grid grid-cols-12 gap-5"
       >
         <div className="col-span-12">
@@ -61,10 +44,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
             type="email"
             id="email"
             name="email"
-            defaultValue={"pabloriusblanco@gmail.com"}
             placeholder="juanperez@ejemplo.com"
-            required
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            validationError={!!formik.errors.email && formik.touched.email}
           />
+          {formik.errors.email && formik.touched.email && (
+            <InputErrorText>{formik.errors.email}</InputErrorText>
+          )}
         </div>
         <div className="col-span-12">
           <Label htmlFor="password">Password</Label>
@@ -73,22 +61,30 @@ const LoginForm: React.FC<LoginFormProps> = ({
             id="password"
             name="password"
             placeholder="*******"
-            defaultValue={"101693518573633141042"}
-            required
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            // defaultValue="12345678"
+            validationError={
+              !!formik.errors.password && formik.touched.password
+            }
           />
+          {formik.errors.password && formik.touched.password && (
+            <InputErrorText>{formik.errors.password}</InputErrorText>
+          )}
         </div>
         <Button
-          color="primary"
+          color={!formik.isValid ? "gray" : "primary"}
           type="submit"
-          className="w-full col-span-12"
+          extraClasses="col-span-12 w-full"
         >
           Iniciar Sesión
         </Button>
-        <Separator text="o utiliza" />
-        <ButtonGoogleSignIn
+        {/* <Separator text="o utiliza" /> */}
+        {/* <ButtonGoogleSignIn
           extraClasses="col-span-12 w-full"
           closeModal={closeModal}
-        />
+        /> */}
         <div className="col-span-12">
           <p className="col-span-12 cursor-pointer text-right text-sm text-gray">
             ¿No tienes cuenta?
