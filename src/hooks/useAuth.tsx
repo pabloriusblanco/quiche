@@ -10,6 +10,8 @@ interface UseAuth {
   isLoading: boolean;
   isAuthenticated: boolean;
   username: string;
+  showingAuthModal: boolean;
+  toggleAuthModal: () => void;
   signIn: (email: string, password: string) => Promise<Result>;
   signOut: () => Promise<Result>;
   signUp: (
@@ -44,6 +46,7 @@ export const useAuth = () => {
 
 const useProvideAuth = (): UseAuth => {
   const [isLoading, setIsLoading] = useState(true);
+  const [showingAuthModal, setShowingAuthModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -131,10 +134,16 @@ const useProvideAuth = (): UseAuth => {
     }
   };
 
+  const toggleAuthModal = () => {
+    setShowingAuthModal(!showingAuthModal);
+  };
+
   return {
     isLoading,
     isAuthenticated,
     username,
+    showingAuthModal,
+    toggleAuthModal,
     signIn,
     signOut,
     signUp,

@@ -6,6 +6,7 @@ import Icon from "../../../atoms/Icons/Icons";
 import LinkBasic from "../../../atoms/Link/LinkBasic";
 import LinkContainer from "../../../atoms/Link/LinkContainer";
 import ProfileModal from "../../../molecules/Auth/ProfileModal";
+import RequiredAuthModal from "../../../molecules/Auth/RequiredAuthModal";
 import WelcomeModal from "../../../molecules/Auth/WelcomeModal";
 import LoginForm from "../../../molecules/Forms/LoginForm";
 import RegisterForm from "../../../molecules/Forms/RegisterForm";
@@ -106,6 +107,10 @@ const Navbar: React.FC = () => {
         />
       )}
       {spinnerModal.isLoading && <Spinner />}
+      {auth.showingAuthModal && (
+        <RequiredAuthModal onClose={auth.toggleAuthModal}
+        handleLoginClick={handleLoginClick} />
+      )}
       {/* </GoogleOAuthProvider> */}
     </>
   );
