@@ -34,12 +34,12 @@ const Home: React.FC = () => {
       <BackgroundHeader />
       <HomeSearch />
       <div className="space-y-8">
-        <Button color="primary" onClick={testAuthorization}>
+        {/* <Button color="primary" onClick={testAuthorization}>
           Test Auth
         </Button>
         <Button color="primary" onClick={testRecipes}>
           Test recipes
-        </Button>
+        </Button> */}
         <CategoriesHome title="Ver recetas por Categorías" />
         <DestacadosDia title="Recetas destacadas del día" />
         <BannerAdvanceSearch />

@@ -6,14 +6,17 @@ import {
 import Title from "../../../components/atoms/Text/Title";
 
 type RecipeSectionTitleProps = {
-  iconName: IconsNames;
+  iconName?: IconsNames;
   titleText: string;
 };
 
-const RecipeSectionTitle = ({ iconName, titleText }: RecipeSectionTitleProps) => {
+const RecipeSectionTitle = ({
+  iconName,
+  titleText,
+}: RecipeSectionTitleProps) => {
   return (
     <div className="flex items-center gap-2">
-      <Icon name={iconName} className="h-3.5 w-3.5 fill-black" />
+      {iconName && <Icon name={iconName} className="h-3.5 w-3.5 fill-black" />}
       <Title
         titleType={TitleType.H5}
         color="black"

@@ -4,7 +4,7 @@ type LinkBasicProps = {
   to: string;
   fontSize?: string;
   color?: string;
-  hoverColor?: string;
+  extraClasses?: string;
   children: React.ReactNode;
 };
 
@@ -12,11 +12,11 @@ const LinkBasic = ({
   to,
   fontSize = "text-normal",
   color = "text-black",
-  hoverColor = "hover:text-black-dark",
+  extraClasses = "hover:text-black-dark",
   children,
 }: LinkBasicProps) => {
   return (
-    <Link to={to} className={`${fontSize} ${color} ${hoverColor}`}>
+    <Link to={to} className={`${fontSize} ${color} ${extraClasses}`}>
       {children}
     </Link>
   );

@@ -48,7 +48,7 @@ const VerticalSimpleCard = ({ id, post }: VerticalSimpleCardProps) => {
             <Button
               color="primary"
               buttonStyle="outlined"
-              className="w-full"
+              extraClasses="w-full"
             >
               Ver receta
             </Button>

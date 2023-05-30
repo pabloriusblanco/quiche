@@ -6,6 +6,7 @@ import Skeleton from "../../components/molecules/Skeleton/Skeleton";
 import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import { Post } from "../../types/Recipe";
 import RecipeInfo from "./sections/RecipeInfo";
+import RecipeComments from "./sections/RecipeComments";
 
 // interface RecipeDetailProps {
 //   postId: string;
@@ -28,11 +29,9 @@ const RecipeDetail = () => {
     }
   }, [id]);
 
-  console.log(id);
-
   return (
     <>
-      <BackgroundHeader sectionHeight="215px"/>
+      <BackgroundHeader sectionHeight="215px" />
       <section className="container">
         <HomeSearch />
         {!results && (
@@ -47,8 +46,9 @@ const RecipeDetail = () => {
           />
         )}
         {results && (
-          <div className="grid grid-cols-10">
+          <div className="grid grid-cols-10 gap-5">
             <RecipeInfo post={results} />
+            <RecipeComments comments={results.comments} />
           </div>
         )}
       </section>

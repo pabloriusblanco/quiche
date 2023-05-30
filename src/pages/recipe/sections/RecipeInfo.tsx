@@ -1,6 +1,6 @@
-import ButtonCategoryWithIcon from "../../../components/atoms/Buttons/ButtonCategoryWithIcon";
+import HTMLContent from "../../../components/atoms/HTMLContent/HTMLContent";
 import Icon from "../../../components/atoms/Icons/Icons";
-import RatingStars from "../../../components/atoms/Icons/RatingStars/RatingStars";
+import LinkBasic from "../../../components/atoms/Link/LinkBasic";
 import Paragraph from "../../../components/atoms/Text/Paragraph";
 import {
   TextWeightType,
@@ -69,7 +69,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
               <div className="flex flex-col gap-2">
                 <RecipeSectionTitle
                   iconName={post.recipe.time.icon}
-                  titleText="Tiempo de preparación:"
+                  titleText="Tiempo de preparación"
                 />
                 <Paragraph color="gray" className="text-[11px]">
                   {`${post.recipe.time.displayName} - ${post.recipe.time.value} minutos`}
@@ -77,8 +77,17 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
               </div>
               <div className="flex flex-col gap-2">
                 <RecipeSectionTitle
+                  iconName={post.recipe.difficulty.icon}
+                  titleText="Dificultad de la preparación"
+                />
+                <Paragraph color="gray" className="text-[11px]">
+                  {`${post.recipe.difficulty.displayName}`}
+                </Paragraph>
+              </div>
+              <div className="flex flex-col gap-2">
+                <RecipeSectionTitle
                   iconName="ingredients"
-                  titleText="Ingredientes:"
+                  titleText="Ingredientes"
                 />
                 <ul className="list-inside list-disc">
                   {post.recipe.ingredients.map((ingredient) => (
@@ -87,6 +96,35 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                     </li>
                   ))}
                 </ul>
+              </div>
+              <div className="flex flex-col gap-2">
+                <RecipeSectionTitle
+                  iconName="steps"
+                  titleText="Instrucciones"
+                />
+                <Paragraph color="gray" className="text-[11px]">
+                  <HTMLContent content={post.recipe.steps} />
+                </Paragraph>
+              </div>
+              <div className="flex flex-col">
+                <RecipeSectionTitle titleText="Creado por" />
+                <div className="flex items-center">
+                  <Icon name="userchecked" className="w-3.5 fill-primary" />
+                  <Paragraph
+                    color="gray"
+                    className="ml-1 overflow-hidden text-ellipsis font-semibold text-right text-[11px]"
+                  >
+                    {`${post.owner.firstName} ${post.owner.lastName}`}
+                  </Paragraph>
+                </div>
+                <LinkBasic
+                  color="text-primary"
+                  fontSize="text-[11px]"
+                  extraClasses="underline hover:text-primary-dark"
+                  to={`/recipe/?=user:${post.owner.id}`}
+                >
+                  Ver más recetas del autor
+                </LinkBasic>
               </div>
             </div>
           </div>
