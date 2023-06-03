@@ -1,20 +1,29 @@
-import React, { useState, useRef, useEffect } from "react";
-import Button from "../../atoms/Buttons/Button";
-import Paragraph from "../../atoms/Text/Paragraph";
-import { TextWeightType } from "../../atoms/Text/TextsTypes";
-import Title from "../../atoms/Text/Title";
-import Modal from "../Modal/Modal";
-import LinkContainer from "../../atoms/Link/LinkContainer";
-import Icon from "../../atoms/Icons/Icons";
+import { useEffect, useRef, useState } from "react";
+import { useAuth } from "../../../../hooks/useAuth";
+import { useSpinner } from "../../../../hooks/useSpinner";
+import Button from "../../../atoms/Buttons/Button";
+import Icon from "../../../atoms/Icons/Icons";
+import LinkContainer from "../../../atoms/Link/LinkContainer";
+import Paragraph from "../../../atoms/Text/Paragraph";
 
 interface ProfileModalProps {
-  logout: () => void;
   username: string;
 }
 
-const ProfileModal = ({ logout, username }: ProfileModalProps) => {
+const ProfileModal = () => {
+  const auth = useAuth();
+  const spinnerModal = useSpinner();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const logout = async () => {
+    spinnerModal.startLoading({ text: "Cerrando sesión" });
+    const result = await auth.signOut();
+    if (result.success) {
+      console.log("loggedOUT", auth.isAuthenticated);
+      spinnerModal.stopLoading();
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

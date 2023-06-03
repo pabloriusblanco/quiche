@@ -5,7 +5,7 @@ type InputErrorTextProps = {
 const InputErrorText = ({ children }: InputErrorTextProps) => {
   return (
     <div className="relative flex justify-end">
-      <span className="absolute text-[12px] text-danger">{children}</span>
+      <span className="absolute text-right text-[12px] text-danger">{children}</span>
     </div>
   );
 };

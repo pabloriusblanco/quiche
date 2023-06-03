@@ -1,59 +1,39 @@
 import { useAuth } from "../../../../hooks/useAuth";
 import useModal from "../../../../hooks/useModal";
-import useSpinner from "../../../../hooks/useSpinner";
+import { useSpinner } from "../../../../hooks/useSpinner";
 import Button from "../../../atoms/Buttons/Button";
 import Icon from "../../../atoms/Icons/Icons";
 import LinkBasic from "../../../atoms/Link/LinkBasic";
 import LinkContainer from "../../../atoms/Link/LinkContainer";
-import ProfileModal from "../../../molecules/Auth/ProfileModal";
-import RequiredAuthModal from "../../../molecules/Auth/RequiredAuthModal";
-import WelcomeModal from "../../../molecules/Auth/WelcomeModal";
-import LoginForm from "../../../molecules/Forms/LoginForm";
-import RegisterForm from "../../../molecules/Forms/RegisterForm";
-import Modal from "../../../molecules/Modal/Modal";
-import Spinner from "../../../molecules/Modal/Spinner";
+import AuthFlow from "../../../molecules/Modal/Auth/AuthFlow";
+import CodeConfirmationModal from "../../../molecules/Modal/Auth/CodeConfirmationModal";
+import ForgotPasswordModal from "../../../molecules/Modal/Auth/ForgotPasswordModal";
+import ProfileModal from "../../../molecules/Modal/Auth/ProfileModal";
+import RequiredAuthModal from "../../../molecules/Modal/Auth/RequiredAuthModal";
 import NavLinksContainer from "./NavLinksContainer";
 
 const Navbar: React.FC = () => {
   const loginModal = useModal();
-  const registerModal = useModal();
-  const welcomeModal = useModal();
   const spinnerModal = useSpinner();
+  const forgotPasswordModal = useModal();
+  const registerModal = useModal();
   const auth = useAuth();
 
-  const handleLoginClick = () => {
-    loginModal.openModal();
-  };
-
-  const handleRegisterClick = () => {
-    registerModal.openModal();
-  };
-
-  const login = async (email: string, password: string) => {
-    loginModal.closeModal();
-    spinnerModal.startLoading();
-    const result = await auth.signIn(email, password);
+  const forgotPassword = async (email: string) => {
+    forgotPasswordModal.closeModal();
+    spinnerModal.startLoading({ text: "Enviando código de verificación" });
+    const result = await auth.forgotPassword(email);
     if (result.success) {
+      console.log("succes", result);
       spinnerModal.stopLoading();
-      welcomeModal.openModal();
     } else {
-      console.log(result);
-      spinnerModal.stopLoading();
-    }
-  };
-
-  const logout = async () => {
-    spinnerModal.startLoading();
-    const result = await auth.signOut();
-    if (result.success) {
-      console.log("loggedOUT", auth.isAuthenticated);
+      console.log("error", result);
       spinnerModal.stopLoading();
     }
   };
 
   return (
     <>
-      {/* <GoogleOAuthProvider clientId="36326234671-nju0jvcnqshbokbfc3qe1tl55gd5vdhv.apps.googleusercontent.com"> */}
       <nav className="shadow-light relative z-[1] bg-white p-0 lg:p-4">
         <div className="container flex items-center justify-between">
           <LinkContainer className="w-[106px]" to="/">
@@ -71,47 +51,33 @@ const Navbar: React.FC = () => {
               <Button
                 buttonStyle="outlined"
                 color="primary"
-                onClick={handleLoginClick}
+                onClick={loginModal.openModal}
               >
                 Ingresar
               </Button>
             )}
-            {auth.isAuthenticated && (
-              <ProfileModal logout={logout} username={auth.username} />
-            )}
+            {auth.isAuthenticated && <ProfileModal />}
           </NavLinksContainer>
         </div>
       </nav>
-      {loginModal.isOpen && (
-        <Modal onClose={loginModal.closeModal} key={"loginModal"}>
-          <LoginForm
-            closeModal={loginModal.closeModal}
-            handleRegisterClick={handleRegisterClick}
-            onSubmitCallback={login}
-          />
-        </Modal>
-      )}
-      {registerModal.isOpen && (
-        <Modal onClose={registerModal.closeModal} key={"registerModal"}>
-          <RegisterForm
-            onSubmit={(values) => console.log("register: ", values)}
-            closeModal={registerModal.closeModal}
-            handleLoginClick={handleLoginClick}
-          />
-        </Modal>
-      )}
-      {welcomeModal.isOpen && auth.isAuthenticated && (
-        <WelcomeModal
-          onClose={welcomeModal.closeModal}
-          username={auth.username}
+      <AuthFlow
+        loginModal={loginModal}
+        registerModal={registerModal}
+        forgotPasswordModal={forgotPasswordModal}
+      />
+
+      {forgotPasswordModal.isOpen && (
+        <ForgotPasswordModal
+          onClose={forgotPasswordModal.closeModal}
+          onSubmitCallback={forgotPassword}
         />
       )}
-      {spinnerModal.isLoading && <Spinner />}
       {auth.showingAuthModal && (
-        <RequiredAuthModal onClose={auth.toggleAuthModal}
-        handleLoginClick={handleLoginClick} />
+        <RequiredAuthModal
+          onClose={auth.toggleAuthModal}
+          handleLoginClick={loginModal.openModal}
+        />
       )}
-      {/* </GoogleOAuthProvider> */}
     </>
   );
 };

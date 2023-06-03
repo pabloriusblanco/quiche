@@ -9,7 +9,7 @@ const RegisterFormContainer: React.FC<RegisterFormContainerProps> = ({
   children,
 }: RegisterFormContainerProps) => {
   return (
-    <div className="grid grid-cols-12 gap-5 px-5 py-7">
+    <div className="grid col-span-12 grid-cols-12 gap-5 px-5 py-7">
       <div className="col-span-12">
         <Title
           color="black"

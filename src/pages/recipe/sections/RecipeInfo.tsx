@@ -31,7 +31,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
         </div>
       )}
       {post && (
-        <div className="shadow-light col-span-10 overflow-hidden rounded-2xl md:col-span-6">
+        <div className="shadow-light flex flex-col overflow-hidden rounded-2xl">
           <img
             className="h-[466px] w-full object-cover"
             src={

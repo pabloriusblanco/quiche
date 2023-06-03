@@ -1,6 +1,9 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { ReactComponent as comments } from "./assets/comments.svg";
 import { ReactComponent as quiche } from "./assets/quiche.svg";
+import { ReactComponent as success } from "./assets/checked.svg";
+import { ReactComponent as info } from "./assets/info.svg";
+import { ReactComponent as danger } from "./assets/error.svg";
 import { ReactComponent as ingredients } from "./assets/ingredients.svg";
 import { ReactComponent as steps } from "./assets/steps.svg";
 import { ReactComponent as userchecked } from "./assets/userchecked.svg";
@@ -53,6 +56,9 @@ import { ReactComponent as vegetarian } from "./assets/categories/vegetarian.svg
 const iconsMap = {
   quiche,
   userchecked,
+  success,
+  info,
+  danger,
   likes,
   recipes,
   logout,
@@ -117,7 +123,7 @@ const Icon = ({
   name,
   clickable,
   onClick,
-  className = "",
+  className = "h-4",
   svgProp,
 }: IconProps) => {
   const IconToRender = iconsMap[name];
@@ -130,7 +136,7 @@ const Icon = ({
   return (
     <IconToRender
       {...svgProp}
-      className={`h-4 transition-all ${className}`}
+      className={`transition-all ${className}`}
       onClick={handleClick}
     />
   );

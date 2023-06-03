@@ -6,7 +6,7 @@ export default {
   safelist: [
     {
       pattern:
-        /(bg|text|border|shadow|fill|stroke|outline)-(primary|secondary|black|gray|grayscale|success|alert)[-(ultralight|light|semilight|semidark|dark|graytext|background|body)]?/,
+        /(bg|text|border|shadow|fill|stroke|outline)-(primary|secondary|black|gray|grayscale|success|danger|alert)[-(ultralight|light|semilight|semidark|dark|graytext|background|body)]?/,
       variants: ["responsive", "hover", "focus", "active", "group-hover"],
     },
     {

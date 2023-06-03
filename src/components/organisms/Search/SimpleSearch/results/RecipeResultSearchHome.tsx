@@ -42,7 +42,7 @@ const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
               />
               <TooltipIcons
                 tag="time"
-                tagKey={post.recipe.time.icon}
+                tagKey={post.recipe.time.reference.icon}
                 id={`${post.id}_time_${index}`}
               />
             </div>

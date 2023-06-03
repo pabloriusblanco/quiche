@@ -4,7 +4,7 @@ import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import CommentForm from "../../../components/molecules/Forms/CommentForm";
 import { useAuth } from "../../../hooks/useAuth";
-import useSpinner from "../../../hooks/useSpinner";
+import { useSpinner } from "../../../hooks/useSpinner";
 import { Comment } from "../../../types/Recipe";
 
 type RecipeCommentsProps = {
@@ -26,7 +26,7 @@ const RecipeComments = ({ comments }: RecipeCommentsProps) => {
   };
 
   return (
-    <div className="col-span-10 flex flex-col gap-5 md:col-span-6">
+    <div className=" flex flex-col gap-5">
       <div className="shadow-light overflow-hidden rounded-2xl p-5">
         {comments.map((comment) => (
           <div

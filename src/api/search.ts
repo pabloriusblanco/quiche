@@ -84,11 +84,13 @@ const mockSimpleSearchResults: SimpleSearchResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "short",
-          displayName: "Corto",
-          icon: "short",
           value: 35,
+          reference: {
+            name: "short",
+            displayName: "Corto",
+            icon: "short",
+            maxTime: 112,
+          },
         },
         difficulty: {
           id: 1123,
@@ -186,11 +188,13 @@ const mockSimpleSearchResults: SimpleSearchResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 30,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 112,
+          },
         },
         difficulty: {
           id: 1123,

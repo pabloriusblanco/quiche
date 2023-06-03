@@ -110,11 +110,13 @@ const mockDetailRecipe: Post = {
       },
     ],
     time: {
-      id: 1123,
-      name: "short",
-      displayName: "Medio",
-      icon: "short",
       value: 35,
+      reference: {
+        name: "short",
+        displayName: "Medio",
+        icon: "short",
+        maxTime: 3356,
+      },
     },
     difficulty: {
       id: 1123,

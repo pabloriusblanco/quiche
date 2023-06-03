@@ -19,6 +19,7 @@ const prepareText = (content: TagContent) => {
 };
 
 const TooltipIcons = ({ tag, tagKey, className, id }: TooltipIconsProps) => {
+ 
   const tagData = flattedTags[tagKey];
   return (
     <>

@@ -5,28 +5,31 @@ import { useFormik } from "formik";
 import Input from "../../atoms/Inputs/Input";
 import InputErrorText from "../../atoms/Inputs/InputErrorText";
 import Label from "../../atoms/Inputs/Label";
-import { loginFormValidation } from "./validations/LoginFormValidation";
+import { ForgotPasswordValidationForm } from "./validations/ForgotPasswordValidationForm";
 
-interface LoginFormProps {
-  onSubmitCallback: (username: string, password: string) => Promise<void>;
+interface DeleteUserFormProps {
+  onSubmitCallback: (username: string) => Promise<void>;
+  className?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmitCallback }) => {
+const DeleteUserForm: React.FC<DeleteUserFormProps> = ({
+  onSubmitCallback,
+  className,
+}) => {
   const formik = useFormik({
     initialValues: {
       username: "pablodev",
-      password: "Asd123asd",
     },
-    validationSchema: loginFormValidation,
+    validationSchema: ForgotPasswordValidationForm,
     onSubmit: (values) => {
-      onSubmitCallback(values.username, values.password);
+      onSubmitCallback(values.username);
     },
   });
 
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="col-span-12 grid grid-cols-12 gap-5"
+      className={className ? className : "col-span-12 grid grid-cols-12 gap-5"}
     >
       <div className="col-span-12">
         <Label htmlFor="username">Usuario</Label>
@@ -44,37 +47,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmitCallback }) => {
           <InputErrorText>{formik.errors.username}</InputErrorText>
         )}
       </div>
-      <div className="col-span-12">
-        <Label htmlFor="password">Password</Label>
-        <Input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="*******"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-          // defaultValue="12345678"
-          validationError={!!formik.errors.password && formik.touched.password}
-        />
-        {formik.errors.password && formik.touched.password && (
-          <InputErrorText>{formik.errors.password}</InputErrorText>
-        )}
-      </div>
       <Button
         color={!formik.isValid ? "gray" : "primary"}
         type="submit"
         extraClasses="col-span-12 w-full"
       >
-        Iniciar Sesión
+        Eliminar Usuario
       </Button>
-      {/* <Separator text="o utiliza" /> */}
-      {/* <ButtonGoogleSignIn
-          extraClasses="col-span-12 w-full"
-          closeModal={closeModal}
-        /> */}
     </form>
   );
 };
 
-export default LoginForm;
+export default DeleteUserForm;

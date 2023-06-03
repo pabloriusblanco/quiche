@@ -1,21 +1,30 @@
-// // register.ts file is used to handle the register request from the client side with axios.
+import { api } from "..";
 
-// import axios from "axios";
+export const registerUser = async (
+  userName: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string
+) => {
+  const response = await api.post("Auth/Register", {
+    userName,
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+  return response.data;
+};
 
-// export const register = async (
-//   name: string,
-//   lastname: string,
-//   email: string,
-//   phone: string | null = null,
-//   password: string
-// ) => {
-//   const url = `${process.env.API_URL}/auth/register`;
-//   const response = await axios.post(url, {
-//     name,
-//     lastname,
-//     email,
-//     phone,
-//     password,
-//   });
-//   return response.data;
-// };
+export const deleteRegisteredUser = async (username: string) => {
+  const response = await api.post("Auth/DeleteUser", {
+    userName: username,
+  });
+  return response.data;
+};
+
+export async function testRecipesGetAll(): Promise<any> {
+  const response = await api.get("Recipe/GetAll");
+  return response.data;
+}

@@ -45,11 +45,15 @@ export type Difficulty = {
 };
 
 export type Duration = {
-  id: number;
+  value: number;
+  reference: DurationReference;
+}
+
+export type DurationReference = {
   name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";
-  value: number;
+  maxTime: number;    
 };
 
 export type Owner = {

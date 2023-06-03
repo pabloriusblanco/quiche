@@ -48,8 +48,8 @@ const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
               <TooltipIcons
                 tag="time"
                 className="w-[14px]"
-                tagKey={post.recipe.time.icon}
-                id={`HorizontalSimpleCard_${post.id}_${post.recipe.time.icon}`}
+                tagKey={post.recipe.time.reference.icon}
+                id={`HorizontalSimpleCard_${post.id}_${post.recipe.time.reference.icon}`}
               />
               <TooltipIcons
                 tag="difficulty"

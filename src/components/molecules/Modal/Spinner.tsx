@@ -1,22 +1,19 @@
 import Lottie from "lottie-react";
 import animationData from "../../../assets/lottie/cooking.json";
 import Paragraph from "../../atoms/Text/Paragraph";
+import { useSpinner } from "../../../hooks/useSpinner";
 
 interface SpinnerProps {
   lottieHeight?: number;
   lottieWidth?: number;
-  children?: React.ReactNode;
 }
 
-const Spinner = ({
-  children = (
-    <Paragraph color="black" className="text-[12px]">
-      Procesando su solicitud
-    </Paragraph>
-  ),
-  lottieHeight = 140,
-  lottieWidth = 140,
-}: SpinnerProps) => {
+const Spinner = ({ lottieHeight = 140, lottieWidth = 140 }: SpinnerProps) => {
+  const spinner = useSpinner();
+  const { text: spinnerText } = spinner.spinnerContent;
+
+  if (!spinner.isLoading) return null;
+
   return (
     <div className="fixed inset-0 z-[500] flex items-center justify-center bg-black bg-opacity-75">
       <div className="fade-in-bottom relative flex flex-col items-center justify-center rounded-2xl bg-white p-5">
@@ -32,7 +29,9 @@ const Spinner = ({
             }}
           />
         </div>
-        {children}
+        <Paragraph color="black" className="text-[12px]">
+          {spinnerText}
+        </Paragraph>
       </div>
     </div>
   );

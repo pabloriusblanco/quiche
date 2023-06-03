@@ -24,7 +24,7 @@ const VerticalSimpleCard = ({ id, post }: VerticalSimpleCardProps) => {
       <PostTagsWithTooltips
         id={id.toString()}
         category={post.recipe.mainCategory.icon}
-        time={post.recipe.time.icon}
+        time={post.recipe.time.reference.icon}
         difficulty={post.recipe.difficulty.icon}
       />
       <div className="grid grid-cols-12 gap-2 p-[12px] pt-[28px]">

@@ -83,10 +83,12 @@ const dayPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "short",
-          displayName: "Medio",
-          icon: "short",
+          reference: {
+            name: "short",
+            displayName: "Medio",
+            icon: "short",
+            maxTime: 30,
+          },
           value: 35,
         },
         difficulty: {
@@ -206,11 +208,13 @@ const dayPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 321,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 987,
@@ -358,10 +362,12 @@ const dayPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 90,
+          },
           value: 45,
         },
         difficulty: {
@@ -453,10 +459,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "short",
-          displayName: "Medio",
-          icon: "short",
+          reference: {
+            name: "short",
+            displayName: "Medio",
+            icon: "short",
+            maxTime: 30,
+          },
           value: 35,
         },
         difficulty: {
@@ -576,11 +584,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 321,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 987,
@@ -728,10 +738,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 90,
+          },
           value: 45,
         },
         difficulty: {
@@ -860,11 +872,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 3434,
@@ -950,10 +964,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "short",
-          displayName: "Medio",
-          icon: "short",
+          reference: {
+            name: "short",
+            displayName: "Medio",
+            icon: "short",
+            maxTime: 30,
+          },
           value: 35,
         },
         difficulty: {
@@ -1073,11 +1089,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 321,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 987,
@@ -1225,10 +1243,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 90,
+          },
           value: 45,
         },
         difficulty: {
@@ -1357,11 +1377,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 3434,
@@ -1447,10 +1469,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 1123,
-          name: "short",
-          displayName: "Medio",
-          icon: "short",
+          reference: {
+            name: "short",
+            displayName: "Medio",
+            icon: "short",
+            maxTime: 30,
+          },
           value: 35,
         },
         difficulty: {
@@ -1570,11 +1594,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 321,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 987,
@@ -1722,10 +1748,12 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 90,
+          },
           value: 45,
         },
         difficulty: {
@@ -1854,11 +1882,13 @@ const monthPostsMock: PostResults = {
           },
         ],
         time: {
-          id: 2323,
-          name: "medium",
-          displayName: "Medio",
-          icon: "medium",
           value: 60,
+          reference: {
+            name: "medium",
+            displayName: "Medio",
+            icon: "medium",
+            maxTime: 60,
+          },
         },
         difficulty: {
           id: 3434,

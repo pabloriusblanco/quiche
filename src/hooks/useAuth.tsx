@@ -10,16 +10,19 @@ interface UseAuth {
   isLoading: boolean;
   isAuthenticated: boolean;
   username: string;
+  showingConfirmationModal: boolean;
   showingAuthModal: boolean;
   toggleAuthModal: () => void;
+  toggleConfirmationModal: () => void;
   signIn: (email: string, password: string) => Promise<Result>;
   signOut: () => Promise<Result>;
+  resendConfirmationCode: (username: string) => Promise<Result>;
+  forgotPassword: (username: string) => Promise<Result>;
   signUp: (
-    username: string,
-    name: string,
-    lastname: string,
+    userName: string,
+    firstName: string,
+    lastName: string,
     email: string,
-    phone: string,
     password: string
   ) => Promise<Result>;
 }
@@ -47,6 +50,8 @@ export const useAuth = () => {
 const useProvideAuth = (): UseAuth => {
   const [isLoading, setIsLoading] = useState(true);
   const [showingAuthModal, setShowingAuthModal] = useState(false);
+  const [showingConfirmationModal, setShowingConfirmationModal] =
+    useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -64,23 +69,58 @@ const useProvideAuth = (): UseAuth => {
         setIsAuthenticated(true);
         setIsLoading(false);
       })
-      .catch(() => {
+      .catch((error) => {
+        Cookies.remove("authorization");
         setUsername("");
         setIsAuthenticated(false);
         setIsLoading(false);
       });
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (username: string, password: string) => {
     try {
-      const result = await Auth.signIn(email, password);
+      const result = await Auth.signIn(username, password);
       Cookies.set("authorization", result.signInUserSession.idToken.jwtToken, {
         path: "/",
       });
-      api.defaults.headers.common["Authorization"] =
-        result.signInUserSession.idToken.jwtToken;
       setUsername(result.username);
       setIsAuthenticated(true);
+      return { success: true, message: result as any };
+    } catch (error: any) {
+      if (error.code === "UserNotConfirmedException") {
+        setUsername(username);
+        toggleConfirmationModal();
+      }
+      if (error.code === "NotAuthorizedException") {
+        return {
+          code: "NotAuthorizedException",
+          success: false,
+          message: "Nombre de usuario o contraseña incorrectos",
+        };
+      }
+      return {
+        success: false,
+        message: error,
+      };
+    }
+  };
+
+
+  const resendConfirmationCode = async (username: string) => {
+    try {
+      await Auth.resendSignUp(username);
+      return { success: true, message: "" };
+    } catch (error) {
+      return {
+        success: false,
+        message: error,
+      };
+    }
+  };
+
+  const forgotPassword = async (username: string) => {
+    try {
+      const result = await Auth.forgotPassword(username);
       return { success: true, message: result };
     } catch (error) {
       return {
@@ -91,26 +131,21 @@ const useProvideAuth = (): UseAuth => {
   };
 
   const signUp = async (
-    username: string,
-    name: string,
-    lastname: string,
+    userName: string,
+    firstName: string,
+    lastName: string,
     email: string,
-    phone: string,
     password: string
   ) => {
-    console.log("try SignUp", username, name, lastname, email, phone, password);
     try {
-      await Auth.signUp({
-        username: username,
-        password: password,
-        attributes: {
-          email: email,
-          phone_number: phone,
-          given_name: name,
-          family_name: lastname,
-        },
+      const result = await api.post("Auth/Register", {
+        userName,
+        firstName,
+        lastName,
+        email,
+        password,
       });
-      return { success: true, message: "" };
+      return { success: true, message: result };
     } catch (error) {
       return {
         success: false,
@@ -138,14 +173,22 @@ const useProvideAuth = (): UseAuth => {
     setShowingAuthModal(!showingAuthModal);
   };
 
+  const toggleConfirmationModal = () => {
+    setShowingConfirmationModal(!showingConfirmationModal);
+  };
+
   return {
     isLoading,
     isAuthenticated,
     username,
+    showingConfirmationModal,
     showingAuthModal,
     toggleAuthModal,
+    toggleConfirmationModal,
     signIn,
     signOut,
     signUp,
+    resendConfirmationCode,
+    forgotPassword,
   };
 };

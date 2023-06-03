@@ -1,8 +1,8 @@
-import Button from "../../atoms/Buttons/Button";
-import Paragraph from "../../atoms/Text/Paragraph";
-import { TextWeightType } from "../../atoms/Text/TextsTypes";
-import Title from "../../atoms/Text/Title";
-import Modal from "../Modal/Modal";
+import Button from "../../../atoms/Buttons/Button";
+import Paragraph from "../../../atoms/Text/Paragraph";
+import { TextWeightType } from "../../../atoms/Text/TextsTypes";
+import Title from "../../../atoms/Text/Title";
+import Modal from "../Modal";
 
 interface RequiredAuthModalProps {
   onClose: () => void;

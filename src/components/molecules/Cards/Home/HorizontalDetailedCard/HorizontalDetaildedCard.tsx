@@ -38,8 +38,8 @@ const HorizontalDetailedCard = ({ post }: HorizontalDetailedCardProps) => {
               <TooltipIcons
                 tag="time"
                 className="w-[14px]"
-                tagKey={post.recipe.time.icon}
-                id={`HorizontalDetailed_${post.recipe.time.icon}`}
+                tagKey={post.recipe.time.reference.icon}
+                id={`HorizontalDetailed_${post.recipe.time.reference.icon}`}
               />
               <TooltipIcons
                 tag="difficulty"
