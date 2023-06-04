@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import Button from "../../atoms/Buttons/Button";
 import Input from "../../atoms/Inputs/Input";
 import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import { CodeConfirmationValidationForm } from "./validations/CodeConfirmationValidationForm";
+import { ResendCodeValidationForm } from "./validations/ResendCodeValidationForm";
 
-interface CodeConfirmationFormProps {
+interface ResendCodeFormProps {
   onSubmitCallback: (comment: string) => void;
   className?: string;
 }
@@ -22,17 +22,17 @@ interface CodeConfirmationFormProps {
 //   }
 // };
 
-const CodeConfirmationForm = ({
+const ResendCodeForm = ({
   onSubmitCallback,
   className,
-}: CodeConfirmationFormProps) => {
+}: ResendCodeFormProps) => {
   const formik = useFormik({
     initialValues: {
-      code: "",
+      username: "",
     },
-    validationSchema: CodeConfirmationValidationForm,
+    validationSchema: ResendCodeValidationForm,
     onSubmit: (values) => {
-      onSubmitCallback(values.code);
+      onSubmitCallback(values.username);
     },
   });
 
@@ -40,17 +40,17 @@ const CodeConfirmationForm = ({
     <form onSubmit={formik.handleSubmit} className={className ? className : ""}>
       <div className="col-span-12 flex flex-col">
         <Input
-          type="text"
-          id="code"
-          name="code"
-          placeholder="Código de seis dígitos"
+          type="username"
+          id="username"
+          name="username"
+          placeholder="Juan94"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.code}
-          validationError={!!formik.errors.code && formik.touched.code}
+          value={formik.values.username}
+          validationError={!!formik.errors.username && formik.touched.username}
         />
-        {formik.errors.code && formik.touched.code && (
-          <InputErrorText>{formik.errors.code}</InputErrorText>
+        {formik.errors.username && formik.touched.username && (
+          <InputErrorText>{formik.errors.username}</InputErrorText>
         )}
       </div>
       <Button
@@ -64,4 +64,4 @@ const CodeConfirmationForm = ({
   );
 };
 
-export default CodeConfirmationForm;
+export default ResendCodeForm;

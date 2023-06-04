@@ -5,18 +5,24 @@ import { TextWeightType, TitleType } from "../../../atoms/Text/TextsTypes";
 import Title from "../../../atoms/Text/Title";
 import LoginForm from "../../Forms/LoginForm";
 import Modal from "../Modal";
-import { loginModalSuccessContent } from "./ResultsConfigAuth/ResultsAuthContents";
+import {
+  loginResultMapper
+} from "./ResultsConfigAuth/ResultsAuthContents";
 
 interface LoginModalProps {
+  openModal: () => void;
   closeModal: () => void;
-  handleRegisterClick: () => void;
-  handleForgotPasswordClick: () => void;
+  registerOpen: () => void;
+  forgotPasswordOpen: () => void;
+  resendCodeOpen: () => void;
 }
 
 const LoginModal = ({
+  openModal,
   closeModal,
-  handleRegisterClick,
-  handleForgotPasswordClick,
+  registerOpen,
+  forgotPasswordOpen,
+  resendCodeOpen,
 }: LoginModalProps) => {
   const auth = useAuth();
   const spinnerModal = useSpinner();
@@ -26,16 +32,13 @@ const LoginModal = ({
     closeModal();
     spinnerModal.startLoading({ text: "Iniciando sesión" });
     const result = await auth.signIn(email, password);
-    if (result.success) {
-      spinnerModal.stopLoading();
-      resultModal.showResultModal(
-        "success",
-        loginModalSuccessContent(result.message.username)
-      );
-    } else {
-      console.log(result);
-      spinnerModal.stopLoading();
-    }
+    loginResultMapper(
+      result,
+      resultModal,
+      spinnerModal,
+      resendCodeOpen,
+      openModal
+    );
   };
 
   return (
@@ -62,7 +65,7 @@ const LoginModal = ({
               className="ml-1 text-primary underline"
               onClick={() => {
                 closeModal();
-                handleRegisterClick();
+                registerOpen();
               }}
             >
               Regístrate
@@ -75,7 +78,7 @@ const LoginModal = ({
               className="ml-1 text-primary underline"
               onClick={() => {
                 closeModal();
-                handleForgotPasswordClick();
+                forgotPasswordOpen();
               }}
             >
               ¿Olvidaste tu contraseña?

@@ -6,7 +6,7 @@ import Label from "../../atoms/Inputs/Label";
 import { ForgotPasswordValidationForm } from "./validations/ForgotPasswordValidationForm";
 
 interface ForgotPasswordFormProps {
-  onSubmitCallback: (comment: string) => Promise<void>;
+  onSubmitCallback: (username: string) => Promise<void>;
   className?: string;
 }
 

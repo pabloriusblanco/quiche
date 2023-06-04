@@ -1,50 +1,75 @@
-import { ResultModalContent } from "../../../../../context/ResultModalsContext";
+import {
+  ResultModalContent,
+  ResultModalsContextType,
+} from "../../../../../context/ResultModalsContext";
+import { SpinnerContextType } from "../../../../../context/SpinnerContext";
+import { AuthResult } from "../../../../../hooks/useAuth";
+import { PreloadRegisterValues } from "../../../Forms/RegisterForm";
+import { loginModalSuccessContent } from "./LoginResultsMapper";
+import { registerModalSuccessContent } from "./RegisterResultsMapper";
 
-export const loginModalSuccessContent = (
-  username: string
-): ResultModalContent => {
-  return {
-    title: (
-      <>
-        ¡Bienvenido <span className="text-primary">{username}</span>!
-      </>
-    ),
-    message: (
-      <>
-        Ya puedes empezar a crear tus recetas, o buscar las que más te gusten.{" "}
-        <br />
-        Desde tu perfil podrás ver las recetas que has creado, y las que has
-        guardado como favoritas.
-      </>
-    ),
-    cancelText: "Empezar",
-    showIcon: true,
-  };
+export const loginResultMapper = (
+  result: AuthResult,
+  resultModal: ResultModalsContextType,
+  spinnerModal: SpinnerContextType,
+  openResendCodeModal: () => void,
+  reOpenModal?: () => void
+) => {
+  if (result.success) {
+    spinnerModal.stopLoading();
+    resultModal.showResultModal(
+      "success",
+      loginModalSuccessContent(result.data.username)
+    );
+  } else {
+    let action;
+    switch (result.action) {
+      case "reOpenModal":
+        action = reOpenModal;
+        break;
+      case "resendConfirmationCode":
+        action = openResendCodeModal;
+        break;
+      default:
+        action = undefined;
+        break;
+    }
+    spinnerModal.stopLoading();
+    resultModal.showResultModal(
+      "danger",
+      genericErrorModalContent(result.message, action)
+    );
+  }
 };
 
-export const registerModalSuccessContent = (): ResultModalContent => {
-  return {
-    title: <>¡Bienvenid@!</>,
-    message: (
-      <>
-        ¡Falta poco para que puedas empezar a crear tus recetas!
-        <br />
-        <br />
-        Te hemos enviado un link de confirmación a tu correo electrónico. Por
-        favor, revisa tu bandeja de entrada, y haz click en el link para
-        confirmar tu cuenta.
-        <br />
-        <br />
-        Si no encuentras el correo, revisa tu bandeja de Spam.
-      </>
-    ),
-    showIcon: true,
-  };
+export const registerResultMapper = (
+  result: AuthResult,
+  resultModal: ResultModalsContextType,
+  spinnerModal: SpinnerContextType,
+  setPreloadedValues: (preloadedValues: PreloadRegisterValues) => void,
+  reOpenModal?: () => void
+) => {
+  if (result.success) {
+    spinnerModal.stopLoading();
+    setPreloadedValues({
+      username: "",
+      name: "",
+      lastname: "",
+      email: "",
+    });
+    resultModal.showResultModal("success", registerModalSuccessContent());
+  } else {
+    spinnerModal.stopLoading();
+    resultModal.showResultModal(
+      "danger",
+      genericErrorModalContent(result.message, reOpenModal)
+    );
+  }
 };
 
-export const registerModalErrorContent = (
+export const genericErrorModalContent = (
   message: string,
-  openModal: () => void
+  openModal?: () => void
 ): ResultModalContent => {
   return {
     title: "Ha sucedio un error",

@@ -18,6 +18,8 @@ const PostTagsWithTooltips = ({
   difficulty,
   time,
 }: PostTagsWithTooltipsProps) => {
+  console.log(category, difficulty, time);
+
   return (
     <div className="relative flex w-full -translate-y-[10px] justify-center">
       <div className="shadow-light absolute flex items-center gap-2 rounded-md bg-white px-[12px] py-[6px]">
@@ -25,12 +27,19 @@ const PostTagsWithTooltips = ({
           tag="category"
           tagKey={category}
           id={`${id}_${category}`}
+          className="w-[14px]"
         />
-        <TooltipIcons tag="time" tagKey={time} id={`${id}_${time}`} />
+        <TooltipIcons
+          tag="time"
+          tagKey={time}
+          id={`${id}_${time}`}
+          className="w-[14px]"
+        />
         <TooltipIcons
           tag="difficulty"
           tagKey={difficulty}
           id={`${id}_${difficulty}`}
+          className="w-[14px]"
         />
       </div>
     </div>

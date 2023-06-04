@@ -3,6 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import awsmobile from "../aws-exports";
 import { api } from "../api";
 import Cookies from "js-cookie";
+import { loginErrorCodes } from "../components/molecules/Modal/Auth/ResultsConfigAuth/LoginResultsMapper";
+import { type } from "os";
 
 Amplify.configure(awsmobile);
 
@@ -10,26 +12,32 @@ interface UseAuth {
   isLoading: boolean;
   isAuthenticated: boolean;
   username: string;
-  showingConfirmationModal: boolean;
   showingAuthModal: boolean;
   toggleAuthModal: () => void;
-  toggleConfirmationModal: () => void;
-  signIn: (email: string, password: string) => Promise<Result>;
-  signOut: () => Promise<Result>;
-  resendConfirmationCode: (username: string) => Promise<Result>;
-  forgotPassword: (username: string) => Promise<Result>;
+  signIn: (email: string, password: string) => Promise<AuthResult>;
+  signOut: () => Promise<AuthResult>;
+  resendConfirmationLink: (username: string) => Promise<AuthResult>;
+  forgotPassword: (username: string) => Promise<AuthResult>;
+  submitNewPassword: (
+    code: string,
+    username: string,
+    password: string
+  ) => Promise<AuthResult>;
   signUp: (
     userName: string,
     firstName: string,
     lastName: string,
     email: string,
     password: string
-  ) => Promise<Result>;
+  ) => Promise<AuthResult>;
 }
 
-interface Result {
+export interface AuthResult {
   success: boolean;
-  message: any;
+  code: string;
+  message: string;
+  action?: string;
+  data: any;
 }
 
 type Props = {
@@ -50,8 +58,6 @@ export const useAuth = () => {
 const useProvideAuth = (): UseAuth => {
   const [isLoading, setIsLoading] = useState(true);
   const [showingAuthModal, setShowingAuthModal] = useState(false);
-  const [showingConfirmationModal, setShowingConfirmationModal] =
-    useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -85,35 +91,46 @@ const useProvideAuth = (): UseAuth => {
       });
       setUsername(result.username);
       setIsAuthenticated(true);
-      return { success: true, message: result as any };
+      return {
+        success: true,
+        code: "logged in",
+        message: `Bienvenido ${result.username}`,
+        action: undefined,
+        data: result,
+      };
     } catch (error: any) {
-      if (error.code === "UserNotConfirmedException") {
-        setUsername(username);
-        toggleConfirmationModal();
-      }
-      if (error.code === "NotAuthorizedException") {
-        return {
-          code: "NotAuthorizedException",
-          success: false,
-          message: "Nombre de usuario o contraseña incorrectos",
-        };
-      }
+      console.dir("catch sign in", error);
+      console.dir(error);
+      const response =
+        loginErrorCodes[error.code as keyof typeof loginErrorCodes];
       return {
         success: false,
-        message: error,
+        code: response.code,
+        message: response.message,
+        action: response.action,
+        data: error,
       };
     }
   };
 
-
-  const resendConfirmationCode = async (username: string) => {
+  const resendConfirmationLink = async (username: string) => {
     try {
-      await Auth.resendSignUp(username);
-      return { success: true, message: "" };
+      const result = await Auth.resendSignUp(username);
+      return {
+        success: true,
+        code: "resendedConfirmationCode",
+        message: "Se ha enviado un link de verificación a tu correo",
+        action: undefined,
+        data: result,
+      };
     } catch (error) {
+      console.dir("catch resend confirmation link", error);
       return {
         success: false,
-        message: error,
+        code: "resendedConfirmationCodeError",
+        message: "No se ha enviado un link de verificación a tu correo",
+        action: undefined,
+        data: error,
       };
     }
   };
@@ -121,11 +138,55 @@ const useProvideAuth = (): UseAuth => {
   const forgotPassword = async (username: string) => {
     try {
       const result = await Auth.forgotPassword(username);
-      return { success: true, message: result };
+      return {
+        success: true,
+        code: "forgotPasswordSendCode",
+        message: "Se ha enviado un código a tu correo",
+        action: undefined,
+        data: result,
+      };
     } catch (error) {
+      console.dir("catch forgot password", error);
+      console.dir(error);
       return {
         success: false,
-        message: error,
+        code: "forgotPasswordSendCodeError",
+        message:
+          "No hemos podido enviar un código a tu correo. Intenta nuevamente más tarde.",
+        action: undefined,
+        data: error,
+      };
+    }
+  };
+
+  const submitNewPassword = async (
+    code: string,
+    username: string,
+    password: string
+  ) => {
+    console.log("submit new password", code, username, password);
+
+    try {
+      const result = await Auth.forgotPasswordSubmit(username, code, password);
+      console.dir(result);
+      return {
+        success: true,
+        code: "forgotPasswordSubmit",
+        message:
+          "Se ha cambiado la contraseña correctamente. Ya puedes ingresar.",
+        action: undefined,
+        data: result,
+      };
+    } catch (error) {
+      console.dir("catch submit new password", error);
+      console.dir(error);
+      return {
+        success: false,
+        code: "forgotPasswordSubmitError",
+        message:
+          "Hubo un error al cambiar la contraseña. Intenta nuevamente más tarde.",
+        action: undefined,
+        data: error,
       };
     }
   };
@@ -145,26 +206,56 @@ const useProvideAuth = (): UseAuth => {
         email,
         password,
       });
-      return { success: true, message: result };
-    } catch (error) {
+      return {
+        success: true,
+        code: "RegisteredUser",
+        message: "Usuario registrado correctamente",
+        action: undefined,
+        data: result,
+      };
+    } catch (error: any) {
+      console.dir("catch signup", error);
+      console.dir(error);
+      const message = (error: any) => {
+        if (error.response) {
+          return error.response.data;
+        }
+        if (error.message) {
+          return error.message;
+        }
+        return "No hemos podido registrar el usuario. Intenta nuevamente más tarde.";
+      };
       return {
         success: false,
-        message: error,
+        code: "RegisteredUserError",
+        message: message(error),
+        action: undefined,
+        data: error,
       };
     }
   };
 
   const signOut = async () => {
     try {
-      await Auth.signOut();
+      const result = await Auth.signOut();
       Cookies.remove("authorization");
       setUsername("");
       setIsAuthenticated(false);
-      return { success: true, message: "logout" };
+      return {
+        success: true,
+        code: "LoggedOutUser",
+        message: "Usuario deslogueado correctamente",
+        action: undefined,
+        data: result,
+      };
     } catch (error) {
+      console.dir("catch logout", error);
       return {
         success: false,
-        message: error,
+        code: "LoggedOutUserError",
+        message: "Usuario deslogueado incorrectamente",
+        action: undefined,
+        data: error,
       };
     }
   };
@@ -173,22 +264,17 @@ const useProvideAuth = (): UseAuth => {
     setShowingAuthModal(!showingAuthModal);
   };
 
-  const toggleConfirmationModal = () => {
-    setShowingConfirmationModal(!showingConfirmationModal);
-  };
-
   return {
     isLoading,
     isAuthenticated,
     username,
-    showingConfirmationModal,
     showingAuthModal,
     toggleAuthModal,
-    toggleConfirmationModal,
     signIn,
     signOut,
     signUp,
-    resendConfirmationCode,
+    resendConfirmationLink,
     forgotPassword,
+    submitNewPassword,
   };
 };

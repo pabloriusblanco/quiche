@@ -8,16 +8,17 @@ import RegisterForm, {
 } from "../../Forms/RegisterForm";
 import Modal from "../Modal";
 import {
-  registerModalErrorContent,
-  registerModalSuccessContent,
+  genericErrorModalContent,
+  registerResultMapper,
 } from "./ResultsConfigAuth/ResultsAuthContents";
+import { registerModalSuccessContent } from "./ResultsConfigAuth/RegisterResultsMapper";
 
 interface RegisterModalProps {
   closeModal: () => void;
   openModal: () => void;
   handleLoginClick: () => void;
   registerPreloadedValues: PreloadRegisterValues;
-  setPreloadedValues: (preloadedValuse: PreloadRegisterValues) => void;
+  setPreloadedValues: (preloadedValues: PreloadRegisterValues) => void;
 }
 
 const RegisterModal = ({
@@ -47,22 +48,13 @@ const RegisterModal = ({
       email: email,
     });
     const result = await auth.signUp(username, name, lastname, email, password);
-    if (result.success) {
-      setPreloadedValues({
-        username: "",
-        name: "",
-        lastname: "",
-        email: "",
-      });
-      resultModal.showResultModal("success", registerModalSuccessContent());
-      spinnerModal.stopLoading();
-    } else {
-      spinnerModal.stopLoading();
-      resultModal.showResultModal(
-        "danger",
-        registerModalErrorContent(result.message.response.data, openModal)
-      );
-    }
+    registerResultMapper(
+      result,
+      resultModal,
+      spinnerModal,
+      setPreloadedValues,
+      openModal
+    );
   };
 
   return (

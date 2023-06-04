@@ -16,12 +16,15 @@ const RecipeComments = ({ comments }: RecipeCommentsProps) => {
   const spinnerModal = useSpinner();
 
   const commentPost = async (comment: string) => {
+    spinnerModal.startLoading({ text: "Enviando comentario" });
     if (!auth.isAuthenticated) {
+      spinnerModal.stopLoading();
       auth.toggleAuthModal();
     } else {
       setTimeout(() => {
         alert(comment);
       }, 2000);
+      spinnerModal.stopLoading();
     }
   };
 

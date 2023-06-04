@@ -41,8 +41,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   preloadedValues,
   extraClasses,
 }: RegisterFormProps) => {
-  console.log(preloadedValues);
-
   const formik = useFormik({
     initialValues: {
       username: preloadedValues.username,

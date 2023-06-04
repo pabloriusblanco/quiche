@@ -9,17 +9,21 @@ import {
   PreloadRegisterValues,
   RegisterValues,
 } from "../../Forms/RegisterForm";
+import ResendCodeConfirmationModal from "./ResendCodeConfirmationModal";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
 type AuthFlowProps = {
   loginModal: useModalProps;
   forgotPasswordModal: useModalProps;
   registerModal: useModalProps;
+  resendCodeModal: useModalProps;
 };
 
 const AuthFlow = ({
   loginModal,
   forgotPasswordModal,
   registerModal,
+  resendCodeModal,
 }: AuthFlowProps) => {
   const spinnerModal = useSpinner();
   const resultModal = useResultModal();
@@ -46,9 +50,11 @@ const AuthFlow = ({
     <>
       {loginModal.isOpen && (
         <LoginModal
+          openModal={loginModal.openModal}
           closeModal={loginModal.closeModal}
-          handleRegisterClick={registerModal.openModal}
-          handleForgotPasswordClick={() => forgotPasswordModal.openModal()}
+          registerOpen={registerModal.openModal}
+          forgotPasswordOpen={() => forgotPasswordModal.openModal()}
+          resendCodeOpen={() => resendCodeModal.openModal()}
         />
       )}
       {registerModal.isOpen && (
@@ -59,6 +65,12 @@ const AuthFlow = ({
           closeModal={registerModal.closeModal}
           handleLoginClick={loginModal.openModal}
         />
+      )}
+      {resendCodeModal.isOpen && (
+        <ResendCodeConfirmationModal closeModal={resendCodeModal.closeModal} />
+      )}
+      {forgotPasswordModal.isOpen && (
+        <ForgotPasswordModal closeModal={forgotPasswordModal.closeModal} />
       )}
     </>
   );
