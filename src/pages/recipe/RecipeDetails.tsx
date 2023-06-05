@@ -16,13 +16,13 @@ import RecipeSimilar from "./sections/RecipeSimilar";
 
 const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [results, setResults] = useState<Post | null>(null);
+  const [post, setPost] = useState<Post | null>(null);
   const [similarPosts, setSimilarPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     if (id) {
       getRecipe(id).then((res) => {
-        setResults(res);
+        setPost(res);
         // getSimilarRecipes(res.id).then((res) => {
         //   setSimilarPosts(res);
         // }
@@ -35,7 +35,7 @@ const RecipeDetail = () => {
       <BackgroundHeader sectionHeight="215px" />
       <section className="container">
         <HomeSearch />
-        {!results && (
+        {!post && (
           <Skeleton
             gap={2}
             gridCols={12}
@@ -46,16 +46,16 @@ const RecipeDetail = () => {
             itemHeight={"20px"}
           />
         )}
-        {results && (
+        {post && (
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-8 flex flex-col gap-5">
-              <RecipeInfo post={results} />
-              <RecipeComments comments={results.comments} />
+              <RecipeInfo post={post} />
+              <RecipeComments comments={post.comments} />
             </div>
             <div className="col-span-4 flex flex-col gap-5">
-              <RecipeActions />
-              <RecipeSimilar type="ingredients" />
-              <RecipeSimilar type="categories" />
+              <RecipeActions post={post} />
+              <RecipeSimilar postId={post.id} type="ingredients" />
+              <RecipeSimilar postId={post.id} type="categories" />
             </div>
           </div>
         )}

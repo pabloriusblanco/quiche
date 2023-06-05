@@ -68,11 +68,11 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
               </Paragraph>
               <div className="flex flex-col gap-2">
                 <RecipeSectionTitle
-                  iconName={post.recipe.time.icon}
+                  iconName={post.recipe.time.reference.icon}
                   titleText="Tiempo de preparación"
                 />
                 <Paragraph color="gray" className="text-[11px]">
-                  {`${post.recipe.time.displayName} - ${post.recipe.time.value} minutos`}
+                  {`${post.recipe.time.reference.displayName} - ${post.recipe.time.value} minutos`}
                 </Paragraph>
               </div>
               <div className="flex flex-col gap-2">

@@ -1,4 +1,4 @@
-import { monthPosts, PostResults } from "../../../api/home";
+import { monthPosts } from "../../../api/home";
 import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import VerticalSimpleCard from "../../../components/molecules/Cards/Home/VerticalSimpleCard/VerticalSimpleCard";
@@ -13,18 +13,18 @@ interface PopularesMesProps {
 }
 
 const PopularesMes = ({ title, description }: PopularesMesProps) => {
-  const [results, setResults] = useState<PostResults | null>(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
     monthPosts().then((res) => {
-      setResults(res);
+      setPosts(res);
     });
   }, []);
 
   return (
     <section className="container space-y-4">
       <Title text={title} color="black" weight={TextWeightType.Bold} />
-      {!results && (
+      {!posts && (
         <Skeleton
           gap={5}
           gridCols={7}
@@ -32,9 +32,9 @@ const PopularesMes = ({ title, description }: PopularesMesProps) => {
           itemHeight={"370px"}
         />
       )}
-      {results && (
+      {posts && (
         <Carousel config="default">
-          {results.posts.map((post: Post, i: number) => (
+          {posts.map((post: Post, i: number) => (
             <VerticalSimpleCard key={i} id={post.id} post={post} />
           ))}
         </Carousel>

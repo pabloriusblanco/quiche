@@ -1,16 +1,40 @@
 import { ResultModalContent } from "../../../../../context/ResultModalsContext";
 
-export const registerErrorCodes = {
-  // UserNotConfirmedException: {
-  //   code: "UserNotConfirmedException",
-  //   message: "El usuario que ingresaste no está confirmado",
-  //   action: "resendConfirmationCode",
-  // },
-  // NotAuthorizedException: {
-  //   code: "NotAuthorizedException",
-  //   message: "Nombre de usuario o contraseña incorrectos",
-  //   action: "reOpenModal",
-  // },
+export type RegisterErrorCodeAttributes = {
+  code: string;
+  message: string;
+  action: string;
+};
+
+export const registerErrorCodes: {
+  [key: string]: RegisterErrorCodeAttributes;
+} = {
+  MailAlreadyExist: {
+    code: "MailAlreadyExist",
+    message: "",
+    action: "reOpenModal",
+  },
+  UserNameAlreadyExist: {
+    code: "UserNameAlreadyExist",
+    message: "",
+    action: "reOpenModal",
+  },
+  UserNameAndMailAlreadyExist: {
+    code: "UserNameAndMailAlreadyExist",
+    message: "",
+    action: "reOpenModal",
+  },
+  InternalServerError: {
+    code: "InternalServerError",
+    message: "",
+    action: "reOpenModal",
+  },
+  Default: {
+    code: "serverError",
+    message:
+      "No hemos podido registrar el usuario. Intenta nuevamente más tarde.",
+    action: "reOpenModal",
+  },
 };
 
 export const registerModalSuccessContent = (): ResultModalContent => {

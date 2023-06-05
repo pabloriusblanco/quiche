@@ -12,13 +12,13 @@ const VerticalSimpleCardCommentsLikes = ({
   return (
     <>
       <div className="flex items-center justify-center">
-        <Icon name="comments" className="fill-primary" />
+        <Icon name="comments" className="w-4 fill-primary" />
         <p className="ml-2 text-[11px] tracking-wide text-gray">
           {commentsAmount}
         </p>
       </div>
       <div className="flex items-center justify-center">
-        <Icon name="likes" className="fill-primary" />
+        <Icon name="likes" className="w-4 fill-primary" />
         <p className="ml-2 text-[11px] tracking-wide text-gray">
           {likesAmount}
         </p>

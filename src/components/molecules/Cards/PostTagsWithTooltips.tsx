@@ -18,8 +18,6 @@ const PostTagsWithTooltips = ({
   difficulty,
   time,
 }: PostTagsWithTooltipsProps) => {
-  console.log(category, difficulty, time);
-
   return (
     <div className="relative flex w-full -translate-y-[10px] justify-center">
       <div className="shadow-light absolute flex items-center gap-2 rounded-md bg-white px-[12px] py-[6px]">

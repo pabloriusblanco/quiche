@@ -4,6 +4,11 @@ import { ReactComponent as quiche } from "./assets/quiche.svg";
 import { ReactComponent as success } from "./assets/checked.svg";
 import { ReactComponent as info } from "./assets/info.svg";
 import { ReactComponent as danger } from "./assets/error.svg";
+import { ReactComponent as share } from "./assets/share.svg";
+import { ReactComponent as report } from "./assets/report.svg";
+import { ReactComponent as download } from "./assets/download.svg";
+import { ReactComponent as deleteIcon } from "./assets/delete.svg";
+import { ReactComponent as edit } from "./assets/edit.svg";
 import { ReactComponent as ingredients } from "./assets/ingredients.svg";
 import { ReactComponent as steps } from "./assets/steps.svg";
 import { ReactComponent as userchecked } from "./assets/userchecked.svg";
@@ -19,6 +24,9 @@ import { ReactComponent as hard } from "./assets/hard.svg";
 import { ReactComponent as short } from "./assets/short.svg";
 import { ReactComponent as medium } from "./assets/medium.svg";
 import { ReactComponent as long } from "./assets/long.svg";
+import { ReactComponent as facebook } from "./assets/facebook.svg";
+import { ReactComponent as link } from "./assets/link.svg";
+import { ReactComponent as whatsapp } from "./assets/whatsapp.svg";
 import { ReactComponent as arrowleft } from "./assets/arrowleft.svg";
 import { ReactComponent as arrowright } from "./assets/arrowright.svg";
 import { ReactComponent as dinner } from "./assets/categories/pizza.svg";
@@ -60,6 +68,14 @@ const iconsMap = {
   info,
   danger,
   likes,
+  share,
+  report,
+  download,
+  deleteIcon,
+  edit,
+  facebook,
+  link,
+  whatsapp,
   recipes,
   logout,
   comments,

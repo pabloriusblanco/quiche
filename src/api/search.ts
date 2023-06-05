@@ -1,5 +1,4 @@
 import { Category, Ingredient, Post } from "../types/Recipe";
-import { api } from "./index";
 
 export type SimpleSearchResults = {
   posts: Post[];
@@ -20,12 +19,6 @@ export async function simpleSearch(
     }, 1000);
   });
 }
-
-// const mockSimpleSearchResults: SimpleSearchResults = {
-//   posts: [],
-//   categories: [],
-//   ingredients: [],
-// };
 
 const mockSimpleSearchResults: SimpleSearchResults = {
   posts: [

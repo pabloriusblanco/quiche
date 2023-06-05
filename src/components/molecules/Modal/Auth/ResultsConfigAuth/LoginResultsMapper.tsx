@@ -1,5 +1,4 @@
 import { ResultModalContent } from "../../../../../context/ResultModalsContext";
-import { AuthResult } from "../../../../../hooks/useAuth";
 
 export const loginErrorCodes = {
   UserNotConfirmedException: {

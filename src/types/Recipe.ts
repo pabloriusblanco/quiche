@@ -47,13 +47,13 @@ export type Difficulty = {
 export type Duration = {
   value: number;
   reference: DurationReference;
-}
+};
 
 export type DurationReference = {
   name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";
-  maxTime: number;    
+  maxTime: number;
 };
 
 export type Owner = {

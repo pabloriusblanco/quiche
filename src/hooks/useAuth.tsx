@@ -1,10 +1,13 @@
 import { Amplify, Auth } from "aws-amplify";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import awsmobile from "../aws-exports";
-import { api } from "../api";
 import Cookies from "js-cookie";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../api";
+import awsmobile from "../aws-exports";
 import { loginErrorCodes } from "../components/molecules/Modal/Auth/ResultsConfigAuth/LoginResultsMapper";
-import { type } from "os";
+import {
+  RegisterErrorCodeAttributes,
+  registerErrorCodes,
+} from "../components/molecules/Modal/Auth/ResultsConfigAuth/RegisterResultsMapper";
 
 Amplify.configure(awsmobile);
 
@@ -216,20 +219,23 @@ const useProvideAuth = (): UseAuth => {
     } catch (error: any) {
       console.dir("catch signup", error);
       console.dir(error);
-      const message = (error: any) => {
-        if (error.response) {
-          return error.response.data;
-        }
-        if (error.message) {
-          return error.message;
-        }
-        return "No hemos podido registrar el usuario. Intenta nuevamente más tarde.";
-      };
+      let response: RegisterErrorCodeAttributes =
+        {} as RegisterErrorCodeAttributes;
+      if (error.response) {
+        const [code, message] = error.response.data.split("-");
+        response =
+          registerErrorCodes[code as keyof typeof registerErrorCodes] ||
+          registerErrorCodes.Default;
+        response.message = message ? message : response.message;
+        response.code = code ? code : response.code;
+      } else {
+        response = registerErrorCodes.Default;
+      }
       return {
         success: false,
-        code: "RegisteredUserError",
-        message: message(error),
-        action: undefined,
+        code: response.code,
+        message: response.message,
+        action: response.action,
         data: error,
       };
     }

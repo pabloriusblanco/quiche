@@ -8,11 +8,19 @@ import PostTagsWithTooltips from "../../PostTagsWithTooltips";
 interface VerticalSimpleCardProps {
   id: number;
   post: Post;
+  cardWidth?: string;
 }
 
-const VerticalSimpleCard = ({ id, post }: VerticalSimpleCardProps) => {
+const VerticalSimpleCard = ({
+  id,
+  post,
+  cardWidth = '140px'
+}: VerticalSimpleCardProps) => {
   return (
-    <div className="shadow-light z-10 box-border w-[140px] rounded-lg bg-white">
+    <div
+      className="shadow-light z-10 box-border rounded-lg bg-white"
+      style={{ width: cardWidth }}
+    >
       <img
         src={
           post.recipe.image ||

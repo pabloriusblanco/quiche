@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { PostResults, dayPosts } from "../../../api/home";
+import { dayPosts } from "../../../api/home";
 import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import HorizontalDetailedCard from "../../../components/molecules/Cards/Home/HorizontalDetailedCard/HorizontalDetaildedCard";
 import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
 import HorizontalSimpleCard from "../../../components/molecules/Cards/Home/HorizontalSimple/HorizontalSimpleCard";
+import { Post } from "../../../types/Recipe";
 
 interface DestacadosDiaProps {
   title: string;
@@ -12,18 +13,18 @@ interface DestacadosDiaProps {
 }
 
 const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
-  const [results, setResults] = useState<PostResults | null>(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
     dayPosts().then((res) => {
-      setResults(res);
+      setPosts(res);
     });
   }, []);
 
   return (
     <section className="container space-y-4">
       <Title text={title} color="black" weight={TextWeightType.Bold} />
-      {!results && (
+      {!posts && (
         <div className="grid grid-cols-2 gap-4">
           <Skeleton
             gap={0}
@@ -41,14 +42,14 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
           />
         </div>
       )}
-      {results && (
+      {posts && (
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-1">
-            <HorizontalDetailedCard post={results.posts[0]} />
+            <HorizontalDetailedCard post={posts[0]} />
           </div>
           <div className="col-span-1 flex flex-col gap-4">
-            <HorizontalSimpleCard post={results.posts[1]} />
-            <HorizontalSimpleCard post={results.posts[2]} />
+            <HorizontalSimpleCard post={posts[1]} />
+            <HorizontalSimpleCard post={posts[2]} />
           </div>
         </div>
       )}

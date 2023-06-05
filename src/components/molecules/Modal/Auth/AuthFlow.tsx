@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { useAuth } from "../../../../hooks/useAuth";
 import { useModalProps } from "../../../../hooks/useModal";
-import { useResultModal } from "../../../../hooks/useResultModal";
-import { useSpinner } from "../../../../hooks/useSpinner";
 import LoginModal from "../../../molecules/Modal/Auth/LoginModal";
-import RegisterModal from "./RegisterModal";
 import {
-  PreloadRegisterValues,
-  RegisterValues,
+  PreloadRegisterValues
 } from "../../Forms/RegisterForm";
-import ResendCodeConfirmationModal from "./ResendCodeConfirmationModal";
 import ForgotPasswordModal from "./ForgotPasswordModal";
+import RegisterModal from "./RegisterModal";
+import ResendCodeConfirmationModal from "./ResendCodeConfirmationModal";
 
 type AuthFlowProps = {
   loginModal: useModalProps;
@@ -25,9 +21,6 @@ const AuthFlow = ({
   registerModal,
   resendCodeModal,
 }: AuthFlowProps) => {
-  const spinnerModal = useSpinner();
-  const resultModal = useResultModal();
-  const auth = useAuth();
   const [registerPreloadedValues, setRegisterPreloadedValues] =
     useState<PreloadRegisterValues>({
       username: "",
