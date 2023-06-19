@@ -11,7 +11,7 @@ import { Post } from "../../../../types/Recipe";
 
 type RecipeSimilarProps = {
   type: keyof RecipeSimilarTypes;
-  postId: number;
+  postId: string;
 };
 
 export type RecipeSimilarTypes = {

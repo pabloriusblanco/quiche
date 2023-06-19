@@ -19,10 +19,14 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
   );
   const searchRef = useRef<HTMLDivElement>(null);
 
+  const getSearchResults = async (query: string) => {
+    const results = await simpleSearch(query);
+    return results;
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearchQuery(value);
-
     clearTimeout(timeoutId);
 
     if (value.length > 3) {

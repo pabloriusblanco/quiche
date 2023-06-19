@@ -1,5 +1,5 @@
 import { RecipeSimilarTypes } from "../pages/recipe/detail/sections/RecipeSimilar";
-import { PostCreateUpdate } from "../types/Api";
+import { PostCreateUpdate, PostResponse } from "../types/Api";
 import { Post } from "../types/Recipe";
 import { api } from "./index";
 
@@ -8,19 +8,14 @@ export async function getMonthRecipes(): Promise<Post[]> {
   return response.data;
 }
 
-export async function getRecipe(id: string): Promise<Post> {
-  // const response = await api.get(`/recipes/${id}`);
-  // return response.data;
-
-  return new Promise<Post>((resolve, reject) => {
-    setTimeout(() => {
-      resolve(mockDetailRecipe);
-    }, 1000);
-  });
+export async function getRecipe(id: string): Promise<PostResponse> {
+  const response = await api.get(`Post/GetById/?id=${id}`);
+  console.log(response.data.data);
+  return response.data.data;
 }
 
 export async function getSimilarRecipes(
-  postId: number,
+  postId: string,
   recipeType: keyof RecipeSimilarTypes
 ): Promise<Post[]> {
   // const response = await api.get(`/recipes/${id}`);
@@ -35,8 +30,8 @@ export async function getSimilarRecipes(
 
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
   console.log(JSON.stringify(recipe, null, 4));
-  
-  const response = await api.post("Post/create", recipe);
+
+  const response = await api.post("Post/Create", recipe);
   return response.data;
 }
 

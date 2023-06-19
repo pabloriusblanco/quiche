@@ -1,9 +1,10 @@
 import ButtonCategoryWithIcon from "../../../../components/atoms/Buttons/ButtonCategoryWithIcon";
+import { ResponseSubCategory } from "../../../../types/Api";
 import { Category, Post } from "../../../../types/Recipe";
 
 type RecipeInfoCategoriesProps = {
   mainCategory: Category;
-  subCategories?: Category[];
+  subCategories?: ResponseSubCategory[];
 };
 
 const RecipeInfoCategories = ({
@@ -18,9 +19,9 @@ const RecipeInfoCategories = ({
       />
       {subCategories.map((subcategory) => (
         <ButtonCategoryWithIcon
-          key={subcategory.icon}
-          iconName={subcategory.icon}
-          categoryName={subcategory.displayName}
+          key={subcategory.category.id}
+          iconName={subcategory.category.icon}
+          categoryName={subcategory.category.displayName}
         />
       ))}
     </div>

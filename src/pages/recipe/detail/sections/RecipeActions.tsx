@@ -4,12 +4,11 @@ import ShareModal from "../../../../components/molecules/Modal/RecipeActions/Sha
 import { useAuth } from "../../../../hooks/useAuth";
 import useModal from "../../../../hooks/useModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
-import { Post } from "../../../../types/Recipe";
+import { PostResponse, ResponsePostIngredients } from "../../../../types/Api";
 import { downloadIngredients } from "../../../../utils/DownloadIngredients";
 
-
 type RecipeActionsProps = {
-  post: Post;
+  post: PostResponse;
   //   comments: Comment[];
 };
 

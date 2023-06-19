@@ -1,3 +1,4 @@
+import missingImage from "../../../../assets/images/missingImage.jpg";
 import HTMLContent from "../../../../components/atoms/HTMLContent/HTMLContent";
 import Icon from "../../../../components/atoms/Icons/Icons";
 import LinkBasic from "../../../../components/atoms/Link/LinkBasic";
@@ -9,12 +10,12 @@ import {
 import Title from "../../../../components/atoms/Text/Title";
 import PostRatingWithValue from "../../../../components/molecules/Cards/PostRatingWithValue";
 import Skeleton from "../../../../components/molecules/Skeleton/Skeleton";
-import { Post } from "../../../../types/Recipe";
+import { PostResponse } from "../../../../types/Api";
 import RecipeInfoCategories from "./RecipeInfoCategories";
 import RecipeSectionTitle from "./RecipeSectionTitle";
 
 type RecipeInfoProps = {
-  post: Post;
+  post: PostResponse;
 };
 
 const RecipeInfo = ({ post }: RecipeInfoProps) => {
@@ -34,17 +35,17 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
         <div className="shadow-light flex flex-col overflow-hidden rounded-2xl">
           <img
             className="h-[466px] w-full object-cover"
-            src={
-              post?.recipe.image ||
-              `https://source.unsplash.com/random/700x700/?food,recipe&${post.recipe.name}`
-            }
-            alt={post?.recipe.name}
+            src={post.recipe.image}
+            alt={post.recipe.name}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = missingImage;
+            }}
           />
           <div className="flex w-full flex-col px-5 pb-5">
             <div className="relative z-10 -mt-12 rounded-2xl bg-white">
               <div className="flex w-full flex-col items-center justify-center gap-2 p-5">
                 <PostRatingWithValue
-                  rating={post.rating}
+                  rating={0}
                   className="flex items-center justify-center"
                   starsClassName="h-5 w-5"
                   textClassName="text-[14px]"
@@ -60,19 +61,22 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
             </div>
             <RecipeInfoCategories
               mainCategory={post.recipe.mainCategory}
-              subCategories={post.recipe.subCategory}
+              subCategories={post.recipe.recipesSubcategories}
             />
             <div className="mt-5 flex w-full flex-col justify-center gap-4">
               <Paragraph color="gray" className="text-[11px]">
                 {post.recipe.description}
               </Paragraph>
               <div className="flex flex-col gap-2">
-                <RecipeSectionTitle
+                {/* <RecipeSectionTitle
                   iconName={post.recipe.time.reference.icon}
                   titleText="Tiempo de preparación"
-                />
+                /> */}
                 <Paragraph color="gray" className="text-[11px]">
-                  {`${post.recipe.time.reference.displayName} - ${post.recipe.time.value} minutos`}
+                  {/* ${post.recipe.time.reference.displayName} -  */}
+                  {`
+                  ${post.recipe.prepTime} minutos
+                  `}
                 </Paragraph>
               </div>
               <div className="flex flex-col gap-2">
@@ -90,9 +94,12 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   titleText="Ingredientes"
                 />
                 <ul className="list-inside list-disc">
-                  {post.recipe.ingredients.map((ingredient) => (
-                    <li className="text-[11px] text-gray" key={ingredient.id}>
-                      {`${ingredient.displayName} - x${ingredient.quantity}`}
+                  {post.recipe.recipesIngredients.map((ingredient) => (
+                    <li
+                      className="text-[11px] text-gray"
+                      key={ingredient.ingredient.id}
+                    >
+                      {`${ingredient.ingredient.displayName} - x${ingredient.quantity}`}
                     </li>
                   ))}
                 </ul>
@@ -102,9 +109,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   iconName="steps"
                   titleText="Instrucciones"
                 />
-                <Paragraph color="gray" className="text-[11px]">
-                  <HTMLContent content={post.recipe.steps} />
-                </Paragraph>
+                <HTMLContent content={post.recipe.instructions} />
               </div>
               <div className="flex flex-col">
                 <RecipeSectionTitle titleText="Creado por" />
@@ -112,16 +117,16 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   <Icon name="userchecked" className="w-3.5 fill-primary" />
                   <Paragraph
                     color="gray"
-                    className="ml-1 overflow-hidden text-ellipsis font-semibold text-right text-[11px]"
+                    className="ml-1 overflow-hidden text-ellipsis text-right text-[11px] font-semibold"
                   >
-                    {`${post.owner.firstName} ${post.owner.lastName}`}
+                    {`${post.user.firstName} ${post.user.lastName}`}
                   </Paragraph>
                 </div>
                 <LinkBasic
                   color="text-primary"
                   fontSize="text-[11px]"
                   extraClasses="underline hover:text-primary-dark"
-                  to={`/recipe/?=user:${post.owner.id}`}
+                  to={`/recipe/?=user:${post.user.id}`}
                 >
                   Ver más recetas del autor
                 </LinkBasic>

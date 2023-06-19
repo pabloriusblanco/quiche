@@ -9,6 +9,7 @@ import BackgroundHeader from "../../../components/molecules/Background/Backgroun
 import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
 import HomeSearch from "../../../components/organisms/Search/SimpleSearch/HomeSearch";
 import { Post } from "../../../types/Recipe";
+import { PostResponse } from "../../../types/Api";
 
 // interface RecipeDetailProps {
 //   postId: string;
@@ -16,16 +17,13 @@ import { Post } from "../../../types/Recipe";
 
 const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<PostResponse | null>(null);
   const [similarPosts, setSimilarPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     if (id) {
       getRecipe(id).then((res) => {
         setPost(res);
-        // getSimilarRecipes(res.id).then((res) => {
-        //   setSimilarPosts(res);
-        // }
       });
     }
   }, [id]);
@@ -50,7 +48,7 @@ const RecipeDetail = () => {
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-8 flex flex-col gap-5">
               <RecipeInfo post={post} />
-              <RecipeComments comments={post.comments} />
+              <RecipeComments comments={post.postsComments} />
             </div>
             <div className="col-span-4 flex flex-col gap-5">
               <RecipeActions post={post} />

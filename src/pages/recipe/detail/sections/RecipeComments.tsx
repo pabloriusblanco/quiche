@@ -5,10 +5,11 @@ import Title from "../../../../components/atoms/Text/Title";
 import CommentForm from "../../../../components/molecules/Forms/CommentForm";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useSpinner } from "../../../../hooks/useSpinner";
+import { ResponsePostComment } from "../../../../types/Api";
 import { Comment } from "../../../../types/Recipe";
 
 type RecipeCommentsProps = {
-  comments: Comment[];
+  comments: ResponsePostComment[];
 };
 
 const RecipeComments = ({ comments }: RecipeCommentsProps) => {
@@ -36,6 +37,9 @@ const RecipeComments = ({ comments }: RecipeCommentsProps) => {
             key={comment.id}
             className="flex flex-col gap-2 border-b border-gray-light py-5 first:pt-0 last:border-none last:pb-0"
           >
+            <Paragraph color="primary" className="text-[11px]">
+              {new Date(comment.createDate).toLocaleDateString()}
+            </Paragraph>
             <Paragraph color="gray" className="text-[12px]">
               {comment.comment}
             </Paragraph>

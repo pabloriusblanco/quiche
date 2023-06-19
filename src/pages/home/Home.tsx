@@ -10,25 +10,7 @@ import Button from "../../components/atoms/Buttons/Button";
 import { testAuth, testRecipesGetAll } from "../../api/auth/testAuth";
 
 const Home: React.FC = () => {
-  const testAuthorization = () => {
-    testAuth()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
-  const testRecipes = () => {
-    testRecipesGetAll()
-      .then((res) => {
-        console.log("testRecipesGetAll TRUE", res);
-      })
-      .catch((err) => {
-        console.log("testRecipesGetAll FALSE", err);
-      });
-  };
   return (
     <>
       <BackgroundHeader />

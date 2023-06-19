@@ -1,5 +1,6 @@
 import { Parser } from "html-to-react";
 import DOMPurify from "dompurify";
+import "./htmlContent.css";
 
 interface HTMLContentProps {
   content: string;
@@ -11,7 +12,11 @@ const HTMLContent = ({ content }: HTMLContentProps) => {
     USE_PROFILES: { html: true },
   });
 
-  return <>{parser.parse(sanitizedContent)};</>;
+  return (
+    <div className="text-[11px] text-gray htmlContent">
+      {parser.parse(sanitizedContent)}
+    </div>
+  );
 };
 
 export default HTMLContent;

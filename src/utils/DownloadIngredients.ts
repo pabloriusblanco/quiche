@@ -1,10 +1,10 @@
-import { Post } from "../types/Recipe";
+import { PostResponse } from "../types/Api";
 
-export const downloadIngredients = (post: Post) => {
+export const downloadIngredients = (post: PostResponse) => {
   let content = `# ${post.recipe.name}\n\n`;
-  content += post.recipe.ingredients
+  content += post.recipe.recipesIngredients
     .map((ingredient) => {
-      return `${ingredient.displayName}  x${ingredient.quantity}`;
+      return `${ingredient.ingredient.displayName}  x${ingredient.quantity}`;
     })
     .join("\n");
   content += `\n\n----------------\n\n`;
