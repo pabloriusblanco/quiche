@@ -64,3 +64,29 @@ export type PostResponse = {
     instructions: string;
   };
 };
+
+export type SimpleSearchResponse = {
+  categories: SimpleSearchResponsePostCategories[];
+  posts: SimpleSearchResponsePost[];
+  ingredients: SimpleSearchResponsePostIngredients[];
+};
+
+export type SimpleSearchResponsePost = {
+  id: string;
+  displayName: string;
+  description: string;
+  rating: number;
+};
+
+export type SimpleSearchResponsePostIngredients = {
+  id: string;
+  name: string;
+  displayName: string;
+};
+export type SimpleSearchResponsePostCategories = {
+  id: string;
+  name: string;
+  displayName: string;
+  icon: string;
+  description: string;
+};

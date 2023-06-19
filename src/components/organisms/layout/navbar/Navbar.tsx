@@ -30,8 +30,8 @@ const Navbar: React.FC = () => {
           </LinkContainer>
           <NavLinksContainer>
             <LinkBasic to="/">Home</LinkBasic>
-            <LinkBasic to="/">Buscar Recetas</LinkBasic>
-            <LinkBasic to="/">Crear Recetas</LinkBasic>
+            <LinkBasic to="/search">Buscar Recetas</LinkBasic>
+            <LinkBasic to="/recipe/create">Crear Recetas</LinkBasic>
             <LinkBasic to="/">Nosotros</LinkBasic>
             {!auth.isAuthenticated && (
               <Button

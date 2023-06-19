@@ -1,8 +1,9 @@
+import { SimpleSearchResponsePostCategories } from "../../../../../types/Api";
 import { Category } from "../../../../../types/Recipe";
 import Icon, { IconsNames } from "../../../../atoms/Icons/Icons";
 
 interface CategoryResultSearchHomeProps {
-  categories: Category[];
+  categories: SimpleSearchResponsePostCategories[];
 }
 
 const CategoryResultSearchHome = ({
@@ -20,9 +21,14 @@ const CategoryResultSearchHome = ({
           <div className="flex items-center justify-between">
             <Icon
               name={category.icon as IconsNames}
-              className="mr-2 h-4 fill-primary"
+              className="mr-2 h-4 fill-primary shrink-0"
             />
-            <p className=" text-[12px]">{category.displayName}</p>
+            <div className="flex items-center justify-between">
+              <p className="mx-2 truncate text-[12px]">{` - ${category.displayName} - `}</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="h-4 overflow-hidden text-ellipsis text-[12px] text-gray">{`${category.description}`}</p>
+            </div>
           </div>
         </a>
       ))}

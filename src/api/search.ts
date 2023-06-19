@@ -1,4 +1,6 @@
+import { SimpleSearchResponse } from "../types/Api";
 import { Category, Ingredient, Post } from "../types/Recipe";
+import { api } from "./index";
 
 export type SimpleSearchResults = {
   posts: Post[];
@@ -8,18 +10,20 @@ export type SimpleSearchResults = {
 
 export async function simpleSearch(
   query: string
-): Promise<SimpleSearchResults> {
+): Promise<SimpleSearchResponse> {
   console.log("simpleSearch", query);
-  // const response = await api.get(`/search?query=${query}`);
-  // return response.data;
-
-  return new Promise<SimpleSearchResults>((resolve, reject) => {
-    setTimeout(() => {
-      resolve({posts: [], categories: [], ingredients: []});
-      // resolve(mockSimpleSearchResults);
-    }, 1000);
-  });
+  const response = await api.get(`Home/SimpleSearch/?Search=${query}`);
+  console.log(response.data.data);
+  return response.data.data;
 }
+
+//   return new Promise<SimpleSearchResults>((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve({posts: [], categories: [], ingredients: []});
+//       // resolve(mockSimpleSearchResults);
+//     }, 1000);
+//   });
+// }
 
 // const mockSimpleSearchResults: SimpleSearchResults = {
 //   posts: [

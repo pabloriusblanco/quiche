@@ -1,9 +1,8 @@
-import { Post } from "../../../../../types/Recipe";
-import Icon, { IconsNames } from "../../../../atoms/Icons/Icons";
-import TooltipIcons from "../../../../atoms/Icons/TooltipIcons/TooltipIcons";
+import { SimpleSearchResponsePost } from "../../../../../types/Api";
+import Icon from "../../../../atoms/Icons/Icons";
 
 interface RecipeResultSearchHomeProps {
-  recipes: Post[];
+  recipes: SimpleSearchResponsePost[];
 }
 
 const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
@@ -13,7 +12,7 @@ const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
       {recipes.map((post, index) => (
         <a
           key={post.id}
-          href={`/recetas/${post.id}`}
+          href={`/recipe/${post.id}`}
           className="col-span-12 flex items-center justify-start"
         >
           <div className="flex min-w-[40px] flex-row items-center justify-between">
@@ -23,16 +22,16 @@ const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <p className="mx-2 truncate text-[12px]">{` - ${post.recipe.name} - `}</p>
+            <p className="mx-2 truncate text-[12px]">{` - ${post.displayName} - `}</p>
           </div>
           <div className="flex items-center justify-between">
-            <p className="h-4 overflow-hidden text-ellipsis text-[12px] text-gray">{`${post.recipe.description}`}</p>
+            <p className="h-4 overflow-hidden text-ellipsis text-[12px] text-gray">{`${post.description}`}</p>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center justify-center space-x-2">
+            {/* <div className="flex items-center justify-center space-x-2">
               <TooltipIcons
                 tag="category"
-                tagKey={post.recipe.mainCategory.icon}
+                tagKey={post.}
                 id={`${post.id}_cat_${index}`}
               />
               <TooltipIcons
@@ -45,7 +44,7 @@ const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
                 tagKey={post.recipe.time.reference.icon}
                 id={`${post.id}_time_${index}`}
               />
-            </div>
+            </div> */}
           </div>
         </a>
       ))}

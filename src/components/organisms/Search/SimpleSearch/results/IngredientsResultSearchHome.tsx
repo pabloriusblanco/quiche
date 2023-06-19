@@ -1,8 +1,8 @@
-import { Ingredient } from "../../../../../types/Recipe";
+import { SimpleSearchResponsePostIngredients } from "../../../../../types/Api";
 import Icon from "../../../../atoms/Icons/Icons";
 
 interface IngredientsResultSearchHomeProps {
-  ingredients: Ingredient[];
+  ingredients: SimpleSearchResponsePostIngredients[];
 }
 
 const IngredientsResultSearchHome = ({

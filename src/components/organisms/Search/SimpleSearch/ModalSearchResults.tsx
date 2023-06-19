@@ -1,5 +1,5 @@
 import { isEmptyArray } from "formik";
-import { SimpleSearchResults } from "../../../../api/search";
+import { SimpleSearchResponse } from "../../../../types/Api";
 import Skeleton from "../../../molecules/Skeleton/Skeleton";
 import CategoryResultSearchHome from "./results/CategoriesResultSearchHome";
 import IngredientsResultSearchHome from "./results/IngredientsResultSearchHome";
@@ -8,7 +8,7 @@ import RecipeResultSearchHome from "./results/RecipeResultSearchHome";
 
 interface ModalSearchResultsProps {
   showingResults: boolean;
-  results: SimpleSearchResults | null;
+  results: SimpleSearchResponse | null;
   isLoading: boolean;
 }
 
@@ -54,10 +54,10 @@ const ModalSearchResults = ({
       {!isLoading && !hasResults && <NoResultsSearchHome />}
       {!isLoading && !isPostEmpty && <RecipeResultSearchHome recipes={posts} />}
       {!isLoading && !isCategoriesEmpty && (
-        <IngredientsResultSearchHome ingredients={ingredients} />
+        <CategoryResultSearchHome categories={categories} />
       )}
       {!isLoading && !isIngredientsEmpty && (
-        <CategoryResultSearchHome categories={categories} />
+        <IngredientsResultSearchHome ingredients={ingredients} />
       )}
     </div>
   );

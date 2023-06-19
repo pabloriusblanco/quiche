@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { SimpleSearchResults, simpleSearch } from "../../../../api/search";
+import { simpleSearch } from "../../../../api/search";
+import { SimpleSearchResponse } from "../../../../types/Api";
 import Button from "../../../atoms/Buttons/Button";
 import Icon from "../../../atoms/Icons/Icons";
 import Input from "../../../atoms/Inputs/Input";
@@ -13,16 +14,11 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showingResults, setShowingResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState<SimpleSearchResults | null>(null);
+  const [results, setResults] = useState<SimpleSearchResponse | null>(null);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
     undefined
   );
   const searchRef = useRef<HTMLDivElement>(null);
-
-  const getSearchResults = async (query: string) => {
-    const results = await simpleSearch(query);
-    return results;
-  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -33,10 +29,15 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
       setIsLoading(true);
       showResults();
       const timeout = setTimeout(() => {
-        simpleSearch(value).then((res) => {
-          setIsLoading(false);
-          return setResults(res);
-        });
+        simpleSearch(value)
+          .then((res) => {
+            setIsLoading(false);
+            setResults(res);
+          })
+          .catch((err) => {
+            setIsLoading(false);
+            console.log(err);
+          });
       }, 750);
       setTimeoutId(timeout);
     } else {
