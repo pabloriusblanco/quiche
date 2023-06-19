@@ -1,11 +1,11 @@
-import React from "react";
-import Button from "../../atoms/Buttons/Button";
-// import ButtonGoogleSignIn from "../../atoms/Buttons/ButtonGoogleSignIn";
 import { useFormik } from "formik";
-import Input from "../../atoms/Inputs/Input";
-import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import Label from "../../atoms/Inputs/Label";
-import { loginFormValidation } from "./validations/LoginFormValidation";
+import React from "react";
+import Button from "../../../atoms/Buttons/Button";
+import InputErrorText from "../../../atoms/Inputs/InputErrorText";
+import Label from "../../../atoms/Inputs/Label";
+import { loginFormValidation } from "../validations/LoginFormValidation";
+import Input from "../../../atoms/Inputs/Input";
+
 
 interface LoginFormProps {
   onSubmitCallback: (username: string, password: string) => Promise<void>;

@@ -1,11 +1,11 @@
-import Icon from "../../../components/atoms/Icons/Icons";
-import Paragraph from "../../../components/atoms/Text/Paragraph";
-import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
-import Title from "../../../components/atoms/Text/Title";
-import CommentForm from "../../../components/molecules/Forms/CommentForm";
-import { useAuth } from "../../../hooks/useAuth";
-import { useSpinner } from "../../../hooks/useSpinner";
-import { Comment } from "../../../types/Recipe";
+import Icon from "../../../../components/atoms/Icons/Icons";
+import Paragraph from "../../../../components/atoms/Text/Paragraph";
+import { TextWeightType } from "../../../../components/atoms/Text/TextsTypes";
+import Title from "../../../../components/atoms/Text/Title";
+import CommentForm from "../../../../components/molecules/Forms/CommentForm";
+import { useAuth } from "../../../../hooks/useAuth";
+import { useSpinner } from "../../../../hooks/useSpinner";
+import { Comment } from "../../../../types/Recipe";
 
 type RecipeCommentsProps = {
   comments: Comment[];

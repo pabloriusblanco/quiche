@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useResultModal } from "../../../../hooks/useResultModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
+import Paragraph from "../../../atoms/Text/Paragraph";
 import { TextWeightType, TitleType } from "../../../atoms/Text/TextsTypes";
 import Title from "../../../atoms/Text/Title";
-import SubmitNewPasswordForm from "../../Forms/SubmitNewPasswordForm";
+import ForgotPasswordForm from "../../Forms/Auth/ForgotPasswordForm";
+import SubmitNewPasswordForm from "../../Forms/Auth/SubmitNewPasswordForm";
 import Modal from "../Modal";
-import Paragraph from "../../../atoms/Text/Paragraph";
-import ForgotPasswordForm from "../../Forms/ForgotPasswordForm";
 
 interface ForgotPasswordModalProps {
   closeModal: () => void;

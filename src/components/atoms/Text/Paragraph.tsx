@@ -4,7 +4,7 @@ import { ColorTypes } from "../../../utils/Colors";
 
 type ParagraphProps = {
   children: React.ReactNode;
-  color: ColorTypes | string;
+  color?: ColorTypes | string;
   letterSpacing?: string;
   weight?: TextWeightType;
   className?: string;
@@ -12,7 +12,7 @@ type ParagraphProps = {
 
 const Paragraph: React.FC<ParagraphProps> = ({
   children,
-  color,
+  color = 'black',
   weight = TextWeightType.Normal,
   letterSpacing = "normal",
   className = "",

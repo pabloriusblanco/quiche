@@ -1,0 +1,67 @@
+.wysiwyg-container {
+    background-color: #ffffff;
+    /* padding: 12px 10px; */
+    border: 1px solid #a9a9a9;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.wysiwyg-container .ck-editor {
+    /* Estilos para el editor */
+    background-color: aqua !important;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+}
+
+.ck-toolbar {
+    /* Estilos para la barra de herramientas */
+    border: 0px !important;
+    border-bottom: 1px solid #a9a9a9 !important;
+    padding: 10px 12px !important;
+}
+
+.ck-toolbar__items {
+    height: 100% !important;
+}
+
+.ck.ck-button:not(.ck-disabled):hover {
+    /* Estilos para los botones de la barra de herramientas */
+    background-color: #f0ba23 !important;
+    color: white !important;
+    /* border: 0px !important; */
+}
+
+.ck-button {
+    cursor: pointer !important;
+}
+
+.ck.ck-button.ck-on,
+a.ck.ck-button.ck-on {
+    color: #f0ba23 !important;
+    background-color: #f2f2f2 !important;
+}
+
+.ck.ck-icon.ck-icon_inherit-color:hover {
+    /* Estilos para los iconos de la barra de herramientas */
+    color: inherit !important;
+}
+
+.wysiwyg-container .ck-content {
+    /* Estilos para el contenido del editor */
+    font-size: 12px;
+    height: 300px;
+}
+
+.ck-content ul,
+.ck-content ol {
+    list-style-position: inside !important;
+}
+
+.wysiwyg-container .ck-content:focus,
+.wysiwyg-container .ck-content {
+    /* Estilos para el contenido del editor */
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 12px 24px !important;
+}

@@ -3,7 +3,7 @@ import { Tooltip } from "react-tooltip";
 type TooltipSimpleProps = {
   id: string;
   title?: string;
-  text?: string;
+  text?: React.ReactNode;
   children?: React.ReactNode;
   place?: "top" | "bottom" | "left" | "right";
 };

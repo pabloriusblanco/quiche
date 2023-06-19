@@ -1,22 +1,24 @@
+import React from "react";
+import Button from "../../../atoms/Buttons/Button";
+// import ButtonGoogleSignIn from "../../atoms/Buttons/ButtonGoogleSignIn";
 import { useFormik } from "formik";
-import Button from "../../atoms/Buttons/Button";
-import Input from "../../atoms/Inputs/Input";
-import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import Label from "../../atoms/Inputs/Label";
-import { ForgotPasswordValidationForm } from "./validations/ForgotPasswordValidationForm";
+import Input from "../../../atoms/Inputs/Input";
+import InputErrorText from "../../../atoms/Inputs/InputErrorText";
+import Label from "../../../atoms/Inputs/Label";
+import { ForgotPasswordValidationForm } from "../validations/ForgotPasswordValidationForm";
 
-interface ForgotPasswordFormProps {
+interface DeleteUserFormProps {
   onSubmitCallback: (username: string) => Promise<void>;
   className?: string;
 }
 
-const ForgotPasswordForm = ({
+const DeleteUserForm: React.FC<DeleteUserFormProps> = ({
   onSubmitCallback,
   className,
-}: ForgotPasswordFormProps) => {
+}) => {
   const formik = useFormik({
     initialValues: {
-      username: "",
+      username: "pablodev",
     },
     validationSchema: ForgotPasswordValidationForm,
     onSubmit: (values) => {
@@ -25,14 +27,17 @@ const ForgotPasswordForm = ({
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className={className ? className : ""}>
-      <div className="col-span-12 flex flex-col">
-        <Label htmlFor="email">Username</Label>
+    <form
+      onSubmit={formik.handleSubmit}
+      className={className ? className : "col-span-12 grid grid-cols-12 gap-5"}
+    >
+      <div className="col-span-12">
+        <Label htmlFor="username">Usuario</Label>
         <Input
           type="username"
           id="username"
           name="username"
-          placeholder="Juan89"
+          placeholder="Juan94"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.username}
@@ -45,12 +50,12 @@ const ForgotPasswordForm = ({
       <Button
         color={!formik.isValid ? "gray" : "primary"}
         type="submit"
-        extraClasses="w-full"
+        extraClasses="col-span-12 w-full"
       >
-        Enviar
+        Eliminar Usuario
       </Button>
     </form>
   );
 };
 
-export default ForgotPasswordForm;
+export default DeleteUserForm;

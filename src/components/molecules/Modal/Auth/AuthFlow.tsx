@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useModalProps } from "../../../../hooks/useModal";
 import LoginModal from "../../../molecules/Modal/Auth/LoginModal";
-import {
-  PreloadRegisterValues
-} from "../../Forms/RegisterForm";
+
+import { PreloadRegisterValues } from "../../Forms/Auth/RegisterForm";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import RegisterModal from "./RegisterModal";
 import ResendCodeConfirmationModal from "./ResendCodeConfirmationModal";

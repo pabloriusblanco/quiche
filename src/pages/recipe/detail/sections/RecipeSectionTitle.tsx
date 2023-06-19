@@ -1,9 +1,9 @@
-import Icon, { IconsNames } from "../../../components/atoms/Icons/Icons";
+import Icon, { IconsNames } from "../../../../components/atoms/Icons/Icons";
 import {
   TextWeightType,
   TitleType,
-} from "../../../components/atoms/Text/TextsTypes";
-import Title from "../../../components/atoms/Text/Title";
+} from "../../../../components/atoms/Text/TextsTypes";
+import Title from "../../../../components/atoms/Text/Title";
 
 type RecipeSectionTitleProps = {
   iconName?: IconsNames;

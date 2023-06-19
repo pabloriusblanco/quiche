@@ -16,7 +16,7 @@ export type Recipe = {
   description: string;
   steps: string;
   image: string;
-  ingredients: Array<Ingredient & { quantity: number | null }>;
+  ingredients: Array<Ingredient & { quantity: number }>;
   mainCategory: Category;
   subCategory: Category[];
   time: Duration;
@@ -50,6 +50,7 @@ export type Duration = {
 };
 
 export type DurationReference = {
+  id: number;
   name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";

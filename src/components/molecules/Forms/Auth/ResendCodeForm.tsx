@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
-import Button from "../../atoms/Buttons/Button";
-import Input from "../../atoms/Inputs/Input";
-import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import { ResendCodeValidationForm } from "./validations/ResendCodeValidationForm";
+import Button from "../../../atoms/Buttons/Button";
+import InputErrorText from "../../../atoms/Inputs/InputErrorText";
+import { ResendCodeValidationForm } from "../validations/ResendCodeValidationForm";
+import Input from "../../../atoms/Inputs/Input";
+
 
 interface ResendCodeFormProps {
   onSubmitCallback: (comment: string) => void;

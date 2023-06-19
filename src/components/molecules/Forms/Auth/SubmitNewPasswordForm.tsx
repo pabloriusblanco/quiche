@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
-import Button from "../../atoms/Buttons/Button";
-import Input from "../../atoms/Inputs/Input";
-import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import Label from "../../atoms/Inputs/Label";
-import { SubmitNewPasswordValidationForm } from "./validations/ForgotPasswordValidationForm";
+import Input from "../../../atoms/Inputs/Input";
+import Button from "../../../atoms/Buttons/Button";
+import InputErrorText from "../../../atoms/Inputs/InputErrorText";
+import Label from "../../../atoms/Inputs/Label";
+import { SubmitNewPasswordValidationForm } from "../validations/ForgotPasswordValidationForm";
 
 interface SubmitNewPasswordFormProps {
   onSubmitCallback: (

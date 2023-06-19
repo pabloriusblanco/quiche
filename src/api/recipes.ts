@@ -1,4 +1,5 @@
-import { RecipeSimilarTypes } from "../pages/recipe/sections/RecipeSimilar";
+import { RecipeSimilarTypes } from "../pages/recipe/detail/sections/RecipeSimilar";
+import { PostCreateUpdate } from "../types/Api";
 import { Post } from "../types/Recipe";
 import { api } from "./index";
 
@@ -32,8 +33,10 @@ export async function getSimilarRecipes(
   });
 }
 
-export async function createRecipe(recipe: Post): Promise<Post> {
-  const response = await api.post("/recipes", recipe);
+export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
+  // console.log(JSON.stringify(recipe, null, 4));
+  
+  const response = await api.post("Post/create", recipe);
   return response.data;
 }
 
@@ -127,6 +130,7 @@ const mockDetailRecipe: Post = {
     time: {
       value: 35,
       reference: {
+        id: 1,
         name: "short",
         displayName: "Medio",
         icon: "short",
@@ -335,6 +339,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "short",
             maxTime: 30,
+            id: 0,
           },
           value: 35,
         },
@@ -419,13 +424,13 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 777,
             name: "especias",
             displayName: "Especias (comino, pimentón, orégano)",
-            quantity: null,
+            quantity: 1,
           },
           {
             id: 888,
             name: "sal",
             displayName: "Sal",
-            quantity: null,
+            quantity: 1,
           },
         ],
         mainCategory: {
@@ -461,6 +466,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 60,
+            id: 0,
           },
         },
         difficulty: {
@@ -525,7 +531,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 444,
             name: "jengibre",
             displayName: "Jengibre a gusto",
-            quantity: null,
+            quantity: 1,
           },
           {
             id: 555,
@@ -579,7 +585,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 131313,
             name: "cilantro",
             displayName: "Cilantro",
-            quantity: null,
+            quantity: 1,
           },
         ],
         mainCategory: {
@@ -614,6 +620,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 90,
+            id: 0,
           },
           value: 45,
         },
@@ -749,6 +756,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 60,
+            id: 0,
           },
         },
         difficulty: {
@@ -842,6 +850,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "short",
             maxTime: 30,
+            id: 0,
           },
           value: 35,
         },
@@ -926,13 +935,13 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 777,
             name: "especias",
             displayName: "Especias (comino, pimentón, orégano)",
-            quantity: null,
+            quantity: 1,
           },
           {
             id: 888,
             name: "sal",
             displayName: "Sal",
-            quantity: null,
+            quantity: 1,
           },
         ],
         mainCategory: {
@@ -968,6 +977,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 60,
+            id: 0,
           },
         },
         difficulty: {
@@ -1032,7 +1042,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 444,
             name: "jengibre",
             displayName: "Jengibre a gusto",
-            quantity: null,
+            quantity: 1,
           },
           {
             id: 555,
@@ -1086,7 +1096,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             id: 131313,
             name: "cilantro",
             displayName: "Cilantro",
-            quantity: null,
+            quantity: 1,
           },
         ],
         mainCategory: {
@@ -1121,6 +1131,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 90,
+            id: 0,
           },
           value: 45,
         },
@@ -1256,6 +1267,7 @@ const mockDetailRecipeSimilars: Record<keyof RecipeSimilarTypes, Post[]> = {
             displayName: "Medio",
             icon: "medium",
             maxTime: 60,
+            id: 0,
           },
         },
         difficulty: {

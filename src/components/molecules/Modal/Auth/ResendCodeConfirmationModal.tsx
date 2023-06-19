@@ -3,7 +3,7 @@ import { useResultModal } from "../../../../hooks/useResultModal";
 import Paragraph from "../../../atoms/Text/Paragraph";
 import { TextWeightType } from "../../../atoms/Text/TextsTypes";
 import Title from "../../../atoms/Text/Title";
-import ResendCodeForm from "../../Forms/ResendCodeForm";
+import ResendCodeForm from "../../Forms/Auth/ResendCodeForm";
 import Modal from "../Modal";
 
 interface ResendCodeConfirmationModalProps {

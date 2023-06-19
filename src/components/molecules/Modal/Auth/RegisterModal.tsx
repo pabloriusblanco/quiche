@@ -1,17 +1,12 @@
-import { useState } from "react";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useResultModal } from "../../../../hooks/useResultModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
+
 import RegisterForm, {
   PreloadRegisterValues,
-  RegisterValues,
-} from "../../Forms/RegisterForm";
+} from "../../Forms/Auth/RegisterForm";
 import Modal from "../Modal";
-import {
-  genericErrorModalContent,
-  registerResultMapper,
-} from "./ResultsConfigAuth/ResultsAuthContents";
-import { registerModalSuccessContent } from "./ResultsConfigAuth/RegisterResultsMapper";
+import { registerResultMapper } from "./ResultsConfigAuth/ResultsAuthContents";
 
 interface RegisterModalProps {
   closeModal: () => void;

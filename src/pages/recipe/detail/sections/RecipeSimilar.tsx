@@ -1,14 +1,13 @@
-import { getSimilarRecipes } from "../../../api/recipes";
+import { useEffect, useState } from "react";
+import { getSimilarRecipes } from "../../../../api/recipes";
 import {
   TextWeightType,
   TitleType,
-} from "../../../components/atoms/Text/TextsTypes";
-import Title from "../../../components/atoms/Text/Title";
-import VerticalSimpleCard from "../../../components/molecules/Cards/Home/VerticalSimpleCard/VerticalSimpleCard";
-import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
-import { useAuth } from "../../../hooks/useAuth";
-import { Comment, Post } from "../../../types/Recipe";
-import { useState, useEffect } from "react";
+} from "../../../../components/atoms/Text/TextsTypes";
+import Title from "../../../../components/atoms/Text/Title";
+import VerticalSimpleCard from "../../../../components/molecules/Cards/Home/VerticalSimpleCard/VerticalSimpleCard";
+import Skeleton from "../../../../components/molecules/Skeleton/Skeleton";
+import { Post } from "../../../../types/Recipe";
 
 type RecipeSimilarProps = {
   type: keyof RecipeSimilarTypes;
@@ -56,8 +55,13 @@ const RecipeSimilar = ({ type, postId }: RecipeSimilarProps) => {
       <div className="grid grid-cols-2 gap-5">
         {posts &&
           posts.map((post: Post, i: number) => (
-            <div className="col-span-1">
-              <VerticalSimpleCard cardWidth="100%" key={i} id={post.id} post={post} />
+            <div className="col-span-1" key={post.id}>
+              <VerticalSimpleCard
+                cardWidth="100%"
+                key={i}
+                id={post.id}
+                post={post}
+              />
             </div>
           ))}
       </div>

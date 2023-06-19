@@ -11,7 +11,7 @@ export interface ButtonProps
 
 const calculateButtonStyle = (
   buttonStyle: "filled" | "outlined",
-  color: ColorTypes
+  color: ColorTypes | "default"
 ) => {
   switch (buttonStyle) {
     case "filled":
@@ -19,19 +19,22 @@ const calculateButtonStyle = (
     case "outlined":
       return `bg-transparent text-[400] hover:text-[600] text-${color} border border-${color} hover:bg-${color} hover:text-white`;
     default:
-      return `bg-${color} hover:bg-${color}-light text-white`;
+      return ``;
   }
 };
 
 const Button = ({
   children,
-  color = "primary",
+  color,
   extraClasses = "",
   buttonStyle = "filled",
   ...props
 }: ButtonProps) => {
-  const classes = `rounded-xl px-4 py-2 font-medium transition-all ${extraClasses}`;
-  const buttonStyleCalculated = calculateButtonStyle(buttonStyle, color);
+  const classes = `${extraClasses} rounded-xl px-4 py-2 font-medium transition-all `;
+  const buttonStyleCalculated = calculateButtonStyle(
+    buttonStyle,
+    color ? color : "default"
+  );
 
   return (
     <button className={`${classes} ${buttonStyleCalculated}`} {...props}>

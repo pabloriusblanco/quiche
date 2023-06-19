@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import Button from "../../atoms/Buttons/Button";
-import Input from "../../atoms/Inputs/Input";
-import InputErrorText from "../../atoms/Inputs/InputErrorText";
-import Label from "../../atoms/Inputs/Label";
+import Button from "../../../atoms/Buttons/Button";
+import Input from "../../../atoms/Inputs/Input";
+import InputErrorText from "../../../atoms/Inputs/InputErrorText";
+import Label from "../../../atoms/Inputs/Label";
+import { registerFormValidationSchema } from "../validations/RegisterFormValidation";
 import RegisterFormContainer from "./RegisterFormContainer";
-import { registerFormValidationSchema } from "./validations/RegisterFormValidation";
 
 export type RegisterValues = {
   username: string;
@@ -143,23 +143,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             <InputErrorText>{formik.errors.email}</InputErrorText>
           )}
         </div>
-        {/* <div className="col-span-12">
-            <Label htmlFor="phone">Teléfono</Label>
-            <Input
-              type="phone"
-              id="phone"
-              name="phone"
-              placeholder="+541166778899"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.phone}
-              // defaultValue="+541166778899"
-              validationError={!!formik.errors.phone && formik.touched.phone}
-            />
-            {formik.errors.phone && formik.touched.phone && (
-              <InputErrorText>{formik.errors.phone}</InputErrorText>
-            )}
-          </div> */}
         <div className="col-span-12">
           <Label htmlFor="password">Password</Label>
           <Input

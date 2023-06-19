@@ -18,7 +18,7 @@ const HorizontalDetailedCard = ({ post }: HorizontalDetailedCardProps) => {
         <img
           src={
             post.recipe.image ||
-            `https://source.unsplash.com/random/600x600/?food,recipe&${post.recipe.name}`
+            `https://source.unsplash.com/random/768x768/?food,recipe&${post.recipe.name}`
           }
           alt={`${post.recipe.name} picture`}
           className="absolute h-full w-full rounded-lg object-cover"

@@ -1,5 +1,5 @@
-import ButtonCategoryWithIcon from "../../../components/atoms/Buttons/ButtonCategoryWithIcon";
-import { Category, Post } from "../../../types/Recipe";
+import ButtonCategoryWithIcon from "../../../../components/atoms/Buttons/ButtonCategoryWithIcon";
+import { Category, Post } from "../../../../types/Recipe";
 
 type RecipeInfoCategoriesProps = {
   mainCategory: Category;

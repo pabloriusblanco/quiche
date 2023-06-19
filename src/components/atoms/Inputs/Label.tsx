@@ -4,12 +4,17 @@ import { ColorTypes } from "../../../utils/Colors";
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: ReactNode;
   labelType?: ColorTypes;
+  extraClasses?: string;
 }
 
-const Label: React.FC<LabelProps> = ({ labelType = "black", ...props }) => {
+const Label: React.FC<LabelProps> = ({
+  labelType = "black",
+  extraClasses = "mb-1",
+  ...props
+}) => {
   return (
     <label
-      className={`mb-1 block text-[12px] font-medium text-${labelType}`}
+      className={`${extraClasses} w-fit block text-[12px] font-medium text-${labelType}`}
       {...props}
     />
   );

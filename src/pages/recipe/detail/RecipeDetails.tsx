@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getRecipe } from "../../api/recipes";
-import BackgroundHeader from "../../components/molecules/Background/Background";
-import Skeleton from "../../components/molecules/Skeleton/Skeleton";
-import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
-import { Post } from "../../types/Recipe";
 import RecipeInfo from "./sections/RecipeInfo";
 import RecipeComments from "./sections/RecipeComments";
 import RecipeActions from "./sections/RecipeActions";
 import RecipeSimilar from "./sections/RecipeSimilar";
+import { getRecipe } from "../../../api/recipes";
+import BackgroundHeader from "../../../components/molecules/Background/Background";
+import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
+import HomeSearch from "../../../components/organisms/Search/SimpleSearch/HomeSearch";
+import { Post } from "../../../types/Recipe";
 
 // interface RecipeDetailProps {
 //   postId: string;

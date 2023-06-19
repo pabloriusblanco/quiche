@@ -1,11 +1,12 @@
-import Button from "../../../components/atoms/Buttons/Button";
-import Icon from "../../../components/atoms/Icons/Icons";
-import ShareModal from "../../../components/molecules/Modal/RecipeActions/ShareModal";
-import { useAuth } from "../../../hooks/useAuth";
-import useModal from "../../../hooks/useModal";
-import { useSpinner } from "../../../hooks/useSpinner";
-import { Comment, Ingredient, Post } from "../../../types/Recipe";
-import { downloadIngredients } from "../../../utils/DownloadIngredients";
+import Button from "../../../../components/atoms/Buttons/Button";
+import Icon from "../../../../components/atoms/Icons/Icons";
+import ShareModal from "../../../../components/molecules/Modal/RecipeActions/ShareModal";
+import { useAuth } from "../../../../hooks/useAuth";
+import useModal from "../../../../hooks/useModal";
+import { useSpinner } from "../../../../hooks/useSpinner";
+import { Post } from "../../../../types/Recipe";
+import { downloadIngredients } from "../../../../utils/DownloadIngredients";
+
 
 type RecipeActionsProps = {
   post: Post;

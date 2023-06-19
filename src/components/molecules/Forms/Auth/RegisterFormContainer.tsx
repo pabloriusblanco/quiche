@@ -1,5 +1,5 @@
-import { TextWeightType, TitleType } from "../../atoms/Text/TextsTypes";
-import Title from "../../atoms/Text/Title";
+import { TextWeightType, TitleType } from "../../../atoms/Text/TextsTypes";
+import Title from "../../../atoms/Text/Title";
 
 type RegisterFormContainerProps = {
   children?: React.ReactNode;

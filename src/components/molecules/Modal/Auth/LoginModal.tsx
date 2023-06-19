@@ -3,11 +3,9 @@ import { useResultModal } from "../../../../hooks/useResultModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
 import { TextWeightType, TitleType } from "../../../atoms/Text/TextsTypes";
 import Title from "../../../atoms/Text/Title";
-import LoginForm from "../../Forms/LoginForm";
+import LoginForm from "../../Forms/Auth/LoginForm";
 import Modal from "../Modal";
-import {
-  loginResultMapper
-} from "./ResultsConfigAuth/ResultsAuthContents";
+import { loginResultMapper } from "./ResultsConfigAuth/ResultsAuthContents";
 
 interface LoginModalProps {
   openModal: () => void;

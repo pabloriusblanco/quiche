@@ -78,7 +78,7 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
         />
         <Button
           color="primary"
-          className="rounded-lg py-0 px-0 flex items-center justify-center"
+          extraClasses="rounded-lg py-0 px-0 flex items-center justify-center"
         >
           <Icon name="search" className="w-4 fill-white" />
         </Button>

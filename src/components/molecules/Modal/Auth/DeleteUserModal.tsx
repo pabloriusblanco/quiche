@@ -1,7 +1,6 @@
 import { TextWeightType, TitleType } from "../../../atoms/Text/TextsTypes";
 import Title from "../../../atoms/Text/Title";
-import DeleteUserForm from "../../Forms/DeleteUserForm";
-import SubmitNewPasswordForm from "../../Forms/SubmitNewPasswordForm";
+import DeleteUserForm from "../../Forms/Auth/DeleteUserForm";
 import Modal from "../Modal";
 
 interface DeleteUserModalProps {

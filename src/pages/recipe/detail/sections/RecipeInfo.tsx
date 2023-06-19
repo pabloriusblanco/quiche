@@ -1,15 +1,15 @@
-import HTMLContent from "../../../components/atoms/HTMLContent/HTMLContent";
-import Icon from "../../../components/atoms/Icons/Icons";
-import LinkBasic from "../../../components/atoms/Link/LinkBasic";
-import Paragraph from "../../../components/atoms/Text/Paragraph";
+import HTMLContent from "../../../../components/atoms/HTMLContent/HTMLContent";
+import Icon from "../../../../components/atoms/Icons/Icons";
+import LinkBasic from "../../../../components/atoms/Link/LinkBasic";
+import Paragraph from "../../../../components/atoms/Text/Paragraph";
 import {
   TextWeightType,
   TitleType,
-} from "../../../components/atoms/Text/TextsTypes";
-import Title from "../../../components/atoms/Text/Title";
-import PostRatingWithValue from "../../../components/molecules/Cards/PostRatingWithValue";
-import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
-import { Post } from "../../../types/Recipe";
+} from "../../../../components/atoms/Text/TextsTypes";
+import Title from "../../../../components/atoms/Text/Title";
+import PostRatingWithValue from "../../../../components/molecules/Cards/PostRatingWithValue";
+import Skeleton from "../../../../components/molecules/Skeleton/Skeleton";
+import { Post } from "../../../../types/Recipe";
 import RecipeInfoCategories from "./RecipeInfoCategories";
 import RecipeSectionTitle from "./RecipeSectionTitle";
 
