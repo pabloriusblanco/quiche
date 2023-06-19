@@ -76,25 +76,30 @@ const RecipeCreateForm = ({
   const formik = useFormik({
     initialValues: {
       image: null,
-      name: "Tarta de Zuchinis y queso",
+      name: "Tarta de Berenjenas",
       description:
-        "Otra opción para preparar una riquísima tarta como almuerzo o cena. Podes acompañarla con una ensalada de hojas verdes o un cremoso puré de papas. ¡Super recomendable!",
+        "Una exquisita combinación de berenjenas tiernas y sabrosos ingredientes que te sorprenderá. Esta tarta es perfecta para disfrutar en cualquier ocasión y cautivar a tus invitados con su sabor único.",
       mainCategoryId: "",
       subcategories: [] as string[],
-      difficultyId: "1",
-      prepTime: "45",
+      difficultyId: "2",
+      prepTime: "60",
       ingredients: [
-        { displayName: "Zuchinis", quantity: 3 },
+        { displayName: "Berenjenas", quantity: 2 },
         { displayName: "Taza de Harina", quantity: 1 },
         { displayName: "Mantequilla cucharada", quantity: 2 },
         { displayName: "Sal a gusto", quantity: 1 },
-        { displayName: "1/2 Taza de Queso Rayado", quantity: 1 },
-        { displayName: "Huevos", quantity: 3 },
-      ] as
-        | (Ingredient & { quantity: number })[]
-        | { displayName: string; quantity: number }[],
+        { displayName: "Cebolla", quantity: 1 },
+        { displayName: "Queso Mozzarella", quantity: 200 },
+        { displayName: "Aceite de oliva", quantity: 2 },
+        { displayName: "Huevos", quantity: 4 },
+        { displayName: "Leche", quantity: 1 },
+        {
+          displayName: "Especias a gusto (orégano, tomillo, etc.)",
+          quantity: null,
+        },
+      ],
       instructions:
-        "<ol><li>Precalienta el horno a 180°C.</li><li>En un recipiente, mezcla la harina, la sal y la mantequilla hasta obtener una textura arenosa.</li><li>Agrega el agua poco a poco y mezcla hasta formar una masa compacta.</li><li>Enharina una superficie plana y estira la masa con un rodillo hasta obtener un grosor de aproximadamente 0,5 cm.</li><li>Forra un molde para tarta con la masa estirada y recorta los bordes sobrantes.</li><li>Pincha la base de la tarta con un tenedor para evitar que se formen burbujas durante la cocción.</li><li>En una sartén, calienta un poco de aceite de oliva y saltea los zucchinis cortados en rodajas hasta que estén tiernos.</li><li>Agrega el queso rallado y mezcla bien.</li><li>Vierte la mezcla de zucchinis y queso sobre la base de la tarta.</li><li>Hornea durante 25-30 minutos o hasta que la tarta esté dorada y cocida.</li><li>Retira del horno y deja enfriar antes de servir.</li></ol><p>¡Disfruta de esta deliciosa tarta de zuchinis y queso como almuerzo o cena acompañada de una ensalada fresca o un puré de papas cremoso!</p>",
+        "<ol><li>Precalienta el horno a 180°C.</li><li>Corta las berenjenas en rodajas y espolvorea sal sobre ellas. Deja reposar durante 15 minutos para eliminar el exceso de humedad.</li><li>Mientras tanto, en una sartén grande, derrite la mantequilla y agrega la cebolla picada. Cocina a fuego medio hasta que la cebolla esté dorada.</li><li>Enjuaga las rodajas de berenjenas con agua fría y sécalas con papel absorbente. Añádelas a la sartén y cocina hasta que estén tiernas y ligeramente doradas.</li><li>En un recipiente aparte, bate los huevos y añade la leche. Condimenta la mezcla con las especias de tu elección.</li><li>En un molde para tarta, coloca una capa de masa de tarta previamente preparada.</li><li>Agrega una capa de berenjenas cocidas y cebolla dorada. Espolvorea con queso mozzarella rallado y vierte un poco de la mezcla de huevos y leche.</li><li>Repite el proceso de capas hasta utilizar todos los ingredientes, asegurándote de terminar con una capa de queso en la parte superior.</li><li>Hornea durante 35-40 minutos o hasta que la tarta esté dorada y cuajada.</li><li>Deja enfriar ligeramente antes de servir. ¡Disfruta de esta deliciosa tarta de berenjenas con una ensalada fresca o como plato principal!</li></ol>",
     },
 
     validationSchema: createRecipeValidationForm,
@@ -205,7 +210,8 @@ const RecipeCreateForm = ({
                 optionsArray={apiOptions.categories}
                 placeholder="Selecciona una categoría"
                 validationError={
-                  !!formik.errors.mainCategoryId && formik.touched.mainCategoryId
+                  !!formik.errors.mainCategoryId &&
+                  formik.touched.mainCategoryId
                 }
                 valueExtractor={(category) => category.id.toString()}
                 labelExtractor={(category) => category.displayName}
@@ -245,12 +251,9 @@ const RecipeCreateForm = ({
               disabledOption={formik.values.mainCategoryId}
             />
           </div>
-          {formik.errors.subcategories &&
-            formik.touched.subcategories && (
-              <InputErrorText>
-                {formik.errors.subcategories}
-              </InputErrorText>
-            )}
+          {formik.errors.subcategories && formik.touched.subcategories && (
+            <InputErrorText>{formik.errors.subcategories}</InputErrorText>
+          )}
         </div>
         <div className="col-span-6 flex flex-col gap-2">
           <div className="flex items-center gap-1">
@@ -310,7 +313,9 @@ const RecipeCreateForm = ({
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.prepTime}
-              validationError={!!formik.errors.prepTime && formik.touched.prepTime}
+              validationError={
+                !!formik.errors.prepTime && formik.touched.prepTime
+              }
             />
             {formik.errors.prepTime && formik.touched.prepTime && (
               <InputErrorText>{formik.errors.prepTime}</InputErrorText>

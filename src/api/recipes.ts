@@ -34,7 +34,7 @@ export async function getSimilarRecipes(
 }
 
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
-  // console.log(JSON.stringify(recipe, null, 4));
+  console.log(JSON.stringify(recipe, null, 4));
   
   const response = await api.post("Post/create", recipe);
   return response.data;
