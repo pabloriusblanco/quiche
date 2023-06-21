@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import { Colors } from "./src/utils/colors";
+import { Colors } from "./src/utils/Colors";
 
 export default {
   safelist: [
