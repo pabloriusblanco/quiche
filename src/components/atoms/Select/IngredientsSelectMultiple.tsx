@@ -1,5 +1,5 @@
 import makeAnimated from "react-select/animated";
-import AsyncCreatableSelect from "react-select/async-creatable";
+import AsyncSelect from "react-select/async";
 import { getAllIngredientsByName } from "../../../api/ingredients";
 import { Ingredient } from "../../../types/Recipe";
 import { useState } from "react";
@@ -9,29 +9,23 @@ type Option = {
   label: string;
 };
 
-export type IngredientPosibleValues = Ingredient | { displayName: string };
-
-export interface IngredientsSelectProps {
+export interface IngredientsSelectMultipleProps {
   placeholder: string;
   field: string;
-  setIngredient: (ingredient?: IngredientPosibleValues) => void;
-  clearIngredient: () => void;
+  formik: any;
 }
 
-const IngredientsSelect = ({
+const IngredientsSelectMultiple = ({
   placeholder,
   field,
-  setIngredient,
-  clearIngredient,
-}: IngredientsSelectProps) => {
+  formik,
+}: IngredientsSelectMultipleProps) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
     undefined
   );
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const getIngredients = (value: string): Promise<Ingredient[]> => {
-    console.log("disparo a la api", value);
-
     return getAllIngredientsByName(value)
       .then((response) => response) // Assuming the response contains the data property with the array of ingredients
       .catch((error) => {
@@ -59,6 +53,11 @@ const IngredientsSelect = ({
               })
             );
             resolve(options);
+            if (options.length == 0) {
+              setTimeout(() => {
+                setIsMenuOpen(false);
+              }, 2000);
+            }
           }, 1000);
           setTimeoutId(timeout);
         } else {
@@ -73,33 +72,28 @@ const IngredientsSelect = ({
     });
   };
 
-  const onChange = (option: any) => {
-    if (!option) {
-      clearIngredient();
-      return;
-    } else if (option && option.__isNew__) {
-      setIngredient({
-        displayName: (option as Option).label,
-      });
+  const onChange = (options: any) => {
+    if (options.length === 0) {
+      formik.setFieldValue(field, []);
+      setIsMenuOpen(false);
     } else {
-      setIngredient({
-        id: parseInt((option as Option).value),
-        displayName: (option as Option).label,
-      });
+      formik.setFieldValue(
+        field,
+        options.map((option: any) => option.value)
+      );
+      setIsMenuOpen(false);
     }
-    setIsMenuOpen(false);
   };
 
   return (
-    <AsyncCreatableSelect
+    <AsyncSelect
       id={field}
       unstyled
+      isMulti
       maxMenuHeight={200}
       noOptionsMessage={() => "No hay opciones"}
       loadingMessage={() => "Cargando..."}
       menuIsOpen={isMenuOpen}
-      allowCreateWhileLoading={false}
-      formatCreateLabel={(inputValue: string) => `Agregar "${inputValue}"`}
       isClearable
       closeMenuOnSelect
       loadOptions={handleInputChange}
@@ -138,4 +132,4 @@ const IngredientsSelect = ({
   );
 };
 
-export default IngredientsSelect;
+export default IngredientsSelectMultiple;

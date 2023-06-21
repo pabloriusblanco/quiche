@@ -1,5 +1,4 @@
 import dietaryRestrictions from "../../../assets/images/dietaryRestrictions.jpg";
-import LinkBasic from "../../atoms/Link/LinkBasic";
 import LinkContainer from "../../atoms/Link/LinkContainer";
 import Paragraph from "../../atoms/Text/Paragraph";
 

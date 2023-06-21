@@ -1,4 +1,4 @@
-import { Category, Difficulty, Ingredient } from "./Recipe";
+import { Category, Difficulty, DurationReference, Ingredient } from "./Recipe";
 
 type User = {
   id: string;
@@ -37,6 +37,11 @@ export type PostCreateUpdate = {
     | ResponsePostIngredients[]
     | { displayName: string; quantity: number }[];
   instructions: string;
+};
+
+export type PostCreateComment = {
+  postId: string;
+  comment: string;
 };
 
 export type PostResponse = {
@@ -78,6 +83,10 @@ export type SimpleSearchResponsePost = {
   rating: number;
 };
 
+export type DurationResponse = DurationReference & {
+  maxMinutes: number;
+};
+
 export type SimpleSearchResponsePostIngredients = {
   id: string;
   name: string;
@@ -89,4 +98,25 @@ export type SimpleSearchResponsePostCategories = {
   displayName: string;
   icon: string;
   description: string;
+};
+
+export type AdvanceSearchQuery = {
+  RecipeName: string;
+  CategoryId: string;
+  SubcategoriesId: string[];
+  IngredientsId: string[];
+  TimeFrom: string;
+  TimeTo: string;
+  DifficultyLevelId: string;
+  RatingFrom: string;
+  RatingTo: string;
+  UserName: string;
+};
+
+export type AdvanceSearchResponse = {
+  posts: PostResponse[];
+  pageNumber: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
 };

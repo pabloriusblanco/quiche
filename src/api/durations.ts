@@ -1,7 +1,7 @@
 import { api } from ".";
-import { DurationReference } from "../types/Recipe";
+import { DurationResponse } from "../types/Api";
 
-export async function getAllDurations(): Promise<DurationReference[]> {
+export async function getAllDurations(): Promise<DurationResponse[]> {
   const response = await api.get(`Duration/GetAll`);
   return response.data.data;
 }

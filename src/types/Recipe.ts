@@ -24,7 +24,7 @@ export type Recipe = {
 };
 
 export type Category = {
-  id: number;
+  id: string;
   name: string;
   displayName: string;
   icon: keyof IconsMap;

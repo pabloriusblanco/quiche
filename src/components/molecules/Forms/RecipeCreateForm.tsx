@@ -94,8 +94,8 @@ const RecipeCreateForm = ({
         { displayName: "Huevos", quantity: 4 },
         { displayName: "Leche", quantity: 1 },
         {
-          displayName: "Especias a gusto (orégano, tomillo, etc.)",
-          quantity: null,
+          displayName: "Especias a gusto",
+          quantity: 1,
         },
       ],
       instructions:

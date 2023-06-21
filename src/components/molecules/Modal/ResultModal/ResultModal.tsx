@@ -12,18 +12,25 @@ interface ResultModalProps {
 
 const ResultModal = ({ key }: ResultModalProps) => {
   const resultModal = useResultModal();
-  const { title, message, onCancel, onConfirm, cancelText, showIcon } =
-    resultModal.content;
+  const {
+    title,
+    message,
+    onCancel,
+    onConfirm,
+    cancelText,
+    confirmText,
+    showIcon,
+  } = resultModal.content;
 
   if (!resultModal.showingResultModal) return null;
 
   return (
     <Modal key={key} onClose={resultModal.hideResultModal}>
-      <div className="flex flex-col gap-2 p-5 justify-center items-center">
+      <div className="flex flex-col items-center justify-center gap-2 p-5">
         {showIcon && (
           <Icon
             name={resultModal.modalType as IconsNames}
-            className={`h-12 mb-2 fill-${resultModal.modalType}`}
+            className={`mb-2 h-12 fill-${resultModal.modalType}`}
           />
         )}
         {title && (
@@ -41,7 +48,7 @@ const ResultModal = ({ key }: ResultModalProps) => {
           </Paragraph>
         )}
 
-        <div className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center gap-4">
           <Button
             color="secondary"
             onClick={() => {
@@ -52,6 +59,18 @@ const ResultModal = ({ key }: ResultModalProps) => {
           >
             {cancelText ? cancelText : "Cerrar"}
           </Button>
+          {onConfirm && (
+            <Button
+              color="primary"
+              onClick={() => {
+                resultModal.hideResultModal();
+                onConfirm();
+              }}
+              extraClasses="mt-4"
+            >
+              {confirmText ? confirmText : "Aceptar"}
+            </Button>
+          )}
         </div>
       </div>
     </Modal>

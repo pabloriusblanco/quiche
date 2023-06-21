@@ -4,7 +4,7 @@ import {
 } from "../../../../../context/ResultModalsContext";
 import { SpinnerContextType } from "../../../../../context/SpinnerContext";
 import { AuthResult } from "../../../../../hooks/useAuth";
-import { PreloadRegisterValues } from "../../../Forms/RegisterForm";
+import { PreloadRegisterValues } from "../../../Forms/Auth/RegisterForm";
 import { loginModalSuccessContent } from "./LoginResultsMapper";
 import { registerModalSuccessContent } from "./RegisterResultsMapper";
 

@@ -32,7 +32,7 @@ const Footer = () => {
       }}
     >
       <Paragraph color="white">{`© ${new Date().getFullYear()} Copyright: Quiche y QuicheApp son una marca registrada. Todos los derechos reservados.`}</Paragraph>
-      {process.env.ENVIROMENT !== "prod" && (
+      {process.env.ENVIROMENT === "local" && (
         <>
           {deleteUserModal.isOpen && (
             <DeleteUserModal

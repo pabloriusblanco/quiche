@@ -193,21 +193,21 @@ export const TimeDictionary: TagValues = {
   short: {
     name: "Corto",
     icon: "short",
-    time: "de 1 a 30 minutos",
+    time: "de 1 a 20 minutos",
     description:
       "El tiempo de preparación de este plato es corto, por lo que es ideal para cuando no dispones de mucho tiempo para cocinar.",
   },
   medium: {
     name: "Medio",
     icon: "medium",
-    time: "de 30 a 60 minutos",
+    time: "de 20 a 45 minutos",
     description:
       "El tiempo de preparación de este plato es medio, por lo que es ideal para cuando dispones de algo de tiempo para cocinar.",
   },
   long: {
     name: "Largo",
     icon: "hard",
-    time: "más de 60 minutos",
+    time: "más de 45 minutos",
     description:
       "El tiempo de preparación de este plato es largo, por lo que es ideal para cuando dispones de mucho tiempo para cocinar.",
   },

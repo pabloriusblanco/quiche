@@ -24,7 +24,7 @@ const TooltipIcons = ({ tag, tagKey, className, id }: TooltipIconsProps) => {
   return (
     <>
       <div data-tooltip-id={id}>
-        <Icon name={tagData.icon} className={`fill-gray hover:fill-gray-dark ${className}`} />
+        <Icon name={tagData.icon} className={`fill-gray shrink-0 hover:fill-gray-dark ${className}`} />
       </div>
       <TooltipSimple
         id={id}

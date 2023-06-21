@@ -5,6 +5,7 @@ import Button from "../../../atoms/Buttons/Button";
 import Icon from "../../../atoms/Icons/Icons";
 import Input from "../../../atoms/Inputs/Input";
 import ModalSearchResults from "./ModalSearchResults";
+import { useNavigate } from "react-router-dom";
 
 interface HomeSearchProps {
   id?: string;
@@ -19,9 +20,11 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
     undefined
   );
   const searchRef = useRef<HTMLDivElement>(null);
+  const navigator = useNavigate();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
+
     setSearchQuery(value);
     clearTimeout(timeoutId);
 
@@ -80,10 +83,18 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
           onFocus={() => {
             !showingResults ? handleInputChange : "";
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              navigator("/search", { state: { name: searchQuery } });
+            }
+          }}
         />
         <Button
           color="primary"
           extraClasses="rounded-lg py-0 px-0 flex items-center justify-center"
+          onClick={() => {
+            navigator("/search", { state: { name: searchQuery } });
+          }}
         >
           <Icon name="search" className="w-4 fill-white" />
         </Button>

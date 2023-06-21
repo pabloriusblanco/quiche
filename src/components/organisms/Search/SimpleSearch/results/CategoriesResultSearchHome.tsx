@@ -1,5 +1,5 @@
+import { useNavigate } from "react-router-dom";
 import { SimpleSearchResponsePostCategories } from "../../../../../types/Api";
-import { Category } from "../../../../../types/Recipe";
 import Icon, { IconsNames } from "../../../../atoms/Icons/Icons";
 
 interface CategoryResultSearchHomeProps {
@@ -9,19 +9,25 @@ interface CategoryResultSearchHomeProps {
 const CategoryResultSearchHome = ({
   categories,
 }: CategoryResultSearchHomeProps) => {
+  const navigate = useNavigate();
+
+  const navigateToSearch = (id: string) => {
+    navigate("/search", { state: { category: id } });
+  };
+
   return (
     <div className="mt-4 grid grid-cols-12 gap-2">
       <h6 className="col-span-12 text-xs font-bold">Categorías:</h6>
       {categories.map((category) => (
         <a
           key={category.id}
-          href={`/recetas/${category.id}`}
-          className="col-span-12 flex items-center justify-start"
+          className="col-span-12 cursor-pointer flex items-center justify-start"
+          onClick={() => navigateToSearch(category.id)}
         >
           <div className="flex items-center justify-between">
             <Icon
               name={category.icon as IconsNames}
-              className="mr-2 h-4 fill-primary shrink-0"
+              className="mr-2 h-4 shrink-0 fill-primary"
             />
             <div className="flex items-center justify-between">
               <p className="mx-2 truncate text-[12px]">{` - ${category.displayName} - `}</p>

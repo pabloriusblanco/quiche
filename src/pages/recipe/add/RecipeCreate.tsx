@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Paragraph from "../../../components/atoms/Text/Paragraph";
 import {
   TextWeightType,
@@ -12,10 +12,13 @@ import HomeSearch from "../../../components/organisms/Search/SimpleSearch/HomeSe
 import { Post } from "../../../types/Recipe";
 import { createRecipe } from "../../../api/recipes";
 import { PostCreateUpdate } from "../../../types/Api";
+import { useResultModal } from "../../../hooks/useResultModal";
 
 const RecipeCreate = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<Post | null>(null);
+  const resposeModal = useResultModal();
+  const navigator = useNavigate();
 
   const publishPost = async (post: PostCreateUpdate) => {
     post.image =
@@ -31,12 +34,32 @@ const RecipeCreate = () => {
     createRecipe(projectedPost)
       .then((res) => {
         console.log(res);
+        resposeModal.showResultModal("success", {
+          title: "Receta creada",
+          message: (
+            <>
+              Se ha creado la receta correctamente.
+              <br />
+              Puedes verla en tu perfil o haciendo click en el botón de abajo.
+            </>
+          ),
+          showIcon: true,
+          confirmText: "Ver receta",
+          onConfirm: () => navigator(`/recipe/${res.data}`),
+        });
       })
       .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        console.log("finalizado");
+        resposeModal.showResultModal("danger", {
+          title: "Ha sucecido un error",  
+          message: (
+            <>
+              No se ha podido crear la receta
+              <br />
+              Por favor intente más tarde
+            </>
+          ),
+          showIcon: true,
+        });
       });
   };
 

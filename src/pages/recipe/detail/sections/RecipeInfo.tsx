@@ -119,7 +119,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                     color="gray"
                     className="ml-1 overflow-hidden text-ellipsis text-right text-[11px] font-semibold"
                   >
-                    {`${post.user.firstName} ${post.user.lastName}`}
+                    {`${post.user.userName}`}
                   </Paragraph>
                 </div>
                 <LinkBasic

@@ -43,13 +43,13 @@ export default {
         black: Colors.black,
       },
     },
-    screens: {
+    // screens: {
       // <= 639px Mobile
-      md: "640px", // > Tablet
-      lg: "900px", // Laptop
-      xl: "1360px", // Desktop
-      "2xl": "1921px",
-    },
+      // md: "640px", // > Tablet
+      // lg: "900px", // Laptop
+      // xl: "1360px", // Desktop
+      // "2xl": "1921px",
+    // },
   },
   plugins: [],
 };

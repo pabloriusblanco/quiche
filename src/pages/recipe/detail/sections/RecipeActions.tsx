@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { likeComment, likeCommentDelete } from "../../../../api/recipes";
 import Button from "../../../../components/atoms/Buttons/Button";
 import Icon from "../../../../components/atoms/Icons/Icons";
 import ShareModal from "../../../../components/molecules/Modal/RecipeActions/ShareModal";
 import { useAuth } from "../../../../hooks/useAuth";
 import useModal from "../../../../hooks/useModal";
+import { useResultModal } from "../../../../hooks/useResultModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
-import { PostResponse, ResponsePostIngredients } from "../../../../types/Api";
+import { PostResponse } from "../../../../types/Api";
 import { downloadIngredients } from "../../../../utils/DownloadIngredients";
 
 type RecipeActionsProps = {
@@ -13,10 +16,21 @@ type RecipeActionsProps = {
 };
 
 const RecipeActions = ({ post }: RecipeActionsProps) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const auth = useAuth();
   const shareModal = useModal();
   const spinnerModal = useSpinner();
   const url = window.location.href;
+  const responseModal = useResultModal();
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      const isFavorite = post.usersLikedPosts.some(
+        (like) => like.user.userName === auth.username
+      );
+      setIsFavorite(isFavorite);
+    }
+  }, []);
 
   const favoritePost = async () => {
     spinnerModal.startLoading({ text: "Guardando como favorito" });
@@ -24,10 +38,57 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
       spinnerModal.stopLoading();
       auth.toggleAuthModal();
     } else {
-      setTimeout(() => {
-        alert("Guardado como favorito");
-      }, 2000);
+      likeComment(post.id)
+        .then((res) => {
+          console.log(res);
+          responseModal.showResultModal("success", {
+            showIcon: true,
+            title: "Guardada como favorita",
+            message: "La receta ha sido guardada como favorita correctamente",
+            onConfirm: () => window.location.reload(),
+            confirmText: "Recargar",
+          });
+          spinnerModal.stopLoading();
+        })
+        .catch((err) => {
+          console.log(err);
+          responseModal.showResultModal("danger", {
+            showIcon: true,
+            title: "Error al guardar como favorita",
+            message: err.response.data,
+          });
+          spinnerModal.stopLoading();
+        });
+    }
+  };
+
+  const unFavoritePost = async () => {
+    spinnerModal.startLoading({ text: "Eliminando de favorito" });
+    if (!auth.isAuthenticated) {
       spinnerModal.stopLoading();
+      auth.toggleAuthModal();
+    } else {
+      likeCommentDelete(post.id)
+        .then((res) => {
+          console.log(res);
+          responseModal.showResultModal("success", {
+            showIcon: true,
+            title: "Eliminada como favorita",
+            message: "La receta ha sido elimintada de tus favoritos",
+            onConfirm: () => window.location.reload(),
+            confirmText: "Recargar",
+          });
+          spinnerModal.stopLoading();
+        })
+        .catch((err) => {
+          console.log(err);
+          responseModal.showResultModal("danger", {
+            showIcon: true,
+            title: "Error al eliminar de favoritos",
+            message: err.response.data,
+          });
+          spinnerModal.stopLoading();
+        });
     }
   };
 
@@ -57,23 +118,31 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
       auth.toggleAuthModal();
     } else {
       setTimeout(() => {
-        alert("Reportado");
+        responseModal.showResultModal("success", {
+          title: "Receta reportada",
+          message: "Gracias por ayudarnos a mejorar la comunidad",
+          showIcon: true,
+        });
+        spinnerModal.stopLoading();
       }, 2000);
-      spinnerModal.stopLoading();
     }
   };
 
   return (
     <div className="grid grid-cols-12 gap-5">
       <Button
-        color="primary"
-        onClick={favoritePost}
-        buttonStyle="outlined"
+        color={"primary"}
+        onClick={isFavorite ? unFavoritePost : favoritePost}
+        buttonStyle={isFavorite ? "filled" : "outlined"}
         extraClasses="group col-span-6 flex gap-2 items-center justify-center"
       >
         <Icon
           name="likes"
-          className="w-4 fill-primary group-hover:fill-white"
+          className={
+            isFavorite
+              ? "w-4 fill-white"
+              : "w-4 fill-primary group-hover:fill-white"
+          }
         />
         Favorito
       </Button>

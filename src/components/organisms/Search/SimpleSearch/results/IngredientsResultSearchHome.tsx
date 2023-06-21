@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { SimpleSearchResponsePostIngredients } from "../../../../../types/Api";
 import Icon from "../../../../atoms/Icons/Icons";
 
@@ -8,14 +9,20 @@ interface IngredientsResultSearchHomeProps {
 const IngredientsResultSearchHome = ({
   ingredients,
 }: IngredientsResultSearchHomeProps) => {
+  const navigate = useNavigate();
+
+  const navigateToSearch = (id: string) => {
+    navigate("/search", { state: { ingredient: id } });
+  };
+
   return (
     <div className="mt-4 grid grid-cols-12 gap-2">
       <h6 className="col-span-12 text-xs font-bold">Ingredientes:</h6>
       {ingredients.map((ingredient) => (
         <a
           key={ingredient.id}
-          href={`/recetas/${ingredient.id}`}
-          className="col-span-12 flex items-center justify-start"
+          className="col-span-12 flex cursor-pointer items-center justify-start"
+          onClick={() => navigateToSearch(ingredient.id)}
         >
           <div className="flex items-center justify-between">
             <Icon name="arrowright" className="mr-2 h-3 fill-primary" />
