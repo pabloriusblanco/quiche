@@ -183,7 +183,7 @@ const RecipeCreateForm = ({
           </div>
           <ImageUpload formik={formik} />
           {formik.errors.image && formik.touched.image && (
-            <InputErrorText>{formik.errors.image}</InputErrorText>
+            <InputErrorText>{formik.errors.image as string}</InputErrorText>
           )}
         </div>
         <div className="col-span-6 flex flex-col">

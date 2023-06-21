@@ -4,7 +4,7 @@ export async function monthPosts(): Promise<Post[]> {
   // const response = await api.get(`/search?query=${query}`);
   // return response.data;
 
-  return new Promise<Post[]>((resolve, reject) => {
+  return new Promise<Post[]>((resolve) => {
     setTimeout(() => {
       resolve(monthPostsMock);
     }, 3000);
@@ -15,7 +15,7 @@ export async function dayPosts(): Promise<Post[]> {
   // const response = await api.get(`/search?query=${query}`);
   // return response.data;
 
-  return new Promise<Post[]>((resolve, reject) => {
+  return new Promise<Post[]>((resolve) => {
     setTimeout(() => {
       resolve(dayPostsMock);
     }, 3000);
@@ -24,9 +24,9 @@ export async function dayPosts(): Promise<Post[]> {
 
 const dayPostsMock: Post[] = [
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pasta con salsa de tomate",
       description:
         "Un delicioso plato de pasta con una exquisita salsa de tomate casera, generosamente cubierto con queso rallado y decorado con hojas frescas de albahaca. Esta combinación clásica de sabores te transportará a la auténtica cocina italiana. Cada bocado te brindará la suavidad de la pasta al dente, el sabor vibrante y ligeramente ácido de la salsa de tomate, el toque cremoso y gratinado del queso, y el aroma fresco y herbáceo de la albahaca. ¡Prepárate para disfrutar de una explosión de sabores en cada cucharada!",
@@ -35,32 +35,32 @@ const dayPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 669,
+          id: "669",
           name: "paquete-de-fideos-de-huevo",
           displayName: "Paquete de fideos de huevo",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "lata-de-tomate-triturado-perita",
           displayName: "Lata de tomate triturado perita",
           quantity: 2,
         },
         {
-          id: 656,
+          id: "656",
           name: "queso-parmesano-rallado",
           displayName: "Queso parmesano rallado",
           quantity: 1,
         },
         {
-          id: 655,
+          id: "655",
           name: "hojas-de-albahaca",
           displayName: "Hojas de albahaca",
           quantity: 12,
         },
       ],
       mainCategory: {
-        id: 328,
+        id: "328",
         name: "comida-italiana",
         displayName: "Comida Italiana",
         icon: "italian",
@@ -69,7 +69,7 @@ const dayPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 5669,
+          id: "5669",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -83,18 +83,19 @@ const dayPostsMock: Post[] = [
           displayName: "Medio",
           icon: "short",
           maxTime: 30,
+          id: "0",
         },
         value: 35,
       },
       difficulty: {
-        id: 1123,
+        id: "1123",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Perez",
     },
@@ -102,9 +103,9 @@ const dayPostsMock: Post[] = [
     favs: 36,
     comments: [
       {
-        id: 689965,
+        id: "689965",
         user: {
-          id: 336568,
+          id: "336568",
           firstName: "Ramiro",
           lastName: "Gonzalez",
         },
@@ -117,9 +118,9 @@ const dayPostsMock: Post[] = [
     date: new Date("2021-02-01T12:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Estofado de Lentejas",
       description:
         "Un reconfortante estofado de lentejas que combina ingredientes saludables y sabores irresistibles. Las lentejas, ricas en proteínas y fibra, se cocinan lentamente en una salsa de tomate casera junto con una variedad de verduras y especias. El resultado es un plato abundante y nutritivo que te llenará de energía y te dejará satisfecho. Cada cucharada te brindará el sabor terroso de las lentejas, la dulzura de las verduras y el toque aromático de las especias. Sirve este estofado con arroz integral o pan fresco para disfrutar al máximo de su delicioso sabor.",
@@ -128,56 +129,56 @@ const dayPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "lentejas",
           displayName: "Lentejas",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "zanahoria",
           displayName: "Zanahoria",
           quantity: 2,
         },
         {
-          id: 444,
+          id: "444",
           name: "apio",
           displayName: "Apio",
           quantity: 2,
         },
         {
-          id: 555,
+          id: "555",
           name: "tomates-picados",
           displayName: "Tomates picados",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "caldo-de-verduras",
           displayName: "Caldo de verduras",
           quantity: 2,
         },
         {
-          id: 777,
+          id: "777",
           name: "especias",
           displayName: "Especias (comino, pimentón, orégano)",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 888,
+          id: "888",
           name: "sal",
           displayName: "Sal",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 123,
+        id: "123",
         name: "comida-vegetariana",
         displayName: "Comida Vegetariana",
         icon: "vegetarian",
@@ -186,7 +187,7 @@ const dayPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 456,
+          id: "456",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -194,7 +195,7 @@ const dayPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 789,
+          id: "789",
           name: "vegan",
           displayName: "Vegano",
           icon: "vegan",
@@ -209,26 +210,27 @@ const dayPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 987,
+        id: "987",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Ana",
       lastName: "González",
     },
     favs: 12,
     comments: [
       {
-        id: 987987,
+        id: "987987",
         user: {
-          id: 654654,
+          id: "654654",
           firstName: "Laura",
           lastName: "López",
         },
@@ -241,9 +243,9 @@ const dayPostsMock: Post[] = [
     date: new Date("2021-10-10T10:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pollo al Curry con Arroz",
       description:
         "Una deliciosa combinación de sabores exóticos y tiernos trozos de pollo en una suave salsa de curry, servido con arroz aromático. Este plato te transportará a las tierras de especias y te hará disfrutar de una experiencia culinaria llena de aromas y sabores. El pollo se cocina lentamente en una mezcla de especias y hierbas, junto con cebolla, ajo y jengibre, hasta que esté tierno y jugoso. La salsa de curry se espesa y se llena de notas de coco y cúrcuma, creando una combinación perfecta con el arroz. Disfruta de este plato lleno de sabor y textura.",
@@ -252,86 +254,86 @@ const dayPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "pollo",
           displayName: "Pollo",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "diente-de-ajo",
           displayName: "Diente de Ajo",
           quantity: 3,
         },
         {
-          id: 444,
+          id: "444",
           name: "jengibre",
           displayName: "Jengibre a gusto",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 555,
+          id: "555",
           name: "cucharadita-de-curry-en-polvo",
           displayName: "Cucharadita de Curry en polvo",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "cucharadita-de-cúrcuma",
           displayName: "Cucharadita de Cúrcuma",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "cucharadita-de-comino",
           displayName: "Cucharadita de Comino",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "cucharadita-de-canela",
           displayName: "Cucharadita de Canela",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "tomate",
           displayName: "Tomate",
           quantity: 2,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "caldo-de-pollo",
           displayName: "Caldo de pollo",
           quantity: 1,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "lata-leche-de-coco",
           displayName: "Lata leche de coco",
           quantity: 1,
         },
         {
-          id: 121212,
+          id: "121212",
           name: "taza-de-arroz",
           displayName: "Taza de arroz",
           quantity: 2,
         },
         {
-          id: 131313,
+          id: "131313",
           name: "cilantro",
           displayName: "Cilantro",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 1212,
+        id: "1212",
         name: "asiatica",
         displayName: "Asiática",
         icon: "asian",
@@ -340,7 +342,7 @@ const dayPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 8888,
+          id: "8888",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -348,7 +350,7 @@ const dayPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 9999,
+          id: "9999",
           name: "chicken",
           displayName: "Pollo",
           icon: "chicken",
@@ -362,27 +364,28 @@ const dayPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 90,
+          id: "0",
         },
         value: 45,
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: 135792468,
+      id: "135792468",
       firstName: "María",
       lastName: "López",
     },
     favs: 25,
     comments: [
       {
-        id: 121212,
+        id: "121212",
         user: {
-          id: 232323,
+          id: "232323",
           firstName: "Carlos",
           lastName: "Martínez",
         },
@@ -397,9 +400,9 @@ const dayPostsMock: Post[] = [
 ];
 const monthPostsMock: Post[] = [
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pasta con salsa de tomate",
       description:
         "Un delicioso plato de pasta con una exquisita salsa de tomate casera, generosamente cubierto con queso rallado y decorado con hojas frescas de albahaca. Esta combinación clásica de sabores te transportará a la auténtica cocina italiana. Cada bocado te brindará la suavidad de la pasta al dente, el sabor vibrante y ligeramente ácido de la salsa de tomate, el toque cremoso y gratinado del queso, y el aroma fresco y herbáceo de la albahaca. ¡Prepárate para disfrutar de una explosión de sabores en cada cucharada!",
@@ -408,32 +411,32 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 669,
+          id: "669",
           name: "paquete-de-fideos-de-huevo",
           displayName: "Paquete de fideos de huevo",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "lata-de-tomate-triturado-perita",
           displayName: "Lata de tomate triturado perita",
           quantity: 2,
         },
         {
-          id: 656,
+          id: "656",
           name: "queso-parmesano-rallado",
           displayName: "Queso parmesano rallado",
           quantity: 1,
         },
         {
-          id: 655,
+          id: "655",
           name: "hojas-de-albahaca",
           displayName: "Hojas de albahaca",
           quantity: 12,
         },
       ],
       mainCategory: {
-        id: 328,
+        id: "328",
         name: "comida-italiana",
         displayName: "Comida Italiana",
         icon: "italian",
@@ -442,7 +445,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 5669,
+          id: "5669",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -456,18 +459,19 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "short",
           maxTime: 30,
+          id: "0",
         },
         value: 35,
       },
       difficulty: {
-        id: 1123,
+        id: "1123",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Perez",
     },
@@ -475,9 +479,9 @@ const monthPostsMock: Post[] = [
     favs: 36,
     comments: [
       {
-        id: 689965,
+        id: "689965",
         user: {
-          id: 336568,
+          id: "336568",
           firstName: "Ramiro",
           lastName: "Gonzalez",
         },
@@ -490,9 +494,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-02-01T12:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Estofado de Lentejas",
       description:
         "Un reconfortante estofado de lentejas que combina ingredientes saludables y sabores irresistibles. Las lentejas, ricas en proteínas y fibra, se cocinan lentamente en una salsa de tomate casera junto con una variedad de verduras y especias. El resultado es un plato abundante y nutritivo que te llenará de energía y te dejará satisfecho. Cada cucharada te brindará el sabor terroso de las lentejas, la dulzura de las verduras y el toque aromático de las especias. Sirve este estofado con arroz integral o pan fresco para disfrutar al máximo de su delicioso sabor.",
@@ -501,56 +505,56 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "lentejas",
           displayName: "Lentejas",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "zanahoria",
           displayName: "Zanahoria",
           quantity: 2,
         },
         {
-          id: 444,
+          id: "444",
           name: "apio",
           displayName: "Apio",
           quantity: 2,
         },
         {
-          id: 555,
+          id: "555",
           name: "tomates-picados",
           displayName: "Tomates picados",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "caldo-de-verduras",
           displayName: "Caldo de verduras",
           quantity: 2,
         },
         {
-          id: 777,
+          id: "777",
           name: "especias",
           displayName: "Especias (comino, pimentón, orégano)",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 888,
+          id: "888",
           name: "sal",
           displayName: "Sal",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 123,
+        id: "123",
         name: "comida-vegetariana",
         displayName: "Comida Vegetariana",
         icon: "vegetarian",
@@ -559,7 +563,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 456,
+          id: "456",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -567,7 +571,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 789,
+          id: "789",
           name: "vegan",
           displayName: "Vegano",
           icon: "vegan",
@@ -582,26 +586,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 987,
+        id: "987",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Ana",
       lastName: "González",
     },
     favs: 12,
     comments: [
       {
-        id: 987987,
+        id: "987987",
         user: {
-          id: 654654,
+          id: "654654",
           firstName: "Laura",
           lastName: "López",
         },
@@ -614,9 +619,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-10-10T10:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pollo al Curry con Arroz",
       description:
         "Una deliciosa combinación de sabores exóticos y tiernos trozos de pollo en una suave salsa de curry, servido con arroz aromático. Este plato te transportará a las tierras de especias y te hará disfrutar de una experiencia culinaria llena de aromas y sabores. El pollo se cocina lentamente en una mezcla de especias y hierbas, junto con cebolla, ajo y jengibre, hasta que esté tierno y jugoso. La salsa de curry se espesa y se llena de notas de coco y cúrcuma, creando una combinación perfecta con el arroz. Disfruta de este plato lleno de sabor y textura.",
@@ -625,86 +630,86 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "pollo",
           displayName: "Pollo",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "diente-de-ajo",
           displayName: "Diente de Ajo",
           quantity: 3,
         },
         {
-          id: 444,
+          id: "444",
           name: "jengibre",
           displayName: "Jengibre a gusto",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 555,
+          id: "555",
           name: "cucharadita-de-curry-en-polvo",
           displayName: "Cucharadita de Curry en polvo",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "cucharadita-de-cúrcuma",
           displayName: "Cucharadita de Cúrcuma",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "cucharadita-de-comino",
           displayName: "Cucharadita de Comino",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "cucharadita-de-canela",
           displayName: "Cucharadita de Canela",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "tomate",
           displayName: "Tomate",
           quantity: 2,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "caldo-de-pollo",
           displayName: "Caldo de pollo",
           quantity: 1,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "lata-leche-de-coco",
           displayName: "Lata leche de coco",
           quantity: 1,
         },
         {
-          id: 121212,
+          id: "121212",
           name: "taza-de-arroz",
           displayName: "Taza de arroz",
           quantity: 2,
         },
         {
-          id: 131313,
+          id: "131313",
           name: "cilantro",
           displayName: "Cilantro",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 1212,
+        id: "1212",
         name: "asiatica",
         displayName: "Comida Asiática",
         icon: "asian",
@@ -713,7 +718,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 8888,
+          id: "8888",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -721,7 +726,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 9999,
+          id: "9999",
           name: "chicken",
           displayName: "Pollo",
           icon: "chicken",
@@ -735,27 +740,28 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 90,
+          id: "0",
         },
         value: 45,
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: 135792468,
+      id: "135792468",
       firstName: "María",
       lastName: "López",
     },
     favs: 25,
     comments: [
       {
-        id: 121212,
+        id: "121212",
         user: {
-          id: 232323,
+          id: "232323",
           firstName: "Carlos",
           lastName: "Martínez",
         },
@@ -768,9 +774,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-09-15T14:30:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pizza Casera",
       description:
         "Disfruta de una deliciosa pizza casera con tus ingredientes favoritos. Esta receta te enseñará a hacer una masa crujiente y sabrosa, acompañada de una selección de toppings irresistibles. Prepara esta pizza en casa y sorprende a tu familia y amigos con un plato clásico y lleno de sabor.",
@@ -779,74 +785,74 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "harina",
           displayName: "Harina",
           quantity: 2,
         },
         {
-          id: 222,
+          id: "222",
           name: "levadura",
           displayName: "Levadura",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "sal",
           displayName: "Sal",
           quantity: 0.5,
         },
         {
-          id: 444,
+          id: "444",
           name: "agua",
           displayName: "Agua",
           quantity: 1,
         },
         {
-          id: 555,
+          id: "555",
           name: "aceite",
           displayName: "Aceite",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "salsa-de-tomate",
           displayName: "Salsa de Tomate",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "queso-mozzarella",
           displayName: "Queso Mozzarella",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "pepperoni",
           displayName: "Pepperoni",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "champiñones",
           displayName: "Champiñones",
           quantity: 0.5,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "aceitunas",
           displayName: "Aceitunas",
           quantity: 0.25,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "pimientos",
           displayName: "Pimientos",
           quantity: 0.25,
         },
       ],
       mainCategory: {
-        id: 3434,
+        id: "3434",
         name: "snack",
         displayName: "Snack",
         icon: "snack",
@@ -855,7 +861,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 1212,
+          id: "1212",
           name: "comida-italiana",
           displayName: "Italiana",
           icon: "italian",
@@ -870,26 +876,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Pérez",
     },
     favs: 10,
     comments: [
       {
-        id: 987654,
+        id: "987654",
         user: {
-          id: 135792468,
+          id: "135792468",
           firstName: "María",
           lastName: "López",
         },
@@ -902,9 +909,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-09-16T18:30:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pasta con salsa de tomate",
       description:
         "Un delicioso plato de pasta con una exquisita salsa de tomate casera, generosamente cubierto con queso rallado y decorado con hojas frescas de albahaca. Esta combinación clásica de sabores te transportará a la auténtica cocina italiana. Cada bocado te brindará la suavidad de la pasta al dente, el sabor vibrante y ligeramente ácido de la salsa de tomate, el toque cremoso y gratinado del queso, y el aroma fresco y herbáceo de la albahaca. ¡Prepárate para disfrutar de una explosión de sabores en cada cucharada!",
@@ -913,32 +920,32 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 669,
+          id: "669",
           name: "paquete-de-fideos-de-huevo",
           displayName: "Paquete de fideos de huevo",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "lata-de-tomate-triturado-perita",
           displayName: "Lata de tomate triturado perita",
           quantity: 2,
         },
         {
-          id: 656,
+          id: "656",
           name: "queso-parmesano-rallado",
           displayName: "Queso parmesano rallado",
           quantity: 1,
         },
         {
-          id: 655,
+          id: "655",
           name: "hojas-de-albahaca",
           displayName: "Hojas de albahaca",
           quantity: 12,
         },
       ],
       mainCategory: {
-        id: 328,
+        id: "328",
         name: "comida-italiana",
         displayName: "Comida Italiana",
         icon: "italian",
@@ -947,7 +954,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 5669,
+          id: "5669",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -961,18 +968,19 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "short",
           maxTime: 30,
+          id: "0",
         },
         value: 35,
       },
       difficulty: {
-        id: 1123,
+        id: "1123",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Perez",
     },
@@ -980,9 +988,9 @@ const monthPostsMock: Post[] = [
     favs: 36,
     comments: [
       {
-        id: 689965,
+        id: "689965",
         user: {
-          id: 336568,
+          id: "336568",
           firstName: "Ramiro",
           lastName: "Gonzalez",
         },
@@ -995,9 +1003,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-02-01T12:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Estofado de Lentejas",
       description:
         "Un reconfortante estofado de lentejas que combina ingredientes saludables y sabores irresistibles. Las lentejas, ricas en proteínas y fibra, se cocinan lentamente en una salsa de tomate casera junto con una variedad de verduras y especias. El resultado es un plato abundante y nutritivo que te llenará de energía y te dejará satisfecho. Cada cucharada te brindará el sabor terroso de las lentejas, la dulzura de las verduras y el toque aromático de las especias. Sirve este estofado con arroz integral o pan fresco para disfrutar al máximo de su delicioso sabor.",
@@ -1006,56 +1014,56 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "lentejas",
           displayName: "Lentejas",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "zanahoria",
           displayName: "Zanahoria",
           quantity: 2,
         },
         {
-          id: 444,
+          id: "444",
           name: "apio",
           displayName: "Apio",
           quantity: 2,
         },
         {
-          id: 555,
+          id: "555",
           name: "tomates-picados",
           displayName: "Tomates picados",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "caldo-de-verduras",
           displayName: "Caldo de verduras",
           quantity: 2,
         },
         {
-          id: 777,
+          id: "777",
           name: "especias",
           displayName: "Especias (comino, pimentón, orégano)",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 888,
+          id: "888",
           name: "sal",
           displayName: "Sal",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 123,
+        id: "123",
         name: "comida-vegetariana",
         displayName: "Comida Vegetariana",
         icon: "vegetarian",
@@ -1064,7 +1072,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 456,
+          id: "456",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -1072,7 +1080,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 789,
+          id: "789",
           name: "vegan",
           displayName: "Vegano",
           icon: "vegan",
@@ -1087,26 +1095,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 987,
+        id: "987",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Ana",
       lastName: "González",
     },
     favs: 12,
     comments: [
       {
-        id: 987987,
+        id: "987987",
         user: {
-          id: 654654,
+          id: "654654",
           firstName: "Laura",
           lastName: "López",
         },
@@ -1119,9 +1128,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-10-10T10:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pollo al Curry con Arroz",
       description:
         "Una deliciosa combinación de sabores exóticos y tiernos trozos de pollo en una suave salsa de curry, servido con arroz aromático. Este plato te transportará a las tierras de especias y te hará disfrutar de una experiencia culinaria llena de aromas y sabores. El pollo se cocina lentamente en una mezcla de especias y hierbas, junto con cebolla, ajo y jengibre, hasta que esté tierno y jugoso. La salsa de curry se espesa y se llena de notas de coco y cúrcuma, creando una combinación perfecta con el arroz. Disfruta de este plato lleno de sabor y textura.",
@@ -1130,86 +1139,86 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "pollo",
           displayName: "Pollo",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "diente-de-ajo",
           displayName: "Diente de Ajo",
           quantity: 3,
         },
         {
-          id: 444,
+          id: "444",
           name: "jengibre",
           displayName: "Jengibre a gusto",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 555,
+          id: "555",
           name: "cucharadita-de-curry-en-polvo",
           displayName: "Cucharadita de Curry en polvo",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "cucharadita-de-cúrcuma",
           displayName: "Cucharadita de Cúrcuma",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "cucharadita-de-comino",
           displayName: "Cucharadita de Comino",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "cucharadita-de-canela",
           displayName: "Cucharadita de Canela",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "tomate",
           displayName: "Tomate",
           quantity: 2,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "caldo-de-pollo",
           displayName: "Caldo de pollo",
           quantity: 1,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "lata-leche-de-coco",
           displayName: "Lata leche de coco",
           quantity: 1,
         },
         {
-          id: 121212,
+          id: "121212",
           name: "taza-de-arroz",
           displayName: "Taza de arroz",
           quantity: 2,
         },
         {
-          id: 131313,
+          id: "131313",
           name: "cilantro",
           displayName: "Cilantro",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 1212,
+        id: "1212",
         name: "asiatica",
         displayName: "Comida Asiática",
         icon: "asian",
@@ -1218,7 +1227,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 8888,
+          id: "8888",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -1226,7 +1235,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 9999,
+          id: "9999",
           name: "chicken",
           displayName: "Pollo",
           icon: "chicken",
@@ -1240,27 +1249,28 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 90,
+          id: "0",
         },
         value: 45,
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: 135792468,
+      id: "135792468",
       firstName: "María",
       lastName: "López",
     },
     favs: 25,
     comments: [
       {
-        id: 121212,
+        id: "121212",
         user: {
-          id: 232323,
+          id: "232323",
           firstName: "Carlos",
           lastName: "Martínez",
         },
@@ -1273,9 +1283,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-09-15T14:30:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pizza Casera",
       description:
         "Disfruta de una deliciosa pizza casera con tus ingredientes favoritos. Esta receta te enseñará a hacer una masa crujiente y sabrosa, acompañada de una selección de toppings irresistibles. Prepara esta pizza en casa y sorprende a tu familia y amigos con un plato clásico y lleno de sabor.",
@@ -1284,74 +1294,74 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "harina",
           displayName: "Harina",
           quantity: 2,
         },
         {
-          id: 222,
+          id: "222",
           name: "levadura",
           displayName: "Levadura",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "sal",
           displayName: "Sal",
           quantity: 0.5,
         },
         {
-          id: 444,
+          id: "444",
           name: "agua",
           displayName: "Agua",
           quantity: 1,
         },
         {
-          id: 555,
+          id: "555",
           name: "aceite",
           displayName: "Aceite",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "salsa-de-tomate",
           displayName: "Salsa de Tomate",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "queso-mozzarella",
           displayName: "Queso Mozzarella",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "pepperoni",
           displayName: "Pepperoni",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "champiñones",
           displayName: "Champiñones",
           quantity: 0.5,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "aceitunas",
           displayName: "Aceitunas",
           quantity: 0.25,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "pimientos",
           displayName: "Pimientos",
           quantity: 0.25,
         },
       ],
       mainCategory: {
-        id: 3434,
+        id: "3434",
         name: "snack",
         displayName: "Snack",
         icon: "snack",
@@ -1360,7 +1370,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 1212,
+          id: "1212",
           name: "comida-italiana",
           displayName: "Italiana",
           icon: "italian",
@@ -1375,26 +1385,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Pérez",
     },
     favs: 10,
     comments: [
       {
-        id: 987654,
+        id: "987654",
         user: {
-          id: 135792468,
+          id: "135792468",
           firstName: "María",
           lastName: "López",
         },
@@ -1407,9 +1418,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-09-16T18:30:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pasta con salsa de tomate",
       description:
         "Un delicioso plato de pasta con una exquisita salsa de tomate casera, generosamente cubierto con queso rallado y decorado con hojas frescas de albahaca. Esta combinación clásica de sabores te transportará a la auténtica cocina italiana. Cada bocado te brindará la suavidad de la pasta al dente, el sabor vibrante y ligeramente ácido de la salsa de tomate, el toque cremoso y gratinado del queso, y el aroma fresco y herbáceo de la albahaca. ¡Prepárate para disfrutar de una explosión de sabores en cada cucharada!",
@@ -1418,32 +1429,32 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 669,
+          id: "669",
           name: "paquete-de-fideos-de-huevo",
           displayName: "Paquete de fideos de huevo",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "lata-de-tomate-triturado-perita",
           displayName: "Lata de tomate triturado perita",
           quantity: 2,
         },
         {
-          id: 656,
+          id: "656",
           name: "queso-parmesano-rallado",
           displayName: "Queso parmesano rallado",
           quantity: 1,
         },
         {
-          id: 655,
+          id: "655",
           name: "hojas-de-albahaca",
           displayName: "Hojas de albahaca",
           quantity: 12,
         },
       ],
       mainCategory: {
-        id: 328,
+        id: "328",
         name: "comida-italiana",
         displayName: "Comida Italiana",
         icon: "italian",
@@ -1452,7 +1463,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 5669,
+          id: "5669",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -1466,18 +1477,19 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "short",
           maxTime: 30,
+          id: "0",
         },
         value: 35,
       },
       difficulty: {
-        id: 1123,
+        id: "1123",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Perez",
     },
@@ -1485,9 +1497,9 @@ const monthPostsMock: Post[] = [
     favs: 36,
     comments: [
       {
-        id: 689965,
+        id: "689965",
         user: {
-          id: 336568,
+          id: "336568",
           firstName: "Ramiro",
           lastName: "Gonzalez",
         },
@@ -1500,9 +1512,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-02-01T12:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Estofado de Lentejas",
       description:
         "Un reconfortante estofado de lentejas que combina ingredientes saludables y sabores irresistibles. Las lentejas, ricas en proteínas y fibra, se cocinan lentamente en una salsa de tomate casera junto con una variedad de verduras y especias. El resultado es un plato abundante y nutritivo que te llenará de energía y te dejará satisfecho. Cada cucharada te brindará el sabor terroso de las lentejas, la dulzura de las verduras y el toque aromático de las especias. Sirve este estofado con arroz integral o pan fresco para disfrutar al máximo de su delicioso sabor.",
@@ -1511,56 +1523,56 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "lentejas",
           displayName: "Lentejas",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "zanahoria",
           displayName: "Zanahoria",
           quantity: 2,
         },
         {
-          id: 444,
+          id: "444",
           name: "apio",
           displayName: "Apio",
           quantity: 2,
         },
         {
-          id: 555,
+          id: "555",
           name: "tomates-picados",
           displayName: "Tomates picados",
           quantity: 1,
         },
         {
-          id: 666,
+          id: "666",
           name: "caldo-de-verduras",
           displayName: "Caldo de verduras",
           quantity: 2,
         },
         {
-          id: 777,
+          id: "777",
           name: "especias",
           displayName: "Especias (comino, pimentón, orégano)",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 888,
+          id: "888",
           name: "sal",
           displayName: "Sal",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 123,
+        id: "123",
         name: "comida-vegetariana",
         displayName: "Comida Vegetariana",
         icon: "vegetarian",
@@ -1569,7 +1581,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 456,
+          id: "456",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -1577,7 +1589,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 789,
+          id: "789",
           name: "vegan",
           displayName: "Vegano",
           icon: "vegan",
@@ -1592,26 +1604,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 987,
+        id: "987",
         name: "easy",
         displayName: "Fácil",
         icon: "easy",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Ana",
       lastName: "González",
     },
     favs: 12,
     comments: [
       {
-        id: 987987,
+        id: "987987",
         user: {
-          id: 654654,
+          id: "654654",
           firstName: "Laura",
           lastName: "López",
         },
@@ -1624,9 +1637,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-10-10T10:00:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pollo al Curry con Arroz",
       description:
         "Una deliciosa combinación de sabores exóticos y tiernos trozos de pollo en una suave salsa de curry, servido con arroz aromático. Este plato te transportará a las tierras de especias y te hará disfrutar de una experiencia culinaria llena de aromas y sabores. El pollo se cocina lentamente en una mezcla de especias y hierbas, junto con cebolla, ajo y jengibre, hasta que esté tierno y jugoso. La salsa de curry se espesa y se llena de notas de coco y cúrcuma, creando una combinación perfecta con el arroz. Disfruta de este plato lleno de sabor y textura.",
@@ -1635,86 +1648,86 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "pollo",
           displayName: "Pollo",
           quantity: 1,
         },
         {
-          id: 222,
+          id: "222",
           name: "cebolla",
           displayName: "Cebolla",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "diente-de-ajo",
           displayName: "Diente de Ajo",
           quantity: 3,
         },
         {
-          id: 444,
+          id: "444",
           name: "jengibre",
           displayName: "Jengibre a gusto",
-          quantity: null,
+          quantity: 0,
         },
         {
-          id: 555,
+          id: "555",
           name: "cucharadita-de-curry-en-polvo",
           displayName: "Cucharadita de Curry en polvo",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "cucharadita-de-cúrcuma",
           displayName: "Cucharadita de Cúrcuma",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "cucharadita-de-comino",
           displayName: "Cucharadita de Comino",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "cucharadita-de-canela",
           displayName: "Cucharadita de Canela",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "tomate",
           displayName: "Tomate",
           quantity: 2,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "caldo-de-pollo",
           displayName: "Caldo de pollo",
           quantity: 1,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "lata-leche-de-coco",
           displayName: "Lata leche de coco",
           quantity: 1,
         },
         {
-          id: 121212,
+          id: "121212",
           name: "taza-de-arroz",
           displayName: "Taza de arroz",
           quantity: 2,
         },
         {
-          id: 131313,
+          id: "131313",
           name: "cilantro",
           displayName: "Cilantro",
-          quantity: null,
+          quantity: 0,
         },
       ],
       mainCategory: {
-        id: 1212,
+        id: "1212",
         name: "asiatica",
         displayName: "Comida Asiática",
         icon: "asian",
@@ -1723,7 +1736,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 8888,
+          id: "8888",
           name: "dinner",
           displayName: "Cena",
           icon: "dinner",
@@ -1731,7 +1744,7 @@ const monthPostsMock: Post[] = [
             "La cena es una comida importante y reconfortante al final del día. Proporciona los nutrientes necesarios para la recuperación y descanso del organismo durante la noche. Optar por una cena equilibrada y ligera puede ayudar a mantener un peso saludable y promover un sueño reparador.",
         },
         {
-          id: 9999,
+          id: "9999",
           name: "chicken",
           displayName: "Pollo",
           icon: "chicken",
@@ -1745,27 +1758,28 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 90,
+          id: "0",
         },
         value: 45,
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: 135792468,
+      id: "135792468",
       firstName: "María",
       lastName: "López",
     },
     favs: 25,
     comments: [
       {
-        id: 121212,
+        id: "121212",
         user: {
-          id: 232323,
+          id: "232323",
           firstName: "Carlos",
           lastName: "Martínez",
         },
@@ -1778,9 +1792,9 @@ const monthPostsMock: Post[] = [
     date: new Date("2021-09-15T14:30:00.000Z"),
   },
   {
-    id: Number((Math.random() * 1000000).toFixed()),
+    id: (Math.random() * 1000000).toFixed(),
     recipe: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       name: "Pizza Casera",
       description:
         "Disfruta de una deliciosa pizza casera con tus ingredientes favoritos. Esta receta te enseñará a hacer una masa crujiente y sabrosa, acompañada de una selección de toppings irresistibles. Prepara esta pizza en casa y sorprende a tu familia y amigos con un plato clásico y lleno de sabor.",
@@ -1789,74 +1803,74 @@ const monthPostsMock: Post[] = [
       image: "",
       ingredients: [
         {
-          id: 111,
+          id: "111",
           name: "harina",
           displayName: "Harina",
           quantity: 2,
         },
         {
-          id: 222,
+          id: "222",
           name: "levadura",
           displayName: "Levadura",
           quantity: 1,
         },
         {
-          id: 333,
+          id: "333",
           name: "sal",
           displayName: "Sal",
           quantity: 0.5,
         },
         {
-          id: 444,
+          id: "444",
           name: "agua",
           displayName: "Agua",
           quantity: 1,
         },
         {
-          id: 555,
+          id: "555",
           name: "aceite",
           displayName: "Aceite",
           quantity: 2,
         },
         {
-          id: 666,
+          id: "666",
           name: "salsa-de-tomate",
           displayName: "Salsa de Tomate",
           quantity: 1,
         },
         {
-          id: 777,
+          id: "777",
           name: "queso-mozzarella",
           displayName: "Queso Mozzarella",
           quantity: 1,
         },
         {
-          id: 888,
+          id: "888",
           name: "pepperoni",
           displayName: "Pepperoni",
           quantity: 0.5,
         },
         {
-          id: 999,
+          id: "999",
           name: "champiñones",
           displayName: "Champiñones",
           quantity: 0.5,
         },
         {
-          id: 101010,
+          id: "101010",
           name: "aceitunas",
           displayName: "Aceitunas",
           quantity: 0.25,
         },
         {
-          id: 111111,
+          id: "111111",
           name: "pimientos",
           displayName: "Pimientos",
           quantity: 0.25,
         },
       ],
       mainCategory: {
-        id: 3434,
+        id: "3434",
         name: "snack",
         displayName: "Snack",
         icon: "snack",
@@ -1865,7 +1879,7 @@ const monthPostsMock: Post[] = [
       },
       subCategory: [
         {
-          id: 1212,
+          id: "1212",
           name: "comida-italiana",
           displayName: "Italiana",
           icon: "italian",
@@ -1880,26 +1894,27 @@ const monthPostsMock: Post[] = [
           displayName: "Medio",
           icon: "medium",
           maxTime: 60,
+          id: "0",
         },
       },
       difficulty: {
-        id: 3434,
+        id: "3434",
         name: "regular",
         displayName: "Regular",
         icon: "regular",
       },
     },
     owner: {
-      id: Number((Math.random() * 1000000).toFixed()),
+      id: (Math.random() * 1000000).toFixed(),
       firstName: "Juan",
       lastName: "Pérez",
     },
     favs: 10,
     comments: [
       {
-        id: 987654,
+        id: "987654",
         user: {
-          id: 135792468,
+          id: "135792468",
           firstName: "María",
           lastName: "López",
         },

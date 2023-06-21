@@ -1,7 +1,7 @@
 import { IconsMap } from "../components/atoms/Icons/Icons";
 
 export type Post = {
-  id: number;
+  id: string;
   recipe: Recipe;
   owner: Owner;
   favs: number;
@@ -11,7 +11,7 @@ export type Post = {
 };
 
 export type Recipe = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   steps: string;
@@ -32,13 +32,13 @@ export type Category = {
 };
 
 export type Ingredient = {
-  id: number;
+  id: string;
   name: string;
   displayName: string;
 };
 
 export type Difficulty = {
-  id: number;
+  id: string;
   name: "easy" | "regular" | "hard";
   displayName: "Fácil" | "Regular" | "Difícil";
   icon: "easy" | "regular" | "hard";
@@ -50,7 +50,7 @@ export type Duration = {
 };
 
 export type DurationReference = {
-  id: number;
+  id: string;
   name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";
@@ -58,13 +58,13 @@ export type DurationReference = {
 };
 
 export type Owner = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
 };
 
 export type Comment = {
-  id: number;
+  id: string;
   user: Owner;
   comment: string;
   date: Date;

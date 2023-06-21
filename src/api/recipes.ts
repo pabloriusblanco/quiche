@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 import { RecipeSimilarTypes } from "../pages/recipe/detail/sections/RecipeSimilar";
 import {
   PostCreateComment,

@@ -1,4 +1,8 @@
-import { AdvanceSearchQuery, AdvanceSearchResponse, PostResponse, SimpleSearchResponse } from "../types/Api";
+import {
+  AdvanceSearchQuery,
+  AdvanceSearchResponse,
+  SimpleSearchResponse,
+} from "../types/Api";
 import { api } from "./index";
 
 export async function simpleSearch(

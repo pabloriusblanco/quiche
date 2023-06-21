@@ -83,7 +83,7 @@ const IngredientsSelect = ({
       });
     } else {
       setIngredient({
-        id: parseInt((option as Option).value),
+        id: (option as Option).value,
         displayName: (option as Option).label,
       });
     }

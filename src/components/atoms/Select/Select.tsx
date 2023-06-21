@@ -75,7 +75,7 @@ const CustomSelect = <T,>({
       unstyled
       noOptionsMessage={() => "No hay opciones"}
       closeMenuOnSelect={!isMulti}
-      isOptionDisabled={(option) =>
+      isOptionDisabled={(option: any) =>
         formik.values[field].length >= 4 || option.value === disabledOption
       }
       value={formattedOptions.find(
@@ -99,7 +99,7 @@ const CustomSelect = <T,>({
           )}`,
         control: () => "!min-h-0 flex items-center justify-between",
         valueContainer: () => "flex bg-white gap-2 cursor-text",
-        multiValue: (state) => {
+        multiValue: (state: any) => {
           const isDisabled =
             state.data.value === disabledOption
               ? "bg-danger rounded-lg !overflow-hidden"

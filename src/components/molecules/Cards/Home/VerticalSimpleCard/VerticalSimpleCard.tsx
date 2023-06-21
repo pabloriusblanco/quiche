@@ -6,7 +6,7 @@ import PostRatingWithValue from "../../PostRatingWithValue";
 import PostTagsWithTooltips from "../../PostTagsWithTooltips";
 
 interface VerticalSimpleCardProps {
-  id: number;
+  id: string;
   post: Post;
   cardWidth?: string;
 }
@@ -14,7 +14,7 @@ interface VerticalSimpleCardProps {
 const VerticalSimpleCard = ({
   id,
   post,
-  cardWidth = '140px'
+  cardWidth = "140px",
 }: VerticalSimpleCardProps) => {
   return (
     <div
@@ -30,7 +30,7 @@ const VerticalSimpleCard = ({
         className="h-[120px] w-full rounded-t-lg object-cover"
       />
       <PostTagsWithTooltips
-        id={id.toString()}
+        id={id}
         category={post.recipe.mainCategory.icon}
         time={post.recipe.time.reference.icon}
         difficulty={post.recipe.difficulty.icon}

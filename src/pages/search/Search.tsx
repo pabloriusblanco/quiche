@@ -30,6 +30,8 @@ const Search: React.FC = () => {
   const spinner = useSpinner();
   const [areFiltersShowing, setAreFiltersShowing] = useState<boolean>(true);
 
+  console.log(location);  
+
   const searchRecipes = (values: AdvanceSearchQuery) => {
     spinner.startLoading({
       text: "Buscando recetas...",
