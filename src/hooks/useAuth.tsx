@@ -2,14 +2,14 @@ import { Amplify, Auth } from "aws-amplify";
 import Cookies from "js-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../api";
-import awsmobile from "../aws-exports";
+import awsConfig from "../config/aws-config";
 import { loginErrorCodes } from "../components/molecules/Modal/Auth/ResultsConfigAuth/LoginResultsMapper";
 import {
   RegisterErrorCodeAttributes,
   registerErrorCodes,
 } from "../components/molecules/Modal/Auth/ResultsConfigAuth/RegisterResultsMapper";
 
-Amplify.configure(awsmobile);
+Amplify.configure(awsConfig);
 
 interface UseAuth {
   isLoading: boolean;
