@@ -13,7 +13,6 @@ import { PostResponse } from "../../../types/Api";
 import useModal from "../../../hooks/useModal";
 import { useResultModal } from "../../../hooks/useResultModal";
 import { genericErrorModalContent } from "../../../components/molecules/Modal/Auth/ResultsConfigAuth/ResultsAuthContents";
-import { split } from "postcss/lib/list";
 import { useSpinner } from "../../../hooks/useSpinner";
 
 // interface RecipeDetailProps {
@@ -36,11 +35,17 @@ const RecipeDetail = () => {
           setPost(res);
         })
         .catch((err) => {
-          const message = split(err.response.data, ["-"], false)[1];
-          resultModal.showResultModal(
-            "danger",
-            genericErrorModalContent(message, () => navigator("/"))
-          );
+          const message = err.response.data.split(["-"]);
+          resultModal.showResultModal("danger", {
+            title: "Error",
+            message: message[1],
+            showIcon: true,
+            cancelText: "Volver al inicio",
+            onCancel: () => {
+              navigator("/");
+            },
+            allowClose: false,
+          });
         })
         .finally(() => spinner.stopLoading());
     }
