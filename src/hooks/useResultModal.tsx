@@ -14,9 +14,9 @@ export const useResultModal = () => {
 };
 
 export const ResultModalProvider: React.FC<Props> = ({ children }) => {
-  const spinner = useProviderResultModal();
+  const resultModal = useProviderResultModal();
   return (
-    <ResultModalContext.Provider value={spinner}>
+    <ResultModalContext.Provider value={resultModal}>
       {children}
     </ResultModalContext.Provider>
   );

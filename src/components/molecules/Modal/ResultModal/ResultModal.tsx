@@ -19,13 +19,18 @@ const ResultModal = ({ key }: ResultModalProps) => {
     onConfirm,
     cancelText,
     confirmText,
+    allowClose,
     showIcon,
   } = resultModal.content;
 
   if (!resultModal.showingResultModal) return null;
 
   return (
-    <Modal key={key} onClose={resultModal.hideResultModal}>
+    <Modal
+      key={key}
+      allowClose={allowClose}
+      onClose={resultModal.hideResultModal}
+    >
       <div className="flex flex-col items-center justify-center gap-2 p-5">
         {showIcon && (
           <Icon

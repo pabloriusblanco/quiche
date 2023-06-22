@@ -8,6 +8,7 @@ export interface ResultModalContent {
   onConfirm?: () => void;
   onCancel?: () => void;
   showIcon?: boolean;
+  allowClose?: boolean;
 }
 
 export type ResultModalType = "success" | "danger" | "warning" | "info";

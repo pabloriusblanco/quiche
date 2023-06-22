@@ -8,7 +8,9 @@ import {
 } from "../../components/atoms/Text/TextsTypes";
 import Title from "../../components/atoms/Text/Title";
 import BackgroundHeader from "../../components/molecules/Background/Background";
-import AdvanceSearch from "../../components/molecules/Forms/AdvanceSearch/AdvanceSearch";
+import AdvanceSearch, {
+  AdvanceSearchFormQuery,
+} from "../../components/molecules/Forms/AdvanceSearch/AdvanceSearch";
 import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import { useResultModal } from "../../hooks/useResultModal";
 import { AdvanceSearchQuery, PostResponse } from "../../types/Api";
@@ -30,17 +32,17 @@ const Search: React.FC = () => {
   const spinner = useSpinner();
   const [areFiltersShowing, setAreFiltersShowing] = useState<boolean>(true);
 
-  console.log(location);  
+  console.log(location);
+  
 
   const searchRecipes = (values: AdvanceSearchQuery) => {
     spinner.startLoading({
       text: "Buscando recetas...",
     });
-    console.log(values);    
-    advancedSearch(values)
+    advancedSearch({ ...values, PageNumber: currentPage })
       .then((res) => {
         console.log(res);
-        setCurrentSearch(values);
+        setCurrentSearch({ ...values, PageNumber: currentPage });
         setPosts(res.posts);
         setCurrentPage(res.pageNumber);
         setTotalPages(res.totalPages);
@@ -89,6 +91,23 @@ const Search: React.FC = () => {
               />
             </div>
             {posts && <AdvanceSearchResponseContainer posts={posts} />}
+            {posts && posts.length >= 1 && currentPage < totalPages && (
+              <div className="flex justify-center">
+                <button
+                  className="rounded-md bg-primary px-4 py-2 text-white"
+                  onClick={() => {
+                    if (currentSearch) {
+                      searchRecipes({
+                        ...currentSearch,
+                        PageNumber: currentPage + 1,
+                      });
+                    }
+                  }}
+                >
+                  Ver más
+                </button>
+              </div>
+            )}
           </div>
         </section>
         <BannerQuicheApp />

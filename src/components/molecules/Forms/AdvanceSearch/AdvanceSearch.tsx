@@ -14,8 +14,10 @@ import { AdvanceSearchQuery } from "../../../../types/Api";
 import { useState } from "react";
 import Paragraph from "../../../atoms/Text/Paragraph";
 
+export type AdvanceSearchFormQuery = Omit<AdvanceSearchQuery, 'PageNumber'>
+
 interface AdvanceSearchProps {
-  onSubmitCallback: (values: AdvanceSearchQuery) => void;
+  onSubmitCallback: (values: AdvanceSearchFormQuery) => void;
   initialValues: Location;
   filterOpen: boolean;
   setFilterOpen: (value: boolean) => void;

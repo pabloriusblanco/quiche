@@ -52,7 +52,7 @@ const BannerQuicheApp = () => {
                   PROXIMAMENTE
                 </Paragraph>
                 <img
-                  className="w-[200px] md:bg-gray-50 lg:bg-danger xl:w-full xl:bg-secondary 2xl:bg-[#F09E23]"
+                  className="w-[200px] "
                   src={downloadPhone}
                   alt="dietary restrictions image"
                 />

@@ -13,14 +13,17 @@ import { Post } from "../../../types/Recipe";
 import { createRecipe } from "../../../api/recipes";
 import { PostCreateUpdate } from "../../../types/Api";
 import { useResultModal } from "../../../hooks/useResultModal";
+import { useSpinner } from "../../../hooks/useSpinner";
 
 const RecipeCreate = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<Post | null>(null);
   const resposeModal = useResultModal();
   const navigator = useNavigate();
+  const spinner = useSpinner();
 
   const publishPost = async (post: PostCreateUpdate) => {
+    spinner.startLoading({ text: "Creando receta..." });
     post.image =
       "https://images.unsplash.com/photo-1600626335465-0038a1ddcc2a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWdncGxhbnQscGllfHx8fHx8MTY4NzE0MzI2OA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=768";
 
@@ -50,7 +53,7 @@ const RecipeCreate = () => {
       })
       .catch((err) => {
         resposeModal.showResultModal("danger", {
-          title: "Ha sucecido un error",  
+          title: "Ha sucecido un error",
           message: (
             <>
               No se ha podido crear la receta
@@ -60,6 +63,9 @@ const RecipeCreate = () => {
           ),
           showIcon: true,
         });
+      })
+      .finally(() => {
+        spinner.stopLoading();
       });
   };
 

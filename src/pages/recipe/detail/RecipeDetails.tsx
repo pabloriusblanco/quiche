@@ -14,6 +14,7 @@ import useModal from "../../../hooks/useModal";
 import { useResultModal } from "../../../hooks/useResultModal";
 import { genericErrorModalContent } from "../../../components/molecules/Modal/Auth/ResultsConfigAuth/ResultsAuthContents";
 import { split } from "postcss/lib/list";
+import { useSpinner } from "../../../hooks/useSpinner";
 
 // interface RecipeDetailProps {
 //   postId: string;
@@ -25,9 +26,11 @@ const RecipeDetail = () => {
   const [post, setPost] = useState<PostResponse | null>(null);
   const [similarPosts, setSimilarPosts] = useState<Post[]>([]);
   const resultModal = useResultModal();
+  const spinner = useSpinner();
 
   useEffect(() => {
     if (id) {
+      spinner.startLoading({ text: "Cargando receta..." });
       getRecipe(id)
         .then((res) => {
           setPost(res);
@@ -38,7 +41,8 @@ const RecipeDetail = () => {
             "danger",
             genericErrorModalContent(message, () => navigator("/"))
           );
-        });
+        })
+        .finally(() => spinner.stopLoading());
     }
   }, [id]);
 

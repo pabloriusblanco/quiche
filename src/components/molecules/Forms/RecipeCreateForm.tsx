@@ -363,6 +363,7 @@ const RecipeCreateForm = ({
             </div>
             <Button
               color="primary"
+              type="button"
               buttonStyle="outlined"
               extraClasses="text-[12px] w-[fit-content]"
               onClick={ingredientsModal.openModal}
@@ -391,7 +392,7 @@ const RecipeCreateForm = ({
         </div>
         <Button
           color={!formik.isValid ? "gray" : "primary"}
-          type="submit"
+          type={!formik.isValid ? "button" : "submit"}
           extraClasses={`col-span-12 w-full ${
             !formik.isValid ? "cursor-not-allowed" : "cursor-pointer"
           }`}

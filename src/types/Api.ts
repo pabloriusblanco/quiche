@@ -1,4 +1,4 @@
-import { Category, Difficulty, DurationReference, Ingredient } from "./Recipe";
+import { Category, Difficulty, Duration, DurationReference, Ingredient } from "./Recipe";
 
 type User = {
   id: string;
@@ -111,6 +111,7 @@ export type AdvanceSearchQuery = {
   RatingFrom: string;
   RatingTo: string;
   UserName: string;
+  PageNumber: number;
 };
 
 export type AdvanceSearchResponse = {
@@ -120,3 +121,25 @@ export type AdvanceSearchResponse = {
   totalItems: number;
   totalPages: number;
 };
+
+export type FavoritesPostsResponse = {
+  posts: PostResponse[];
+  createDate: string;
+};
+
+export type OwnedPostsResponse = {
+  posts: PostResponse[];
+};
+
+export type SimilarResponsePost = {
+  id: string;
+  image: string;
+  name: string;
+  description: string;
+  rating: number;
+  commentsAmount: number;
+  likesAmount: number;
+  mainCategory: Category;
+  difficulty: Difficulty;
+  prepTime: DurationReference;
+}
