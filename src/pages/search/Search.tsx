@@ -90,7 +90,9 @@ const Search: React.FC = () => {
                 setFilterOpen={setAreFiltersShowing}
               />
             </div>
-            {posts && <AdvanceSearchResponseContainer posts={posts} />}
+            {posts && posts.length >= 1 && (
+              <AdvanceSearchResponseContainer posts={posts} />
+            )}
             {spinner.isLoading && (
               <Skeleton
                 gap={4}

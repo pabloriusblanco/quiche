@@ -124,7 +124,7 @@ export type AdvanceSearchResponse = {
 
 export type FavoritesPostsResponse = {
   posts: PostResponse[];
-  createDate: string;
+  // createDate: string;
 };
 
 export type OwnedPostsResponse = {
