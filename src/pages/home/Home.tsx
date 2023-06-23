@@ -10,12 +10,6 @@ import { useResultModal } from "../../hooks/useResultModal";
 import { useLocation } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const resultModal = useResultModal();
-  const location = useLocation();
-  const { fromGuardedRoute, fromGuardedRouteMessage } = location.state || {
-    fromGuardedRoute: false,
-  };
-
   return (
     <>
       <BackgroundHeader />

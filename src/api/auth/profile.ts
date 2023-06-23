@@ -2,7 +2,7 @@ import { api } from "..";
 import { FavoritesPostsResponse, OwnedPostsResponse } from "../../types/Api";
 
 export async function getFavorites(): Promise<FavoritesPostsResponse[]> {
-  const response = await api.get("LikedPost/");
+  const response = await api.get("LikedPost/GetByFavLike");
   return response.data.data;
 }
 

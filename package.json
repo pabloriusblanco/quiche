@@ -23,6 +23,7 @@
     "dompurify": "^3.0.3",
     "formik": "^2.2.9",
     "html-to-react": "^1.5.1",
+    "isotope-layout": "^3.0.6",
     "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.0",
     "lottie-web": "^5.11.0",

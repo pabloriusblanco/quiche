@@ -3,6 +3,7 @@ import { PostResponse } from "../../types/Api";
 import Paragraph from "../../components/atoms/Text/Paragraph";
 import Icon from "../../components/atoms/Icons/Icons";
 import HorizontalExtendedCard from "../../components/molecules/Cards/Home/HorizontalExtendedCard/HorizontalExtendedCard";
+import SortIsotope from "./SortIsotope/SortIsotope";
 
 type AdvanceSearchResponseContainerProps = {
   posts: PostResponse[];
@@ -30,10 +31,15 @@ const AdvanceSearchResponseContainer = ({
   }
 
   return (
-    <div className="grid grid-cols-12 gap-5 ">
-      {posts.map((post) => (
-        <HorizontalExtendedCard post={post} key={post.id} />
-      ))}
+    <div className="flex flex-col gap-5">
+      {/* <div className="w-full rounded-lg  p-5">
+        <SortIsotope />
+      </div> */}
+      <div className="grid grid-cols-12 gap-5 filter-container">
+        {posts.map((post) => (
+          <HorizontalExtendedCard post={post} key={post.id} />
+        ))}
+      </div>
     </div>
   );
 };

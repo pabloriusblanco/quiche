@@ -17,11 +17,13 @@ import { AdvanceSearchQuery, PostResponse } from "../../types/Api";
 import AdvanceSearchResponseContainer from "./AdvanceSearchResponseContainer";
 import { useSpinner } from "../../hooks/useSpinner";
 import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
+import Skeleton from "../../components/molecules/Skeleton/Skeleton";
+import Button from "../../components/atoms/Buttons/Button";
 
 const Search: React.FC = () => {
   const location = useLocation();
   // const { name, category, ingredient } = location.state;
-  const [posts, setPosts] = useState<PostResponse[] | undefined>(undefined);
+  const [posts, setPosts] = useState<PostResponse[]>([]);
   const [currentSearch, setCurrentSearch] = useState<
     AdvanceSearchQuery | undefined
   >(undefined);
@@ -32,24 +34,22 @@ const Search: React.FC = () => {
   const spinner = useSpinner();
   const [areFiltersShowing, setAreFiltersShowing] = useState<boolean>(true);
 
-  console.log(location);
-  
+  const searchRecipes = (values: AdvanceSearchQuery, newSearch = true) => {
+    console.log(values);
 
-  const searchRecipes = (values: AdvanceSearchQuery) => {
     spinner.startLoading({
       text: "Buscando recetas...",
     });
-    advancedSearch({ ...values, PageNumber: currentPage })
+    advancedSearch(values)
       .then((res) => {
         console.log(res);
         setCurrentSearch({ ...values, PageNumber: currentPage });
-        setPosts(res.posts);
         setCurrentPage(res.pageNumber);
         setTotalPages(res.totalPages);
         setTotalPosts(res.totalItems);
-        if (res.posts.length >= 1) {
-          setAreFiltersShowing(false);
-        }
+        if (newSearch) setPosts(res.posts);
+        else setPosts((prevPosts) => [...prevPosts, ...res.posts]);
+        if (res.posts.length >= 1) setAreFiltersShowing(false);
       })
       .catch((err) => {
         console.log(err);
@@ -91,21 +91,45 @@ const Search: React.FC = () => {
               />
             </div>
             {posts && <AdvanceSearchResponseContainer posts={posts} />}
+            {spinner.isLoading && (
+              <Skeleton
+                gap={4}
+                gridCols={12}
+                gridMatrix={[
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                  [12],
+                ]}
+                itemHeight={"146px"}
+              />
+            )}
             {posts && posts.length >= 1 && currentPage < totalPages && (
               <div className="flex justify-center">
-                <button
-                  className="rounded-md bg-primary px-4 py-2 text-white"
+                <Button
+                  buttonStyle="filled"
+                  color="primary"
+                  extraClasses="rounded-md px-4 py-2 text-white"
                   onClick={() => {
                     if (currentSearch) {
-                      searchRecipes({
-                        ...currentSearch,
-                        PageNumber: currentPage + 1,
-                      });
+                      searchRecipes(
+                        {
+                          ...currentSearch,
+                          PageNumber: currentPage + 1,
+                        },
+                        false
+                      );
                     }
                   }}
                 >
-                  Ver más
-                </button>
+                  Ver más recetas
+                </Button>
               </div>
             )}
           </div>

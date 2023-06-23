@@ -4,6 +4,7 @@ import { useSpinner } from "../../../../hooks/useSpinner";
 import Button from "../../../atoms/Buttons/Button";
 import Paragraph from "../../../atoms/Text/Paragraph";
 import DeleteUserModal from "../../../molecules/Modal/Auth/DeleteUserModal";
+import GoToTopButton from "./GoToTopButton";
 
 const Footer = () => {
   const deleteUserModal = useModal();
@@ -31,6 +32,7 @@ const Footer = () => {
         background: "linear-gradient(90deg, #F0BA23 41.37%, #F09E23 101.59%)",
       }}
     >
+      <GoToTopButton />
       <Paragraph color="white">{`© ${new Date().getFullYear()} Copyright: Quiche y QuicheApp son una marca registrada. Todos los derechos reservados.`}</Paragraph>
       {process.env.ENVIROMENT === "local" && (
         <>
