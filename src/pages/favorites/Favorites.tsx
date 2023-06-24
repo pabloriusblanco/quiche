@@ -15,6 +15,9 @@ import {
   TitleType,
 } from "../../components/atoms/Text/TextsTypes";
 import Paragraph from "../../components/atoms/Text/Paragraph";
+import SortIsotope from "../search/SortIsotope/SortIsotope";
+import { getAllCategories } from "../../api/categories";
+import { Category } from "../../types/Recipe";
 
 const Favorites = () => {
   const auth = useAuth();
@@ -22,14 +25,27 @@ const Favorites = () => {
   const resultModal = useResultModal();
   const spinner = useSpinner();
   const [posts, setPosts] = useState<PostResponse[] | undefined>(undefined);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  const getCategories = () => {
+    getAllCategories()
+      .then((response) => {
+        setCategories(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        return []; // Return an empty array as a fallback in case of an error
+      });
+  };
 
   useEffect(() => {
     // Only fetch favorites when the user is authenticated
     spinner.startLoading({ text: "Cargando recetas favoritas..." });
     getFavorites()
       .then((res) => {
-        console.log(res);
+        getCategories();
         setPosts(res.posts);
+        console.log(res);
       })
       .catch((err) => {
         resultModal.showResultModal("danger", {
@@ -50,8 +66,8 @@ const Favorites = () => {
     <>
       <BackgroundHeader sectionHeight="215px" />
       <HomeSearch />
-      <div className="space-y-8">
-        <section className="container">
+      <div className="flex flex-col space-y-8 mb-8">
+        <section className="container lg:min-h-[475px] xl:min-h-[410px] 2xl:min-h-[700px]">
           <div className="flex w-full flex-col gap-5">
             <div>
               <Title
@@ -65,14 +81,15 @@ const Favorites = () => {
                 favoritas. ¡Puedes acceder a ellas haciendo click!
               </Paragraph>
             </div>
-            {posts &&
-              posts.map((post) => (
-                <HorizontalExtendedCard post={post} key={post.id} />
-              ))}
+            {posts && (
+              <div className="w-full">
+                <SortIsotope posts={posts} categories={categories} />
+              </div>
+            )}
           </div>
         </section>
-        <BannerQuicheApp />
       </div>
+      <BannerQuicheApp />
     </>
   );
 };

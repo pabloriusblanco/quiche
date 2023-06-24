@@ -49,6 +49,7 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
             confirmText: "Recargar",
           });
           spinnerModal.stopLoading();
+          setIsFavorite(true);
         })
         .catch((err) => {
           console.log(err);
@@ -79,6 +80,7 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
             confirmText: "Recargar",
           });
           spinnerModal.stopLoading();
+          setIsFavorite(false);
         })
         .catch((err) => {
           console.log(err);

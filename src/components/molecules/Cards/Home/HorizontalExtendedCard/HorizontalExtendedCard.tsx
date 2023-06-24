@@ -18,9 +18,9 @@ interface HorizontalExtendedCardProps {
 const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
   return (
     <div
-      className="element-item col-span-12 w-full relative"
+      className="filter-item relative col-span-12 mx-1 w-full mb-5"
+      data-maincategory={post.recipe.mainCategory.icon}
       data-name={post.recipe.name}
-      // data-rating={post.}
       data-comments={post.postsComments.length}
       data-favs={post.usersLikedPosts.length}
     >
@@ -82,13 +82,13 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
               </Paragraph>
             </div>
             <div className="flex w-full justify-between">
-              <RecipeInfoCategories
-                mainCategory={post.recipe.mainCategory}
-                subCategories={post.recipe.recipesSubcategories}
-                className="justify-start gap-4"
-                buttonClassName="w-[120px] !px-0 !py-1.5"
-                textClassName="text-[10px]"
-              />
+                <RecipeInfoCategories
+                  mainCategory={post.recipe.mainCategory}
+                  subCategories={post.recipe.recipesSubcategories}
+                  className="justify-start grid grid-cols-5 mr-5 space-x-2"
+                  buttonClassName="!px-0 !py-1.5 !w-full"
+                  textClassName="text-[9px]"
+                />
               <div className="flex items-center justify-end gap-4">
                 <VerticalSimpleCardCommentsLikes
                   commentsAmount={post.postsComments.length}

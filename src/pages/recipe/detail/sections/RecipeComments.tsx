@@ -42,8 +42,8 @@ const RecipeComments = ({ comments, postId }: RecipeCommentsProps) => {
             title: "Error al enviar comentario",
             message: err.response.data,
           });
-        });
-      spinnerModal.stopLoading();
+        })
+        .finally(() => spinnerModal.stopLoading());
     }
   };
 

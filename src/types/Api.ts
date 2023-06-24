@@ -1,4 +1,10 @@
-import { Category, Difficulty, Duration, DurationReference, Ingredient } from "./Recipe";
+import {
+  Category,
+  Difficulty,
+  Duration,
+  DurationReference,
+  Ingredient,
+} from "./Recipe";
 
 type User = {
   id: string;
@@ -124,7 +130,6 @@ export type AdvanceSearchResponse = {
 
 export type FavoritesPostsResponse = {
   posts: PostResponse[];
-  // createDate: string;
 };
 
 export type OwnedPostsResponse = {
@@ -142,4 +147,4 @@ export type SimilarResponsePost = {
   mainCategory: Category;
   difficulty: Difficulty;
   prepTime: DurationReference;
-}
+};

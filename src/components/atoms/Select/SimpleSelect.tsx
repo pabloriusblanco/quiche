@@ -10,6 +10,8 @@ export interface SimpleSelectProps<T> {
   placeholder: string;
   optionsArray: T[];
   callbackHandleChange: (option: Option | null) => void;
+  valueExtractor: (option: T) => string;
+  labelExtractor: (option: T) => string;
   field: string;
   isMulti?: boolean;
 }
@@ -17,6 +19,8 @@ export interface SimpleSelectProps<T> {
 const SimpleSelect = <T,>({
   optionsArray,
   placeholder,
+  valueExtractor,
+  labelExtractor,
   field,
   isMulti = false,
   callbackHandleChange,
@@ -34,7 +38,10 @@ const SimpleSelect = <T,>({
       closeMenuOnSelect={true}
       isMulti={isMulti}
       placeholder={placeholder}
-      options={optionsArray}
+      options={optionsArray.map((option) => ({
+        value: valueExtractor(option),
+        label: labelExtractor(option),
+      }))}
       components={makeAnimated()}
       onChange={handleChange}
       classNames={{
