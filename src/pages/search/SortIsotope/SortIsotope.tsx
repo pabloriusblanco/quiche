@@ -48,14 +48,6 @@ const SortOptions = [
   },
 ];
 
-const handleSortKeyChange = (
-  setSortKey: (key: PosibleSortKeys) => void,
-  key: PosibleSortKeys
-) => {
-  console.dir("handleSortKeyChange", key);
-  setSortKey(key);
-};
-
 type SortIsotopeProps = {
   posts: PostResponse[];
   categories: Category[];
@@ -77,13 +69,15 @@ const SortIsotope = ({ posts, categories = [] }: SortIsotopeProps) => {
         name: "[data-name]",
         comments: "[data-comments]",
         favs: "[data-favs]",
+        rating: "[data-rating]",
       },
-      sortBy: "original-order",
-      sortAscending: true,
+      filter: filterKey || "*",
+      sortBy: sortKey || "original-order",
+      sortAscending: sortAscOrDesc,
     });
     // cleanup
     return () => isotope.current?.destroy();
-  }, []);
+  }, [posts]);
 
   // handling filter key change
   useEffect(() => {

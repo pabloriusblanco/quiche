@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "../../../atoms/Icons/Icons";
 import LabelTooltipAndErrorWrapper from "../GeneralForms/LabelTooltipAndErrorWrapper";
 
@@ -11,6 +11,19 @@ const AdvanceRatingSearch = ({ formik }: AdvanceRatingSearchProps) => {
   const [maxRating, setMaxRating] = useState<number>(0);
   const [hoverRatingMin, setHoverRatingMin] = useState<number>(0);
   const [hoverRatingMax, setHoverRatingMax] = useState<number>(0);
+
+  useEffect(() => {
+    if (formik.values.ratingFrom == "") {
+      setMinRating(0);
+    } else {
+      setMinRating(formik.values.ratingFrom);
+    }
+    if (formik.values.ratingTo == "") {
+      setMaxRating(0);
+    } else {
+      setMaxRating(formik.values.ratingTo);
+    }
+  }, [formik.values.ratingFrom, formik.values.ratingTo]);
 
   const handleMinClick = (rating: number) => {
     if (minRating == rating) {
@@ -64,7 +77,7 @@ const AdvanceRatingSearch = ({ formik }: AdvanceRatingSearchProps) => {
           formik={formik}
           labelText="Rating mínimo"
         >
-          <div className="flex items-center h-10">
+          <div className="flex h-10 items-center">
             {[1, 2, 3, 4, 5].map((rating) => (
               <div
                 key={rating}
@@ -92,7 +105,7 @@ const AdvanceRatingSearch = ({ formik }: AdvanceRatingSearchProps) => {
           formik={formik}
           labelText="Rating máximo"
         >
-          <div className="flex items-center h-10">
+          <div className="flex h-10 items-center">
             {[1, 2, 3, 4, 5].map((rating) => (
               <div
                 key={rating}

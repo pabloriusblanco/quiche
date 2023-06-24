@@ -1,24 +1,21 @@
 import { useFormik } from "formik";
+import { AdvanceSearchQuery } from "../../../../types/Api";
 import Button from "../../../atoms/Buttons/Button";
+import IngredientsSelectMultiple from "../../../atoms/Select/IngredientsSelectMultiple";
+import Paragraph from "../../../atoms/Text/Paragraph";
+import LabelTooltipAndErrorWrapper from "../GeneralForms/LabelTooltipAndErrorWrapper";
 import SimpleInputForm from "../GeneralForms/SimpleInputForm";
 import { AdvanceSearchValidationForm } from "../validations/AdvanceSearchValidationForm";
-import { Location } from "react-router-dom";
-import IngredientsSelectMultiple from "../../../atoms/Select/IngredientsSelectMultiple";
-import LabelTooltipAndErrorWrapper from "../GeneralForms/LabelTooltipAndErrorWrapper";
-import CategorySelect from "../../../atoms/Select/CategorySelect";
-import AdvanceDurationSearch from "./AdvanceDurationSearch";
-import AdvanceDifficultySearch from "./AdvanceDifficultySearch";
 import AdvanceCategoriesSearch from "./AdvanceCategoriesSearch";
+import AdvanceDifficultySearch from "./AdvanceDifficultySearch";
+import AdvanceDurationSearch from "./AdvanceDurationSearch";
 import AdvanceRatingSearch from "./AdvanceRatingSearch";
-import { AdvanceSearchQuery } from "../../../../types/Api";
-import { useState } from "react";
-import Paragraph from "../../../atoms/Text/Paragraph";
 
-export type AdvanceSearchFormQuery = Omit<AdvanceSearchQuery, 'PageNumber'>
+export type AdvanceSearchFormQuery = Omit<AdvanceSearchQuery, "PageNumber">;
 
 interface AdvanceSearchProps {
   onSubmitCallback: (values: AdvanceSearchFormQuery) => void;
-  initialValues: Location;
+  initialValues: AdvanceSearchDefaultFormValues;
   filterOpen: boolean;
   setFilterOpen: (value: boolean) => void;
 }
@@ -26,7 +23,37 @@ interface AdvanceSearchProps {
 export type AdvanceSearchDefaultFormValues = {
   name?: string;
   category?: string;
-  ingredient?: string[];
+  ingredientid?: string;
+  ingredientname?: string;
+  username?: string;
+};
+
+const isFormValid = (formik: any) => {
+  const {
+    name,
+    username,
+    mainCategory,
+    secondaryCategories,
+    ingredients,
+    timeFrom,
+    timeTo,
+    difficulty,
+    ratingFrom,
+    ratingTo,
+  } = formik.values;
+
+  return (
+    name ||
+    username ||
+    mainCategory ||
+    secondaryCategories.length > 0 ||
+    ingredients.length > 0 ||
+    timeFrom ||
+    timeTo ||
+    difficulty ||
+    ratingFrom ||
+    ratingTo
+  );
 };
 
 const AdvanceSearch = ({
@@ -38,24 +65,24 @@ const AdvanceSearch = ({
   const {
     name: defaultName,
     category: defaultCategory,
-    ingredient: defaultIngredient,
+    ingredientid: defaultIngredientId,
+    ingredientname: defaultIngredientName,
     username: defaultUsername,
-  } = initialValues.state || {};
+  } = initialValues;
 
   const formik = useFormik({
     initialValues: {
-      name: defaultName || "",
-      username: defaultUsername || "",
-      mainCategory: defaultCategory || "",
+      name: defaultName ? defaultName.toString() : "",
+      username: defaultUsername ? defaultUsername.toString() : "",
+      mainCategory: defaultCategory ? defaultCategory.toString() : "",
       secondaryCategories: [],
-      ingredients: defaultIngredient ? [defaultIngredient] : [] || [],
+      ingredients: defaultIngredientId ? [defaultIngredientId] : [],
       timeFrom: "",
       timeTo: "",
       difficulty: "",
       ratingFrom: "",
       ratingTo: "",
     },
-    isInitialValid: false,
     validationSchema: AdvanceSearchValidationForm,
     onSubmit: (values) => {
       onSubmitCallback({
@@ -97,7 +124,7 @@ const AdvanceSearch = ({
         />
       </div>
       <div
-        className={`col-span-12 relative z-50 grid grid-cols-12 gap-5 transition-all ${
+        className={`relative z-50 col-span-12 grid grid-cols-12 gap-5 transition-all ${
           filterOpen ? "h-auto" : "hidden h-0"
         }`}
       >
@@ -111,6 +138,14 @@ const AdvanceSearch = ({
               placeholder="Taza de harina o 1/2 cebolla"
               field={"ingredients"}
               formik={formik}
+              defaultIngredient={
+                defaultIngredientId && defaultIngredientName
+                  ? {
+                      value: defaultIngredientId,
+                      label: defaultIngredientName,
+                    }
+                  : undefined
+              }
             />
           </LabelTooltipAndErrorWrapper>
         </div>
@@ -125,7 +160,7 @@ const AdvanceSearch = ({
           className="col-span-12 flex items-center justify-center"
           onClick={() => setFilterOpen(!filterOpen)}
         >
-          <Paragraph className="text-[12px] text-primary underline cursor-pointer">
+          <Paragraph className="cursor-pointer text-[12px] text-primary underline">
             {filterOpen ? "Ocultar Filtros" : "Mostrar más filtros"}
           </Paragraph>
         </div>
@@ -136,23 +171,27 @@ const AdvanceSearch = ({
             extraClasses={"col-span-12 cursor-pointer"}
             onClick={() => {
               formik.resetForm();
+              formik.setFieldValue("name", "");
+              formik.setFieldValue("mainCategory", "");
+              formik.setFieldValue("secondaryCategories", []);
+              formik.setFieldValue("username", "");
+              formik.setFieldValue("ratingFrom", "");
+              formik.setFieldValue("ratingTo", "");
+              formik.setFieldValue("ingredients", []);
+              const clearEvent = new CustomEvent("clearIngredients");
+              document.dispatchEvent(clearEvent);
+              window.history.replaceState(null, "", window.location.pathname);
             }}
           >
             Borrar filtros
           </Button>
           <Button
-            color={
-              !formik.isValid || formik.values == formik.initialValues
-                ? "gray"
-                : "primary"
-            }
-            type={
-              !formik.isValid || formik.values == formik.initialValues
-                ? "button"
-                : "submit"
-            }
+            color={isFormValid(formik) && formik.isValid ? "primary" : "gray"}
+            type={isFormValid(formik) && formik.isValid ? "submit" : "button"}
             extraClasses={`col-span-12 ${
-              !formik.isValid ? "cursor-not-allowed" : "cursor-pointer"
+              isFormValid(formik) && formik.isValid
+                ? "cursor-pointer"
+                : "cursor-not-allowed"
             }`}
           >
             Enviar

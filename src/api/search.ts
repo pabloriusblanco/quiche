@@ -15,7 +15,6 @@ export async function simpleSearch(
 export async function advancedSearch(
   query: AdvanceSearchQuery
 ): Promise<AdvanceSearchResponse> {
-  console.log("advancedSearch query", query);
   const response = await api.get("Home/AdvancedSearch", {
     params: query,
     paramsSerializer: { indexes: null },

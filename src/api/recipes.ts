@@ -16,7 +16,6 @@ export async function getMonthRecipes(): Promise<Post[]> {
 
 export async function getRecipe(id: string): Promise<PostResponse> {
   const response = await api.get(`Post/GetById/?id=${id}`);
-  console.log(response.data.data);
   return response.data.data;
 }
 

@@ -21,6 +21,7 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
       className="filter-item relative col-span-12 mx-1 w-full mb-5"
       data-maincategory={post.recipe.mainCategory.icon}
       data-name={post.recipe.name}
+      data-rating={post.rating}
       data-comments={post.postsComments.length}
       data-favs={post.usersLikedPosts.length}
     >
@@ -43,7 +44,7 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
           <div className="col-span-8 flex flex-col gap-2 p-5">
             <div className="flex items-center justify-between">
               <div className="mr-2 w-fit">
-                <PostRatingWithValue rating={0} />
+                <PostRatingWithValue rating={post.rating} />
               </div>
               <Title
                 titleType={TitleType.H5}

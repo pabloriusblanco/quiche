@@ -27,7 +27,6 @@ const RecipeComments = ({ comments, postId }: RecipeCommentsProps) => {
     } else {
       postComment({ comment: comment, postId: postId })
         .then((res) => {
-          console.log(res);
           resultModal.showResultModal("success", {
             showIcon: true,
             title: "Comentario enviado",

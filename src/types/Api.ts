@@ -55,6 +55,7 @@ export type PostResponse = {
   deleteDate: string | null;
   createDate: string;
   updateDate: string | null;
+  rating: number;
   postsComments: ResponsePostComment[];
   usersLikedPosts: {
     user: User;

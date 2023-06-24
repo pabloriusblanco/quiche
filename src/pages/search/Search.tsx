@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getAllCategories } from "../../api/categories";
 import { advancedSearch } from "../../api/search";
+import Button from "../../components/atoms/Buttons/Button";
 import Paragraph from "../../components/atoms/Text/Paragraph";
 import {
   TextWeightType,
@@ -8,22 +10,31 @@ import {
 } from "../../components/atoms/Text/TextsTypes";
 import Title from "../../components/atoms/Text/Title";
 import BackgroundHeader from "../../components/molecules/Background/Background";
-import AdvanceSearch, {
-  AdvanceSearchFormQuery,
-} from "../../components/molecules/Forms/AdvanceSearch/AdvanceSearch";
-import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
-import { useResultModal } from "../../hooks/useResultModal";
-import { AdvanceSearchQuery, PostResponse } from "../../types/Api";
-import AdvanceSearchResponseContainer from "./AdvanceSearchResponseContainer";
-import { useSpinner } from "../../hooks/useSpinner";
-import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
+import AdvanceSearch from "../../components/molecules/Forms/AdvanceSearch/AdvanceSearch";
 import Skeleton from "../../components/molecules/Skeleton/Skeleton";
-import Button from "../../components/atoms/Buttons/Button";
+import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
+import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
+import { useResultModal } from "../../hooks/useResultModal";
+import { useSpinner } from "../../hooks/useSpinner";
+import { AdvanceSearchQuery, PostResponse } from "../../types/Api";
+import { Category } from "../../types/Recipe";
+import AdvanceSearchNoResponse from "./AdvanceSearchNoResponse";
+import SortIsotope from "./SortIsotope/SortIsotope";
 
 const Search: React.FC = () => {
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const parameters = {
+    name: searchParams.get("name") || undefined,
+    category: searchParams.get("category") || undefined,
+    ingredientid: searchParams.get("ingredientid") || undefined,
+    ingredientname: searchParams.get("ingredientname") || undefined,
+    username: searchParams.get("username") || undefined,
+  };
+
   // const { name, category, ingredient } = location.state;
-  const [posts, setPosts] = useState<PostResponse[]>([]);
+  const [posts, setPosts] = useState<PostResponse[] | undefined>(undefined);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [currentSearch, setCurrentSearch] = useState<
     AdvanceSearchQuery | undefined
   >(undefined);
@@ -34,18 +45,23 @@ const Search: React.FC = () => {
   const spinner = useSpinner();
   const [areFiltersShowing, setAreFiltersShowing] = useState<boolean>(true);
 
-  console.log(location);
-  
+  useEffect(() => {
+    getAllCategories()
+      .then((response) => {
+        setCategories(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        return []; // Return an empty array as a fallback in case of an error
+      });
+  }, []);
 
   const searchRecipes = (values: AdvanceSearchQuery, newSearch = true) => {
-    console.log('values', values);
-
     spinner.startLoading({
       text: "Buscando recetas...",
     });
     advancedSearch(values)
       .then((res) => {
-        console.log(res);
         setCurrentSearch({ ...values, PageNumber: currentPage });
         setCurrentPage(res.pageNumber);
         setTotalPages(res.totalPages);
@@ -69,8 +85,7 @@ const Search: React.FC = () => {
   return (
     <>
       <BackgroundHeader sectionHeight="215px" />
-      <HomeSearch />
-      <div className="space-y-8">
+      <div className="space-y-8 mt-8">
         <section className="container">
           <div className="flex flex-col gap-5">
             <div>
@@ -88,14 +103,32 @@ const Search: React.FC = () => {
             <div className="shadow-light grid grid-cols-12 gap-5 rounded-xl bg-white p-5">
               <AdvanceSearch
                 onSubmitCallback={searchRecipes}
-                initialValues={location}
+                initialValues={parameters}
                 filterOpen={areFiltersShowing}
                 setFilterOpen={setAreFiltersShowing}
               />
             </div>
             {posts && posts.length >= 1 && (
-              <AdvanceSearchResponseContainer posts={posts} />
+              <div className="mt-5 flex items-center justify-between">
+                <Title
+                  weight={TextWeightType.SemiBold}
+                  titleType={TitleType.H3}
+                  text={`Resultados de la búsqueda: ${totalPosts} recetas`}
+                  color="black"
+                />
+                <Paragraph color="gray" className="text-[12px]">
+                  Mostrando {posts.length} de {totalPosts} recetas
+                </Paragraph>
+              </div>
             )}
+            {posts && posts.length >= 1 && (
+              <div className="flex w-full flex-col gap-5">
+                <div className="w-full">
+                  <SortIsotope posts={posts} categories={categories} />
+                </div>
+              </div>
+            )}
+            {posts && posts.length < 1 && <AdvanceSearchNoResponse />}
             {spinner.isLoading && (
               <Skeleton
                 gap={4}

@@ -12,7 +12,7 @@ const CategoryResultSearchHome = ({
   const navigate = useNavigate();
 
   const navigateToSearch = (id: string) => {
-    navigate("/search", { state: { category: id } });
+    navigate("/search?category=" + id);
   };
 
   return (
@@ -21,7 +21,7 @@ const CategoryResultSearchHome = ({
       {categories.map((category) => (
         <a
           key={category.id}
-          className="col-span-12 cursor-pointer flex items-center justify-start"
+          className="col-span-12 flex cursor-pointer items-center justify-start"
           onClick={() => navigateToSearch(category.id)}
         >
           <div className="flex items-center justify-between">

@@ -11,8 +11,10 @@ const IngredientsResultSearchHome = ({
 }: IngredientsResultSearchHomeProps) => {
   const navigate = useNavigate();
 
-  const navigateToSearch = (id: string) => {
-    navigate("/search", { state: { ingredient: id } });
+  const navigateToSearch = (
+    ingredient: SimpleSearchResponsePostIngredients
+  ) => {
+    navigate("/search?ingredientid=" + ingredient.id + "&ingredientname=" + ingredient.displayName);
   };
 
   return (
@@ -22,7 +24,7 @@ const IngredientsResultSearchHome = ({
         <a
           key={ingredient.id}
           className="col-span-12 flex cursor-pointer items-center justify-start"
-          onClick={() => navigateToSearch(ingredient.id)}
+          onClick={() => navigateToSearch(ingredient)}
         >
           <div className="flex items-center justify-between">
             <Icon name="arrowright" className="mr-2 h-3 fill-primary" />

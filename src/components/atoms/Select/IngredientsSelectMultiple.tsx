@@ -2,7 +2,7 @@ import makeAnimated from "react-select/animated";
 import AsyncSelect from "react-select/async";
 import { getAllIngredientsByName } from "../../../api/ingredients";
 import { Ingredient } from "../../../types/Recipe";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Option = {
   value: string;
@@ -13,13 +13,16 @@ export interface IngredientsSelectMultipleProps {
   placeholder: string;
   field: string;
   formik: any;
+  defaultIngredient?: Option;
 }
 
 const IngredientsSelectMultiple = ({
   placeholder,
   field,
   formik,
+  defaultIngredient = undefined,
 }: IngredientsSelectMultipleProps) => {
+  const selectRef = useRef(null);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
     undefined
   );
@@ -34,7 +37,7 @@ const IngredientsSelectMultiple = ({
       });
   };
 
-  const handleInputChange = async (inputValue: string) => {
+  const handleInputChange = async (inputValue: string, action) => {
     return new Promise<
       {
         value: string;
@@ -72,7 +75,7 @@ const IngredientsSelectMultiple = ({
     });
   };
 
-  const onChange = (options: any) => {
+  const onChange = (options: any, action) => {
     if (options.length === 0) {
       formik.setFieldValue(field, []);
       setIsMenuOpen(false);
@@ -85,8 +88,31 @@ const IngredientsSelectMultiple = ({
     }
   };
 
+  useEffect(() => {
+    if (defaultIngredient && selectRef.current) {
+      selectRef.current.setValue([defaultIngredient]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const handleClearIngredients = () => {
+      if (selectRef.current) {
+        selectRef.current.clearValue();
+      }
+    };
+
+    document.addEventListener("clearIngredients", handleClearIngredients);
+    return () => {
+      document.removeEventListener("clearIngredients", handleClearIngredients);
+    };
+  }, []);
+
   return (
     <AsyncSelect
+      ref={(el) => {
+        selectRef.current = el;
+      }}
       id={field}
       unstyled
       isMulti
@@ -95,6 +121,7 @@ const IngredientsSelectMultiple = ({
       loadingMessage={() => "Cargando..."}
       menuIsOpen={isMenuOpen}
       isClearable
+      // defaultInputValue={defaultIngredient ? defaultIngredient.label : ""}
       closeMenuOnSelect
       loadOptions={handleInputChange}
       placeholder={placeholder}

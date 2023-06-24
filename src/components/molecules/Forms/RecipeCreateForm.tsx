@@ -76,30 +76,14 @@ const RecipeCreateForm = ({
   const formik = useFormik({
     initialValues: {
       image: null,
-      name: "Tarta de Berenjenas",
-      description:
-        "Una exquisita combinación de berenjenas tiernas y sabrosos ingredientes que te sorprenderá. Esta tarta es perfecta para disfrutar en cualquier ocasión y cautivar a tus invitados con su sabor único.",
+      name: "",
+      description: "",
       mainCategoryId: "",
       subcategories: [] as string[],
-      difficultyId: "2",
-      prepTime: "60",
-      ingredients: [
-        { displayName: "Berenjenas", quantity: 2 },
-        { displayName: "Taza de Harina", quantity: 1 },
-        { displayName: "Mantequilla cucharada", quantity: 2 },
-        { displayName: "Sal a gusto", quantity: 1 },
-        { displayName: "Cebolla", quantity: 1 },
-        { displayName: "Queso Mozzarella", quantity: 200 },
-        { displayName: "Aceite de oliva", quantity: 2 },
-        { displayName: "Huevos", quantity: 4 },
-        { displayName: "Leche", quantity: 1 },
-        {
-          displayName: "Especias a gusto",
-          quantity: 1,
-        },
-      ],
-      instructions:
-        "<ol><li>Precalienta el horno a 180°C.</li><li>Corta las berenjenas en rodajas y espolvorea sal sobre ellas. Deja reposar durante 15 minutos para eliminar el exceso de humedad.</li><li>Mientras tanto, en una sartén grande, derrite la mantequilla y agrega la cebolla picada. Cocina a fuego medio hasta que la cebolla esté dorada.</li><li>Enjuaga las rodajas de berenjenas con agua fría y sécalas con papel absorbente. Añádelas a la sartén y cocina hasta que estén tiernas y ligeramente doradas.</li><li>En un recipiente aparte, bate los huevos y añade la leche. Condimenta la mezcla con las especias de tu elección.</li><li>En un molde para tarta, coloca una capa de masa de tarta previamente preparada.</li><li>Agrega una capa de berenjenas cocidas y cebolla dorada. Espolvorea con queso mozzarella rallado y vierte un poco de la mezcla de huevos y leche.</li><li>Repite el proceso de capas hasta utilizar todos los ingredientes, asegurándote de terminar con una capa de queso en la parte superior.</li><li>Hornea durante 35-40 minutos o hasta que la tarta esté dorada y cuajada.</li><li>Deja enfriar ligeramente antes de servir. ¡Disfruta de esta deliciosa tarta de berenjenas con una ensalada fresca o como plato principal!</li></ol>",
+      difficultyId: "",
+      prepTime: "",
+      ingredients: [],
+      instructions: "",
     },
 
     validationSchema: createRecipeValidationForm,

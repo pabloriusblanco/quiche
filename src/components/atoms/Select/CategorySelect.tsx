@@ -62,6 +62,20 @@ const CategorySelect = ({
         label: category.displayName,
         value: category.id.toString(),
       }))}
+      value={
+        isMulti && formik.values[field].length >= 4
+          ? []
+          : categories
+              .map((category) => ({
+                label: category.displayName,
+                value: category.id.toString(),
+              }))
+              .filter((option) =>
+                isMulti
+                  ? formik.values[field].includes(option.value)
+                  : option.value === formik.values[field]
+              )
+      }
       placeholder={placeholder}
       onChange={onChange}
       components={makeAnimated()}

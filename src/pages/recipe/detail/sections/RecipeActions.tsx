@@ -40,13 +40,12 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
     } else {
       likeComment(post.id)
         .then((res) => {
-          console.log(res);
           responseModal.showResultModal("success", {
             showIcon: true,
             title: "Guardada como favorita",
             message: "La receta ha sido guardada como favorita correctamente",
-            onConfirm: () => window.location.reload(),
-            confirmText: "Recargar",
+            // onConfirm: () => window.location.reload(),
+            // confirmText: "Recargar",
           });
           spinnerModal.stopLoading();
           setIsFavorite(true);
@@ -71,7 +70,6 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
     } else {
       likeCommentDelete(post.id)
         .then((res) => {
-          console.log(res);
           responseModal.showResultModal("success", {
             showIcon: true,
             title: "Eliminada como favorita",

@@ -16,7 +16,6 @@ const Footer = () => {
     await deleteRegisteredUser(username)
       .then((res) => {
         alert("Usuario eliminado correctamente");
-        console.log(res);
         spinnerModal.stopLoading();
       })
       .catch((err) => {

@@ -15,8 +15,8 @@ const RecipeResultSearchHome = ({ recipes }: RecipeResultSearchHomeProps) => {
           href={`/recipe/${post.id}`}
           className="col-span-12 flex items-center justify-start"
         >
-          <div className="flex min-w-[40px] flex-row items-center justify-between">
-            <p className="mr-0.5 text-[12px] font-[600]">{post.rating}</p>
+          <div className="flex min-w-[40px] flex-row items-center justify-end">
+            <p className="mr-2 text-[12px] text-right font-[600]">{post.rating}</p>
             <div>
               <Icon name="star" className="mb-[2px] h-4 fill-primary" />
             </div>

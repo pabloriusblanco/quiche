@@ -36,7 +36,6 @@ const RecipeCreate = () => {
     console.log("post", projectedPost);
     createRecipe(projectedPost)
       .then((res) => {
-        console.log(res);
         resposeModal.showResultModal("success", {
           title: "Receta creada",
           message: (

@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getFavorites } from "../../api/auth/profile";
+import { getAllCategories } from "../../api/categories";
+import Paragraph from "../../components/atoms/Text/Paragraph";
+import {
+  TextWeightType,
+  TitleType,
+} from "../../components/atoms/Text/TextsTypes";
+import Title from "../../components/atoms/Text/Title";
 import BackgroundHeader from "../../components/molecules/Background/Background";
 import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
 import { useAuth } from "../../hooks/useAuth";
 import { useResultModal } from "../../hooks/useResultModal";
 import { useSpinner } from "../../hooks/useSpinner";
-import HorizontalExtendedCard from "../../components/molecules/Cards/Home/HorizontalExtendedCard/HorizontalExtendedCard";
-import { FavoritesPostsResponse, PostResponse } from "../../types/Api";
-import Title from "../../components/atoms/Text/Title";
-import {
-  TextWeightType,
-  TitleType,
-} from "../../components/atoms/Text/TextsTypes";
-import Paragraph from "../../components/atoms/Text/Paragraph";
-import SortIsotope from "../search/SortIsotope/SortIsotope";
-import { getAllCategories } from "../../api/categories";
+import { PostResponse } from "../../types/Api";
 import { Category } from "../../types/Recipe";
+import SortIsotope from "../search/SortIsotope/SortIsotope";
 
 const Favorites = () => {
   const auth = useAuth();
@@ -45,7 +44,6 @@ const Favorites = () => {
       .then((res) => {
         getCategories();
         setPosts(res.posts);
-        console.log(res);
       })
       .catch((err) => {
         resultModal.showResultModal("danger", {
@@ -66,7 +64,7 @@ const Favorites = () => {
     <>
       <BackgroundHeader sectionHeight="215px" />
       <HomeSearch />
-      <div className="flex flex-col space-y-8 mb-8">
+      <div className="mb-8 flex flex-col space-y-8">
         <section className="container lg:min-h-[475px] xl:min-h-[410px] 2xl:min-h-[700px]">
           <div className="flex w-full flex-col gap-5">
             <div>

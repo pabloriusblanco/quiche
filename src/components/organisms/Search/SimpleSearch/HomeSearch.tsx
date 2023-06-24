@@ -46,7 +46,6 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
     } else {
       setIsLoading(false);
       hiddeResults();
-      console.log("hiddeResults");
     }
   };
 
@@ -85,7 +84,7 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              navigator("/search", { state: { name: searchQuery } });
+              navigator("/search?name=" + searchQuery);
             }
           }}
         />
@@ -93,7 +92,7 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
           color="primary"
           extraClasses="rounded-lg py-0 px-0 flex items-center justify-center"
           onClick={() => {
-            navigator("/search", { state: { name: searchQuery } });
+            navigator("/search?name=" + searchQuery);
           }}
         >
           <Icon name="search" className="w-4 fill-white" />

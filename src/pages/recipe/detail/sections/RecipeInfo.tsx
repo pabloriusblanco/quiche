@@ -45,7 +45,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
             <div className="relative z-10 -mt-12 rounded-2xl bg-white">
               <div className="flex w-full flex-col items-center justify-center gap-2 p-5">
                 <PostRatingWithValue
-                  rating={0}
+                  rating={post.rating}
                   className="flex items-center justify-center"
                   starsClassName="h-5 w-5"
                   textClassName="text-[14px]"
@@ -126,7 +126,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   color="text-primary"
                   fontSize="text-[11px]"
                   extraClasses="underline hover:text-primary-dark"
-                  to={`/recipe/?=user:${post.user.id}`}
+                  to={`/search?username=${post.user.userName}`}
                 >
                   Ver más recetas del autor
                 </LinkBasic>

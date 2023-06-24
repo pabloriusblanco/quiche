@@ -11,7 +11,10 @@ const WebRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/search" element={<Search />} />
+      <Route
+        path="/search"
+        element={<Search />}
+      />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/recipe/:id" element={<RecipeDetails />} />
       <Route path="/recipe/create" element={<RecipeCreate />} />
