@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "warn",
     "no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
   },
   ignorePatterns: ["node_modules/", "dist/", "build/", "src/api/"],
 };
