@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllDifficulties } from "../../../api/difficulty";
 import useModal from "../../../hooks/useModal";
 import { useSpinner } from "../../../hooks/useSpinner";
-import { PostResponse, PostResponseRecipe } from "../../../types/Api";
+import { PostResponse } from "../../../types/Api";
 import { Difficulty } from "../../../types/Recipe";
 import Button from "../../atoms/Buttons/Button";
 import Icon from "../../atoms/Icons/Icons";
@@ -54,7 +54,7 @@ const RecipeCreateForm = ({
     validationSchema: createRecipeValidationForm,
     onSubmit: (values) => {
       onSubmitCallback({
-        image: values.image,
+        image: defaultRecipe && defaultRecipe.image == values.image ? null : values.image,
         name: values.name,
         description: values.description,
         mainCategoryId: values.mainCategoryId,
@@ -112,7 +112,7 @@ const RecipeCreateForm = ({
       })),
       instructions: defaultInstructions,
     });
-    formik.isValid = true;    
+    formik.isValid = true;
   };
 
   useEffect(() => {

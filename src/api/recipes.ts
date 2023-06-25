@@ -55,7 +55,7 @@ export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
 
 export async function updateRecipe(recipe: {
   id: string;
-  recipe: { PostCreateUpdate };
+  recipe: PostCreateUpdate;
 }) {
   const response = await api.put("Post/Update", recipe);
   return response.data;

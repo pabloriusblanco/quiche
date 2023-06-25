@@ -32,7 +32,7 @@ export type ResponseSubCategory = {
 };
 
 export type PostCreateUpdate = {
-  image: File;
+  image?: File;
   name: string;
   description: string;
   mainCategoryId: string;

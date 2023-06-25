@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createRecipe, getRecipe } from "../../../api/recipes";
+import { createRecipe, getRecipe, updateRecipe } from "../../../api/recipes";
 import Paragraph from "../../../components/atoms/Text/Paragraph";
 import {
   TextWeightType,
@@ -71,38 +71,35 @@ const RecipeEdit = () => {
     };
 
     console.log("post", projectedPost);
-    // createRecipe(projectedPost)
-    //   .then((res) => {
-    //     responseModal.showResultModal("success", {
-    //       title: "Receta creada",
-    //       message: (
-    //         <>
-    //           Se ha creado la receta correctamente.
-    //           <br />
-    //           Puedes verla en tu perfil o haciendo click en el botón de abajo.
-    //         </>
-    //       ),
-    //       showIcon: true,
-    //       confirmText: "Ver receta",
-    //       onConfirm: () => navigator(`/recipe/${res.data}`),
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     responseModal.showResultModal("danger", {
-    //       title: "Ha sucecido un error",
-    //       message: (
-    //         <>
-    //           No se ha podido crear la receta
-    //           <br />
-    //           Por favor intente más tarde
-    //         </>
-    //       ),
-    //       showIcon: true,
-    //     });
-    //   })
-    //   .finally(() => {
-    //     spinner.stopLoading();
-    //   });
+
+    updateRecipe(projectedPost)
+      .then((res) => {
+        responseModal.showResultModal("success", {
+          title: "Receta editada",
+          message: "Se ha editado la receta correctamente.",
+          showIcon: true,
+          allowClose: false,
+          cancelText: "Ver receta",
+          onCancel: () => navigator(`/recipe/${id}`),
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        responseModal.showResultModal("danger", {
+          title: "Ha sucecido un error",
+          message: (
+            <>
+              No se ha podido editar la receta
+              <br />
+              Por favor intente más tarde
+            </>
+          ),
+          showIcon: true,
+        });
+      })
+      .finally(() => {
+        spinner.stopLoading();
+      });
   };
 
   return (

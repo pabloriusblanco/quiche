@@ -4,7 +4,7 @@ import Home from "../pages/home/Home";
 import RecipeDetails from "../pages/recipe/detail/RecipeDetails";
 import RecipeCreate from "../pages/recipe/add/RecipeCreate";
 import Search from "../pages/search/Search";
-import Favorites from "../pages/favorites/Favorites";
+import Favorites from "../pages/userPanel/Favorites";
 import NotFound from "../pages/errors/NotFound";
 import RecipeEdit from "../pages/recipe/edit/RecipeEdit";
 
