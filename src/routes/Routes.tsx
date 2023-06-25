@@ -6,6 +6,7 @@ import RecipeCreate from "../pages/recipe/add/RecipeCreate";
 import Search from "../pages/search/Search";
 import Favorites from "../pages/favorites/Favorites";
 import NotFound from "../pages/errors/NotFound";
+import RecipeEdit from "../pages/recipe/edit/RecipeEdit";
 
 const WebRoutes: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const WebRoutes: React.FC = () => {
       />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/recipe/:id" element={<RecipeDetails />} />
+      <Route path="/recipe/edit/:id" element={<RecipeEdit />} />
       <Route path="/recipe/create" element={<RecipeCreate />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>

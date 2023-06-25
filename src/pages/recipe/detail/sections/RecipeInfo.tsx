@@ -75,7 +75,7 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                 <Paragraph color="gray" className="text-[11px]">
                   {/* ${post.recipe.time.reference.displayName} -  */}
                   {`
-                  ${post.recipe.prepTime} minutos
+                  ${post.recipe.minutes} minutos
                   `}
                 </Paragraph>
               </div>
@@ -94,10 +94,10 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   titleText="Ingredientes"
                 />
                 <ul className="list-inside list-disc">
-                  {post.recipe.recipesIngredients.map((ingredient) => (
+                  {post.recipe.recipesIngredients.map((ingredient,index) => (
                     <li
                       className="text-[11px] text-gray"
-                      key={ingredient.ingredient.id}
+                      key={ingredient.ingredient.id+index}
                     >
                       {`${ingredient.ingredient.displayName} - x${ingredient.quantity}`}
                     </li>

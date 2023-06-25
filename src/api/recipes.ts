@@ -49,14 +49,15 @@ export async function getSimilarRecipes(
 }
 
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
-  console.log(JSON.stringify(recipe, null, 4));
-
   const response = await api.post("Post/Create", recipe);
   return response.data;
 }
 
-export async function updateRecipe(recipe: Post): Promise<Post> {
-  const response = await api.put(`/recipes/${recipe.id}`, recipe);
+export async function updateRecipe(recipe: {
+  id: string;
+  recipe: { PostCreateUpdate };
+}) {
+  const response = await api.put("Post/Update", recipe);
   return response.data;
 }
 

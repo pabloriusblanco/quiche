@@ -3,8 +3,13 @@ import { useDropzone } from "react-dropzone";
 import Icon from "../Icons/Icons";
 import Paragraph from "../Text/Paragraph";
 import { imageValidationErrorsDictionary } from "../../molecules/Forms/validations/CreateRecipeValidationForm";
+import { useEffect, useState } from "react";
 
 export const ImageUpload = ({ formik }: any) => {
+  const [imagePreview, setImagePreview] = useState<React.ReactNode | null>(
+    null
+  );
+  const [imageBackgroundURL, setImageBackgroundURL] = useState<string | null>();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({
       accept: {
@@ -33,14 +38,34 @@ export const ImageUpload = ({ formik }: any) => {
       },
     });
 
-  const imagePreview = acceptedFiles.map((file) => (
-    <img
-      key={file.name}
-      src={URL.createObjectURL(file)}
-      className={`h-full ${isDragActive ? "opacity-25" : "opacity-100"} `}
-      alt="Preview"
-    />
-  ));
+  useEffect(() => {
+    const imageAttributes = {
+      key: "",
+      src: "",
+    };
+    if (acceptedFiles.length === 0 && formik.values.image == null) {
+      setImagePreview(null);
+      setImageBackgroundURL(null);
+      return;
+    }
+    if (acceptedFiles.length > 0) {
+      imageAttributes.key = acceptedFiles[0].name;
+      imageAttributes.src = URL.createObjectURL(acceptedFiles[0]);
+      setImageBackgroundURL(imageAttributes.src);
+    } else if (formik.values.image != null) {
+      imageAttributes.key = formik.values.image;
+      imageAttributes.src = formik.values.image;
+      setImageBackgroundURL(imageAttributes.src);
+    }
+    setImagePreview(
+      <img
+        key={imageAttributes.key}
+        src={imageAttributes.src}
+        className={`h-full ${isDragActive ? "opacity-25" : "opacity-100"} `}
+        alt="Preview"
+      />
+    );
+  }, [acceptedFiles, formik.values.image]);
 
   return (
     <div
@@ -51,12 +76,12 @@ export const ImageUpload = ({ formik }: any) => {
       <div
         className="h-full w-full"
         style={
-          imagePreview.length > 0
+          imageBackgroundURL
             ? {
                 opacity: 0.85,
-                backgroundImage: `url("${URL.createObjectURL(
-                  acceptedFiles[0]
-                )}")`,
+                backgroundImage: `url(
+                  ${imageBackgroundURL}
+                )`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -67,10 +92,10 @@ export const ImageUpload = ({ formik }: any) => {
             : { backgroundImage: "none" }
         }
       ></div>
-      {imagePreview.length > 0 && (
+      {imagePreview && (
         <>
           <div className="absolute inset-0 flex h-full flex-col items-center justify-center">
-            {imagePreview ? imagePreview : ""}
+            {imagePreview || ""}
           </div>
           <div className="absolute inset-0 flex h-full flex-col items-center justify-center">
             <Paragraph
@@ -83,7 +108,7 @@ export const ImageUpload = ({ formik }: any) => {
           </div>
         </>
       )}
-      {!imagePreview.length && (
+      {imagePreview == null && (
         <>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <Paragraph

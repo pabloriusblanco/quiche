@@ -32,6 +32,7 @@ const RecipeDetail = () => {
       spinner.startLoading({ text: "Cargando receta..." });
       getRecipe(id)
         .then((res) => {
+          console.log(res);          
           setPost(res);
         })
         .catch((err) => {

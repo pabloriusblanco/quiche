@@ -32,9 +32,11 @@ export const createRecipeValidationForm = Yup.object({
   prepTime: Yup.number()
     .typeError("El tiempo de preparación debe ser un numero")
     .required("El tiempo de prepración es requerido."),
-  ingredients: Yup.array()
-    .min(1, "Debes agregar al menos un ingrediente a tu receta"),
-    instructions: Yup.string()
+  ingredients: Yup.array().min(
+    1,
+    "Debes agregar al menos un ingrediente a tu receta"
+  ),
+  instructions: Yup.string()
     .min(50, "Da más detalles en los pasos.")
     .max(5000, "Da menos detalles en los pasos.")
     .required("Los pasos son requeridos."),
@@ -42,6 +44,7 @@ export const createRecipeValidationForm = Yup.object({
 
 const evaluateImageDimensions = (image: any): Promise<boolean> => {
   if (!image) return Promise.resolve(false);
+  if (typeof image === "string") return Promise.resolve(true);
   return new Promise<boolean>((resolve) => {
     const imageObj = new Image();
     imageObj.src = URL.createObjectURL(image);
@@ -84,5 +87,14 @@ export const tooltipsForValidation = {
   secondaryCategories:
     "Puedes seleccionar hasta cuatro categorías secundarias. ¡Ayudarán a los usuarios a encontrar tu receta!",
   difficulty: "Dinos que tan díficil te parece realizar esta receta.",
-  ingredients: "Agrega los ingredientes que necesitas para realizar tu receta.",
+  ingredients: (
+    <>
+      <>Agrega los ingredientes que necesitas para realizar tu receta.</>
+      <br />
+      <>
+        ¡Pon los más importantes primero! De esa forma tu receta aparecerá más
+        frecuentemente como recomendada.
+      </>
+    </>
+  ),
 };

@@ -64,7 +64,7 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
                   tag="time"
                   className="w-[14px]"
                   tagKey={"short"} // TODO: Change this to the correct value
-                  id={`HorizontalSimpleCard_${post.id}_${post.recipe.prepTime}`}
+                  id={`HorizontalSimpleCard_${post.id}_${post.recipe.minutes}`}
                 />
                 <TooltipIcons
                   tag="difficulty"

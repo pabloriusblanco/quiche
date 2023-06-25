@@ -16,8 +16,6 @@ import { useResultModal } from "../../../hooks/useResultModal";
 import { useSpinner } from "../../../hooks/useSpinner";
 
 const RecipeCreate = () => {
-  const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<Post | null>(null);
   const resposeModal = useResultModal();
   const navigator = useNavigate();
   const spinner = useSpinner();

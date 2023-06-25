@@ -32,7 +32,7 @@ export type ResponseSubCategory = {
 };
 
 export type PostCreateUpdate = {
-  image: string;
+  image: File;
   name: string;
   description: string;
   mainCategoryId: string;
@@ -62,19 +62,21 @@ export type PostResponse = {
   }[];
   likeAmount: number;
   user: User;
-  recipe: {
-    image: string;
-    name: string;
-    description: string;
-    mainCategory: Category;
-    mainCategoryId: string;
-    recipesSubcategories: ResponseSubCategory[];
-    difficultyId: string;
-    difficulty: Difficulty;
-    prepTime: string;
-    recipesIngredients: ResponsePostIngredients[];
-    instructions: string;
-  };
+  recipe: PostResponseRecipe;
+};
+
+export type PostResponseRecipe = {
+  image: string;
+  name: string;
+  description: string;
+  mainCategory: Category;
+  mainCategoryId: string;
+  recipesSubcategories: ResponseSubCategory[];
+  difficultyId: string;
+  difficulty: Difficulty;
+  minutes: string;
+  recipesIngredients: ResponsePostIngredients[];
+  instructions: string;
 };
 
 export type SimpleSearchResponse = {
@@ -147,5 +149,5 @@ export type SimilarResponsePost = {
   likesAmount: number;
   mainCategory: Category;
   difficulty: Difficulty;
-  prepTime: DurationReference;
+  minutes: DurationReference;
 };

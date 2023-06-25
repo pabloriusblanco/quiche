@@ -1,4 +1,5 @@
 import CategorySelect from "../../../atoms/Select/CategorySelect";
+import { SimpleSelectCategoryClassesConfig } from "../../../atoms/Select/SelectConfig/CategoriesConfig";
 import LabelTooltipAndErrorWrapper from "../GeneralForms/LabelTooltipAndErrorWrapper";
 
 type AdvanceCategoriesSearchProps = {
@@ -19,6 +20,7 @@ const AdvanceCategoriesSearch = ({ formik }: AdvanceCategoriesSearchProps) => {
             placeholder="Desayuno..."
             field={"mainCategory"}
             formik={formik}
+            classesConfig={SimpleSelectCategoryClassesConfig(formik.values.mainCategory)}
           />
         </LabelTooltipAndErrorWrapper>
       </div>
@@ -33,6 +35,7 @@ const AdvanceCategoriesSearch = ({ formik }: AdvanceCategoriesSearchProps) => {
             placeholder="Almuerzo..."
             field={"secondaryCategories"}
             formik={formik}
+            classesConfig={SimpleSelectCategoryClassesConfig(formik.values.secondaryCategories)}
           />
         </LabelTooltipAndErrorWrapper>
       </div>
