@@ -18,7 +18,7 @@ const Home: React.FC = () => {
         <CategoriesHome title="Ver recetas por Categorías" />
         <DestacadosDia title="Recetas destacadas del día" />
         <BannerAdvanceSearch />
-        <PopularesMes title="Recetas más populares del mes" />
+        {/* <PopularesMes title="Recetas más populares del mes" /> */}
         <BannerQuicheApp />
       </div>
     </>

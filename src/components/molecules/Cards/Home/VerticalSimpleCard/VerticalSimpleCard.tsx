@@ -1,13 +1,14 @@
-import { Post } from "../../../../../types/Recipe";
+import { PostResponse } from "../../../../../types/Api";
 import Button from "../../../../atoms/Buttons/Button";
 import LinkContainer from "../../../../atoms/Link/LinkContainer";
-import VerticalSimpleCardCommentsLikes from "./VerticalSimpleCardCommentsLikes";
 import PostRatingWithValue from "../../PostRatingWithValue";
 import PostTagsWithTooltips from "../../PostTagsWithTooltips";
+import VerticalSimpleCardCommentsLikes from "./VerticalSimpleCardCommentsLikes";
+import missingImage from "../../../../../assets/images/missingImage.jpg";
 
 interface VerticalSimpleCardProps {
   id: string;
-  post: Post;
+  post: PostResponse;
   cardWidth?: string;
 }
 
@@ -22,17 +23,17 @@ const VerticalSimpleCard = ({
       style={{ width: cardWidth }}
     >
       <img
-        src={
-          post.recipe.image ||
-          `https://source.unsplash.com/random/150x150/?food,recipe&${id}`
-        }
+        src={post.recipe.image}
+        onError={(e) => {
+          (e.target as HTMLImageElement).src = missingImage;
+        }}
         alt={`${post.recipe.name} picture`}
         className="h-[120px] w-full rounded-t-lg object-cover"
       />
       <PostTagsWithTooltips
         id={id}
         category={post.recipe.mainCategory.icon}
-        time={post.recipe.time.reference.icon}
+        time={"short"}
         difficulty={post.recipe.difficulty.icon}
       />
       <div className="grid grid-cols-12 gap-2 p-[12px] pt-[28px]">
@@ -47,8 +48,8 @@ const VerticalSimpleCard = ({
         </div>
         <div className="col-span-12 flex items-center justify-between">
           <VerticalSimpleCardCommentsLikes
-            commentsAmount={post.comments.length}
-            likesAmount={post.comments.length}
+            commentsAmount={post.postsComments.length}
+            likesAmount={post.usersLikedPosts.length}
           />
         </div>
         <div className="col-span-12">

@@ -51,9 +51,14 @@ const SortOptions = [
 type SortIsotopeProps = {
   posts: PostResponse[];
   categories: Category[];
+  allowDeleteEdit?: boolean;
 };
 
-const SortIsotope = ({ posts, categories = [] }: SortIsotopeProps) => {
+const SortIsotope = ({
+  posts,
+  categories = [],
+  allowDeleteEdit = false,
+}: SortIsotopeProps) => {
   const isotope = useRef<Isotope | null>();
   // store the filter keyword in a state
   const [filterKey, setFilterKey] = useState<Category | "*">("*");
@@ -143,7 +148,11 @@ const SortIsotope = ({ posts, categories = [] }: SortIsotopeProps) => {
         </div>
         <div className="filter-container flex">
           {posts.map((post) => (
-            <HorizontalExtendedCard post={post} key={post.id} />
+            <HorizontalExtendedCard
+              post={post}
+              key={post.id}
+              allowActions={allowDeleteEdit}
+            />
           ))}
         </div>
       </div>

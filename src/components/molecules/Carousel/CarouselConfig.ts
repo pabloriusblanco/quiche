@@ -45,4 +45,30 @@ export const carouselSettingOptions: carouselSettingOptionsType = {
       },
     ],
   },
+  categories: {
+    arrows: false,
+    dots: false,
+    infinite: true,
+    speed: 1500,
+    cssEase: "ease-in-out",
+    autoplay: true,
+    autoplaySpeed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  },
 };

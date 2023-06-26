@@ -81,7 +81,7 @@ const ProfileModal = () => {
             </Paragraph>
           </LinkContainer>
           <LinkContainer
-            to="/favorites"
+            to="/myrecipes"
             className="group rounded border-b  border-b-gray-light p-2 "
           >
             <Icon

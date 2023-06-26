@@ -94,10 +94,10 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                   titleText="Ingredientes"
                 />
                 <ul className="list-inside list-disc">
-                  {post.recipe.recipesIngredients.map((ingredient,index) => (
+                  {post.recipe.recipesIngredients.map((ingredient, index) => (
                     <li
                       className="text-[11px] text-gray"
-                      key={ingredient.ingredient.id+index}
+                      key={ingredient.ingredient.id + index + Math.random()}
                     >
                       {`${ingredient.ingredient.displayName} - x${ingredient.quantity}`}
                     </li>

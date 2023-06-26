@@ -34,9 +34,9 @@ const PopularesMes = ({ title, description }: PopularesMesProps) => {
       )}
       {posts && (
         <Carousel config="default">
-          {posts.map((post: Post, i: number) => (
+          {/* {posts.map((post: Post, i: number) => (
             <VerticalSimpleCard key={i} id={post.id} post={post} />
-          ))}
+          ))} */}
         </Carousel>
       )}
     </section>

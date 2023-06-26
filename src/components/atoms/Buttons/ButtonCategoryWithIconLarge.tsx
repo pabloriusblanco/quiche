@@ -5,15 +5,17 @@ import Paragraph from "../Text/Paragraph";
 interface ButtonCategoryWithIconProps {
   iconName: IconsNames;
   categoryName: string;
+  id: string;
 }
 
 const ButtonCategoryWithIconLarge = ({
   iconName,
   categoryName,
+  id,
 }: ButtonCategoryWithIconProps) => {
   return (
     <div key={iconName} className="col-span-1 ">
-      <LinkContainer to={`/search/${iconName}`}>
+      <LinkContainer to={"/search?category=" + id}>
         <div
           className="group flex h-[90px] w-full flex-col items-center justify-center rounded-lg
                    bg-gray-light transition-all hover:bg-primary"

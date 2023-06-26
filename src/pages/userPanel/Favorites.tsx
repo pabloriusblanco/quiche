@@ -9,6 +9,7 @@ import {
 } from "../../components/atoms/Text/TextsTypes";
 import Title from "../../components/atoms/Text/Title";
 import BackgroundHeader from "../../components/molecules/Background/Background";
+import Skeleton from "../../components/molecules/Skeleton/Skeleton";
 import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
 import { useAuth } from "../../hooks/useAuth";
@@ -79,6 +80,22 @@ const Favorites = () => {
                 favoritas. ¡Puedes acceder a ellas haciendo click!
               </Paragraph>
             </div>
+            {!posts && (
+              <div className="flex w-full flex-col items-center gap-5">
+                <Skeleton
+                  gap={4}
+                  gridCols={12}
+                  gridMatrix={[[6, 6]]}
+                  itemHeight={"42px"}
+                />
+                <Skeleton
+                  gap={4}
+                  gridCols={12}
+                  gridMatrix={[[12], [12], [12], [12], [12], [12], [12]]}
+                  itemHeight={"146px"}
+                />
+              </div>
+            )}
             {posts && (
               <div className="w-full">
                 <SortIsotope posts={posts} categories={categories} />

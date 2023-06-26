@@ -3,8 +3,8 @@ import { dayPosts } from "../../../api/home";
 import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import HorizontalDetailedCard from "../../../components/molecules/Cards/Home/HorizontalDetailedCard/HorizontalDetaildedCard";
-import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
 import HorizontalSimpleCard from "../../../components/molecules/Cards/Home/HorizontalSimple/HorizontalSimpleCard";
+import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
 import { Post } from "../../../types/Recipe";
 
 interface DestacadosDiaProps {

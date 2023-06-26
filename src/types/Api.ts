@@ -1,10 +1,4 @@
-import {
-  Category,
-  Difficulty,
-  Duration,
-  DurationReference,
-  Ingredient,
-} from "./Recipe";
+import { Category, Difficulty, DurationReference, Ingredient } from "./Recipe";
 
 type User = {
   id: string;
@@ -63,6 +57,11 @@ export type PostResponse = {
   likeAmount: number;
   user: User;
   recipe: PostResponseRecipe;
+};
+
+export type PostResponseSimilar = {
+  postsByCategory: PostResponse[];
+  postsByIngredients: PostResponse[];
 };
 
 export type PostResponseRecipe = {
@@ -131,11 +130,7 @@ export type AdvanceSearchResponse = {
   totalPages: number;
 };
 
-export type FavoritesPostsResponse = {
-  posts: PostResponse[];
-};
-
-export type OwnedPostsResponse = {
+export type FavoriteAndOwnedPostResponse = {
   posts: PostResponse[];
 };
 

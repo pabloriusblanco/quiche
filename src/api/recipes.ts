@@ -35,17 +35,13 @@ export async function likeCommentDelete(id: string): Promise<void> {
 }
 
 export async function getSimilarRecipes(
-  postId: string,
-  recipeType: keyof RecipeSimilarTypes
-): Promise<Post[]> {
-  // const response = await api.get(`/recipes/${id}`);
-  // return response.data;
-
-  return new Promise<Post[]>((resolve, reject) => {
-    setTimeout(() => {
-      resolve(mockDetailRecipeSimilars[recipeType]);
-    }, 1000);
-  });
+  postId: string
+): Promise<PostResponseSimilar> {
+  const response = await api.get(
+    `Post/GetSimilarByCategoryAndIngredients?postId=${postId}`
+  );
+  console.log(response.data.data);    
+  return response.data.data;
 }
 
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
@@ -61,8 +57,9 @@ export async function updateRecipe(recipe: {
   return response.data;
 }
 
-export async function deleteRecipe(id: number): Promise<void> {
-  await api.delete(`/recipes/${id}`);
+export async function deleteRecipe(id: string): Promise<void> {
+  const response = await api.post("Post/Delete", { id: id });
+  return response.data;
 }
 
 // const mockDetailRecipe: Post = {

@@ -7,7 +7,7 @@ import { carouselSettingOptions } from "./CarouselConfig";
 
 interface CarouselProps {
   children: React.ReactNode;
-  config: "default" | "small" | "medium" | "large" | "full";
+  config: "default" | "categories" | "small" | "medium" | "large" | "full";
 }
 
 const Carousel = ({ children, config = "default" }: CarouselProps) => {

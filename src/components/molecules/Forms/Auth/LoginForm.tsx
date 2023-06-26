@@ -14,8 +14,8 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmitCallback }) => {
   const formik = useFormik({
     initialValues: {
-      username: "pablodev",
-      password: "Asd123asd",
+      username: "",
+      password: "",
     },
     validationSchema: loginFormValidation,
     onSubmit: (values) => {

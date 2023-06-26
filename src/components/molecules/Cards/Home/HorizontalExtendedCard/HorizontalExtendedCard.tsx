@@ -1,24 +1,34 @@
+import { useState } from "react";
+import missingImage from "../../../../../assets/images/missingImage.jpg";
+import { useAuth } from "../../../../../hooks/useAuth";
+import RecipeInfoCategories from "../../../../../pages/recipe/detail/sections/RecipeInfoCategories";
 import { PostResponse } from "../../../../../types/Api";
-import { Post } from "../../../../../types/Recipe";
-import Icon from "../../../../atoms/Icons/Icons";
 import TooltipIcons from "../../../../atoms/Icons/TooltipIcons/TooltipIcons";
 import LinkBasic from "../../../../atoms/Link/LinkBasic";
 import Paragraph from "../../../../atoms/Text/Paragraph";
 import { TextWeightType, TitleType } from "../../../../atoms/Text/TextsTypes";
 import Title from "../../../../atoms/Text/Title";
+import EditDeleteModal from "../../../Modal/RecipeActions/EditDeleteModal";
 import PostRatingWithValue from "../../PostRatingWithValue";
 import VerticalSimpleCardCommentsLikes from "../VerticalSimpleCard/VerticalSimpleCardCommentsLikes";
-import missingImage from "../../../../../assets/images/missingImage.jpg";
-import RecipeInfoCategories from "../../../../../pages/recipe/detail/sections/RecipeInfoCategories";
 
 interface HorizontalExtendedCardProps {
   post: PostResponse;
+  allowActions: boolean;
 }
 
-const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
+const HorizontalExtendedCard = ({
+  post,
+  allowActions = false,
+}: HorizontalExtendedCardProps) => {
+  const auth = useAuth();
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+
   return (
     <div
-      className="filter-item relative col-span-12 mx-1 w-full mb-5"
+      className={`filter-item relative col-span-12 mx-1 mb-5 w-full ${
+        allowActions ? "flex gap-5" : ""
+      }`}
       data-maincategory={post.recipe.mainCategory.icon}
       data-name={post.recipe.name}
       data-rating={post.rating}
@@ -28,17 +38,17 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
       <LinkBasic
         to={`/recipe/${post.id}`}
         key={`${post.id}_HorizontalExtendedCard`}
-        extraClasses="col-span-12"
+        extraClasses="w-full"
       >
-        <div className="shadow-light relative z-10 col-span-12 grid w-full grid-cols-10 overflow-hidden rounded-lg bg-white">
-          <div className="relative col-span-2 flex h-full items-center">
+        <div className="shadow-light relative z-10 col-span-12 grid h-[146px] w-full grid-cols-10 overflow-hidden rounded-lg bg-white">
+          <div className="relative col-span-2 flex items-center">
             <img
               src={post.recipe.image}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = missingImage;
               }}
               alt={`${post.recipe.name} picture`}
-              className="absolute w-full object-cover"
+              className="absolute h-full w-full object-cover"
             />
           </div>
           <div className="col-span-8 flex flex-col gap-2 p-5">
@@ -83,13 +93,13 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
               </Paragraph>
             </div>
             <div className="flex w-full justify-between">
-                <RecipeInfoCategories
-                  mainCategory={post.recipe.mainCategory}
-                  subCategories={post.recipe.recipesSubcategories}
-                  className="justify-start grid grid-cols-5 mr-5 space-x-2"
-                  buttonClassName="!px-0 !py-1.5 !w-full"
-                  textClassName="text-[9px]"
-                />
+              <RecipeInfoCategories
+                mainCategory={post.recipe.mainCategory}
+                subCategories={post.recipe.recipesSubcategories}
+                className="mr-5 grid grid-cols-5 justify-start space-x-2"
+                buttonClassName="!px-0 !py-1.5 !w-full"
+                textClassName="text-[9px]"
+              />
               <div className="flex items-center justify-end gap-4">
                 <VerticalSimpleCardCommentsLikes
                   commentsAmount={post.postsComments.length}
@@ -100,6 +110,11 @@ const HorizontalExtendedCard = ({ post }: HorizontalExtendedCardProps) => {
           </div>
         </div>
       </LinkBasic>
+      {allowActions && (
+        <div className="flex h-[146px] rounded-lg">
+          <EditDeleteModal id={post.id} />
+        </div>
+      )}
     </div>
   );
 };

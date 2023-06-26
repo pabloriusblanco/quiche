@@ -4,12 +4,12 @@ import RecipeInfo from "./sections/RecipeInfo";
 import RecipeComments from "./sections/RecipeComments";
 import RecipeActions from "./sections/RecipeActions";
 import RecipeSimilar from "./sections/RecipeSimilar";
-import { getRecipe } from "../../../api/recipes";
+import { getRecipe, getSimilarRecipes } from "../../../api/recipes";
 import BackgroundHeader from "../../../components/molecules/Background/Background";
 import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
 import HomeSearch from "../../../components/organisms/Search/SimpleSearch/HomeSearch";
 import { Post } from "../../../types/Recipe";
-import { PostResponse } from "../../../types/Api";
+import { PostResponse, PostResponseSimilar } from "../../../types/Api";
 import useModal from "../../../hooks/useModal";
 import { useResultModal } from "../../../hooks/useResultModal";
 import { genericErrorModalContent } from "../../../components/molecules/Modal/Auth/ResultsConfigAuth/ResultsAuthContents";
@@ -23,17 +23,29 @@ const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigator = useNavigate();
   const [post, setPost] = useState<PostResponse | null>(null);
-  const [similarPosts, setSimilarPosts] = useState<Post[]>([]);
+  const [similarPosts, setSimilarPosts] = useState<
+    PostResponseSimilar | undefined
+  >(undefined);
   const resultModal = useResultModal();
   const spinner = useSpinner();
+
+  const getSimilarPosts = () => {
+    getSimilarRecipes(id)
+      .then((res) => {
+        setSimilarPosts(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     if (id) {
       spinner.startLoading({ text: "Cargando receta..." });
       getRecipe(id)
         .then((res) => {
-          console.log(res);          
           setPost(res);
+          getSimilarPosts();
         })
         .catch((err) => {
           const message = err.response.data.split(["-"]);
@@ -85,8 +97,16 @@ const RecipeDetail = () => {
             </div>
             <div className="col-span-4 flex flex-col gap-5">
               <RecipeActions post={post} />
-              <RecipeSimilar postId={post.id} type="ingredients" />
-              <RecipeSimilar postId={post.id} type="categories" />
+              <RecipeSimilar
+                posts={
+                  similarPosts ? similarPosts.postsByIngredients : undefined
+                }
+                type="ingredients"
+              />
+              <RecipeSimilar
+                posts={similarPosts ? similarPosts.postsByCategory : undefined}
+                type="categories"
+              />
             </div>
           </div>
         )}

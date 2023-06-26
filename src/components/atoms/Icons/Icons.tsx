@@ -1,6 +1,7 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { ReactComponent as comments } from "./assets/comments.svg";
 import { ReactComponent as quiche } from "./assets/quiche.svg";
+import { ReactComponent as dots } from "./assets/dots.svg";
 import { ReactComponent as uploadpicture } from "./assets/uploadpicture.svg";
 import { ReactComponent as success } from "./assets/checked.svg";
 import { ReactComponent as closeIcon } from "./assets/close.svg";
@@ -65,6 +66,7 @@ import { ReactComponent as vegetarian } from "./assets/categories/vegetarian.svg
 // eslint-disable-next-line react-refresh/only-export-components
 const iconsMap = {
   quiche,
+  dots,
   uploadpicture,
   userchecked,
   closeIcon,

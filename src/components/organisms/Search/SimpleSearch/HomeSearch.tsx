@@ -73,7 +73,7 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
     <>
       <section
         ref={searchRef}
-        className="shadow-light container relative z-20 flex -translate-y-10 justify-center gap-5 rounded-2xl bg-white p-5"
+        className="shadow-light container relative z-[35] flex -translate-y-10 justify-center gap-5 rounded-2xl bg-white p-5"
       >
         <Input
           placeholder="Escribe el nombre de una receta, ingrediente o categoría"
@@ -104,7 +104,7 @@ const HomeSearch = ({ id }: HomeSearchProps) => {
         />
       </section>
       {showingResults && (
-        <div className="fade-in fixed inset-0 z-[15] flex items-center justify-center bg-black bg-opacity-[65%]"></div>
+        <div className="fade-in fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-[65%]"></div>
       )}
     </>
   );

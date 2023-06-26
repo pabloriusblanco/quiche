@@ -1,9 +1,5 @@
-import React from "react";
-import { PostResponse } from "../../types/Api";
-import Paragraph from "../../components/atoms/Text/Paragraph";
 import Icon from "../../components/atoms/Icons/Icons";
-import HorizontalExtendedCard from "../../components/molecules/Cards/Home/HorizontalExtendedCard/HorizontalExtendedCard";
-import SortIsotope from "./SortIsotope/SortIsotope";
+import Paragraph from "../../components/atoms/Text/Paragraph";
 
 const AdvanceSearchNoResponse = () => {
   return (

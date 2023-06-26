@@ -1,12 +1,12 @@
 import { api } from "..";
-import { FavoritesPostsResponse, OwnedPostsResponse } from "../../types/Api";
+import { FavoriteAndOwnedPostResponse } from "../../types/Api";
 
-export async function getFavorites(): Promise<FavoritesPostsResponse> {
+export async function getFavorites(): Promise<FavoriteAndOwnedPostResponse> {
   const response = await api.get("LikedPost/GetByFavLike");
   return response.data.data;
 }
 
-export async function getOwnedPost(): Promise<OwnedPostsResponse[]> {
-  const response = await api.get("LikedPost/");
+export async function getOwnedPost(): Promise<FavoriteAndOwnedPostResponse> {
+  const response = await api.get("OwnerPost/GetbyOwner");
   return response.data.data;
 }
