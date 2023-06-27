@@ -23,22 +23,28 @@ import {
   createRecipeValidationForm,
   tooltipsForValidation,
 } from "./validations/CreateRecipeValidationForm";
+import { useLocation } from "react-router-dom";
 
 export type RecipeFormProps = {
   onSubmitCallback: (values: any) => void;
   className?: string;
   post?: PostResponse | null;
+  saveAsDraft?: (formikValues) => void;
 };
 
 const RecipeCreateForm = ({
   onSubmitCallback,
   className = "",
   post = null,
+  saveAsDraft = null,
 }: RecipeFormProps) => {
   const ingredientsModal = useModal();
   const spinner = useSpinner();
   const [difficulties, setDifficulties] = useState<Difficulty[]>([]);
   const { id: defaultId, recipe: defaultRecipe } = post || ({} as PostResponse);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const isDraft = searchParams.get("recipeDraft") === "true";
   const formik = useFormik({
     initialValues: {
       image: null,
@@ -54,7 +60,10 @@ const RecipeCreateForm = ({
     validationSchema: createRecipeValidationForm,
     onSubmit: (values) => {
       onSubmitCallback({
-        image: defaultRecipe && defaultRecipe.image == values.image ? null : values.image,
+        image:
+          defaultRecipe && defaultRecipe.image == values.image
+            ? null
+            : values.image,
         name: values.name,
         description: values.description,
         mainCategoryId: values.mainCategoryId,
@@ -121,7 +130,11 @@ const RecipeCreateForm = ({
     }
   }, [defaultRecipe]);
 
-  console.log("formik ----------", formik.values);
+  useEffect(() => {
+    if (isDraft) {
+      formik.setValues(JSON.parse(localStorage.getItem("recipeDraft")));
+    }
+  }, []);
 
   return (
     <>
@@ -210,18 +223,6 @@ const RecipeCreateForm = ({
                 </>
               </div>
               <div className="flex flex-col gap-2">
-                {/* <CustomSelect<Category>
-                formik={formik}
-                field="mainCategoryId"
-                optionsArray={apiOptions.categories}
-                placeholder="Selecciona una categoría"
-                validationError={
-                  !!formik.errors.mainCategoryId &&
-                  formik.touched.mainCategoryId
-                }
-                valueExtractor={(category) => category.id.toString()}
-                labelExtractor={(category) => category.displayName}
-              /> */}
                 <CategorySelect
                   placeholder={"Selecciona una categoría"}
                   formik={formik}
@@ -255,17 +256,6 @@ const RecipeCreateForm = ({
                   />
                 </>
               </div>
-              {/* <CustomSelect<Category>
-              formik={formik}
-              field="subcategories"
-              isMulti
-              validationError={!!formik.errors.subcategories}
-              optionsArray={apiOptions.categories}
-              placeholder="Selecciona una categoría"
-              valueExtractor={(category) => category.id.toString()}
-              labelExtractor={(category) => category.displayName}
-              disabledOption={formik.values.mainCategoryId}
-            /> */}
               <CategorySelect
                 placeholder={"Selecciona categorías secundarias..."}
                 formik={formik}
@@ -279,9 +269,6 @@ const RecipeCreateForm = ({
                 )}
               />
             </div>
-            {/* {formik.errors.subcategories && formik.touched.subcategories && (
-            <InputErrorText>{formik.errors.subcategories}</InputErrorText>
-          )} */}
           </div>
           <div className="col-span-6 flex flex-col gap-2">
             <div className="flex items-center gap-1">
@@ -421,15 +408,54 @@ const RecipeCreateForm = ({
               )}
             </div>
           </div>
-          <Button
-            color={!formik.isValid ? "gray" : "primary"}
-            type={!formik.isValid ? "button" : "submit"}
-            extraClasses={`col-span-12 w-full ${
-              !formik.isValid ? "cursor-not-allowed" : "cursor-pointer"
-            }`}
-          >
-            Publicar
-          </Button>
+          <div className="col-span-12 flex items-center justify-end gap-5">
+            {saveAsDraft && (
+              <>
+                <Button
+                  data-tooltip-id={"saveAsDraft"}
+                  color="gray"
+                  type={"button"}
+                  extraClasses={"col-span-12 cursor-pointer"}
+                  onClick={() => {
+                    saveAsDraft(formik.values);
+                  }}
+                >
+                  Guardar como borrador
+                </Button>
+                <TooltipSimple
+                  id={"saveAsDraft"}
+                  text={tooltipsForValidation.saveAsDraft}
+                />
+              </>
+            )}
+            <Button
+              data-tooltip-id={"publishPost"}
+              color={!formik.isValid ? "gray" : "primary"}
+              type={!formik.isValid ? "button" : "submit"}
+              extraClasses={`col-span-12 ${
+                !formik.isValid ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+            >
+              Publicar
+            </Button>
+            {!formik.isValid && (
+              <TooltipSimple
+                id={"publishPost"}
+                text={
+                  <>
+                    {Object.entries(formik.errors).map((error, index) => {
+                      return (
+                        <span key={index}>
+                          -{error[1] as string}
+                          <br />
+                        </span>
+                      );
+                    })}
+                  </>
+                }
+              />
+            )}
+          </div>
         </form>
       )}
       {ingredientsModal.isOpen && (

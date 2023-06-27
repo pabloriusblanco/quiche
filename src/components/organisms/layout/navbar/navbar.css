@@ -1,0 +1,10 @@
+.alertDraftContainerShow {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+}
+
+.alertDraftContainerHidden {
+    width: fit-content !important;
+    margin-left: calc((100% - 1080px)/2);
+}

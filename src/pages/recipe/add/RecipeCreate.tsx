@@ -27,7 +27,6 @@ const RecipeCreate = () => {
       },
     };
 
-    console.log("post", projectedPost);
     createRecipe(projectedPost)
       .then((res) => {
         resposeModal.showResultModal("success", {
@@ -62,6 +61,23 @@ const RecipeCreate = () => {
       });
   };
 
+  const saveAsDraft = (formikValues) => {
+    formikValues.image = null;
+    localStorage.setItem("recipeDraft", JSON.stringify(formikValues));
+    resposeModal.showResultModal("success", {
+      showIcon: true,
+      allowClose: false,
+      title: "Receta guardada",
+      message:
+        <>Se ha guardado la receta como borrador.<br/>¡La verás debajo de la barra de navegación!</>,
+      onCancel: () => {
+        navigator("/");
+        window.location.reload();
+        window.scrollTo(0, 0);
+      },
+    });
+  };
+
   return (
     <>
       <BackgroundHeader sectionHeight="215px" />
@@ -84,6 +100,7 @@ const RecipeCreate = () => {
             <RecipeCreateForm
               onSubmitCallback={publishPost}
               className="col-span-12"
+              saveAsDraft={saveAsDraft}
             />
           </div>
         </div>

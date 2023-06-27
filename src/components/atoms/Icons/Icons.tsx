@@ -51,7 +51,7 @@ import { ReactComponent as cow } from "./assets/categories/meat.svg";
 import { ReactComponent as nolactose } from "./assets/categories/nolactose.svg";
 import { ReactComponent as nomeat } from "./assets/categories/nomeat.svg";
 import { ReactComponent as nooxalate } from "./assets/categories/nooxalate.svg";
-import { ReactComponent as nonuts } from "./assets/categories/nopeanuts.svg";
+import { ReactComponent as nonuts } from "./assets/categories/nonuts.svg";
 import { ReactComponent as noshellfish } from "./assets/categories/noshellfish.svg";
 import { ReactComponent as pasta } from "./assets/categories/pasta.svg";
 import { ReactComponent as pizza } from "./assets/categories/pizza.svg";

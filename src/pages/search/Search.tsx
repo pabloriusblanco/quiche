@@ -12,7 +12,6 @@ import Title from "../../components/atoms/Text/Title";
 import BackgroundHeader from "../../components/molecules/Background/Background";
 import AdvanceSearch from "../../components/molecules/Forms/AdvanceSearch/AdvanceSearch";
 import Skeleton from "../../components/molecules/Skeleton/Skeleton";
-import HomeSearch from "../../components/organisms/Search/SimpleSearch/HomeSearch";
 import BannerQuicheApp from "../../components/organisms/banners/BannerQuicheApp";
 import { useResultModal } from "../../hooks/useResultModal";
 import { useSpinner } from "../../hooks/useSpinner";
@@ -85,7 +84,7 @@ const Search: React.FC = () => {
   return (
     <>
       <BackgroundHeader sectionHeight="215px" />
-      <div className="space-y-8 mt-8">
+      <div className="mt-8 space-y-8">
         <section className="container">
           <div className="flex flex-col gap-5">
             <div>

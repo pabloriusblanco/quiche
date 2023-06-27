@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { deleteRecipe } from "../../../../api/recipes";
 import { useResultModal } from "../../../../hooks/useResultModal";
 import { useSpinner } from "../../../../hooks/useSpinner";
-import Button from "../../../atoms/Buttons/Button";
 import Icon from "../../../atoms/Icons/Icons";
 import LinkContainer from "../../../atoms/Link/LinkContainer";
 import Paragraph from "../../../atoms/Text/Paragraph";
-import { deleteRecipe } from "../../../../api/recipes";
 
 interface EditDeleteModalProps {
   id: string;
@@ -104,7 +103,7 @@ const EditDeleteModal = ({ id }: EditDeleteModalProps) => {
           name="deleteIcon"
           className="mr-2 h-4 w-4 fill-danger transition-all group-hover:fill-danger-dark "
         />
-        Elimiar
+        Eliminar
       </div>
     </div>
   );

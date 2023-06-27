@@ -97,4 +97,5 @@ export const tooltipsForValidation = {
       </>
     </>
   ),
+  saveAsDraft: "Guarda tu receta para terminarla más tarde. ¡No te preocupes!",
 };

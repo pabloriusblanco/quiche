@@ -27,3 +27,16 @@
     opacity: 1;
   }
 }
+
+.fade-out {
+  animation: fade-out 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
