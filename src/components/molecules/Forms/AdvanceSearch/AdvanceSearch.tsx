@@ -178,7 +178,7 @@ const AdvanceSearch = ({
               formik.setFieldValue("ratingFrom", "");
               formik.setFieldValue("ratingTo", "");
               formik.setFieldValue("ingredients", []);
-              const clearEvent = new CustomEvent("clearIngredients");
+              const clearEvent = new CustomEvent("clearSearchForm");
               document.dispatchEvent(clearEvent);
               window.history.replaceState(null, "", window.location.pathname);
             }}

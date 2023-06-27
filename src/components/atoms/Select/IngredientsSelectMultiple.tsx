@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import makeAnimated from "react-select/animated";
 import AsyncSelect from "react-select/async";
 import { getAllIngredientsByName } from "../../../api/ingredients";
 import { Ingredient } from "../../../types/Recipe";
-import { useEffect, useRef, useState } from "react";
 import { SelectConfigIngredients } from "./SelectConfig/IngredientsConfig";
 
 type Option = {
@@ -97,15 +97,15 @@ const IngredientsSelectMultiple = ({
   }, []);
 
   useEffect(() => {
-    const handleClearIngredients = () => {
+    const handleClearSearchForm = () => {
       if (selectRef.current) {
         selectRef.current.clearValue();
       }
     };
 
-    document.addEventListener("clearIngredients", handleClearIngredients);
+    document.addEventListener("clearSearchForm", handleClearSearchForm);
     return () => {
-      document.removeEventListener("clearIngredients", handleClearIngredients);
+      document.removeEventListener("clearSearchForm", handleClearSearchForm);
     };
   }, []);
 

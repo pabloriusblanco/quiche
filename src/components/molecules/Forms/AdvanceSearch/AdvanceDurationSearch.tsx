@@ -4,8 +4,8 @@ import { DurationResponse } from "../../../../types/Api";
 import Icon from "../../../atoms/Icons/Icons";
 import Label from "../../../atoms/Inputs/Label";
 import Radio from "../../../atoms/Inputs/Radio";
-import SimpleInputForm from "../GeneralForms/SimpleInputForm";
 import Skeleton from "../../Skeleton/Skeleton";
+import SimpleInputForm from "../GeneralForms/SimpleInputForm";
 
 type AdvanceDurationSearchProps = {
   formik: any;
@@ -51,6 +51,21 @@ const AdvanceDurationSearch = ({ formik }: AdvanceDurationSearchProps) => {
     }
   };
 
+  useEffect(() => {
+    const handleClearSearchForm = () => {
+      Object.values(document.getElementsByClassName("radioDuration")).forEach(
+        (value) => {
+          (value as HTMLInputElement).checked = false;
+        }
+      );
+    };
+
+    document.addEventListener("clearSearchForm", handleClearSearchForm);
+    return () => {
+      document.removeEventListener("clearSearchForm", handleClearSearchForm);
+    };
+  }, []);
+
   return (
     <div className="col-span-12 grid grid-cols-12 gap-5">
       <div className="col-span-6">
@@ -74,6 +89,7 @@ const AdvanceDurationSearch = ({ formik }: AdvanceDurationSearchProps) => {
                     name={"prepTimeRadio"}
                     onChange={onRadioChange}
                     value={duration.name}
+                    className="radioDuration"
                   />
                   <div className="flex items-center gap-2">
                     <Label
