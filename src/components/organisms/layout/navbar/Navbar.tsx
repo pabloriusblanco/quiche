@@ -30,60 +30,9 @@ const Navbar: React.FC = () => {
     }
   }, []);
 
-  // <div
-  //   className="bg-primary-light py-2 text-center text-[12px] fade-in transition-all"
-  //   style={{
-  //     background:
-  //       "linear-gradient(90deg, #F0BA23 41.37%, #F09E23 101.59%)",
-  //   }}
-  // >
-  //   <div className="container relative flex items-center justify-start">
-  //     <div className="mr-4 flex items-center">
-  //       <Icon name="info" className="mr-2 w-4 fill-white" />
-  //       <Paragraph color="black" className="text-[12px] text-white">
-  //         ¡Hay un <span className="font-medium"> borrador </span> de
-  //         receta!
-  //       </Paragraph>
-  //     </div>
-  //     <div className="flex gap-2">
-  //       <Button
-  //         onClick={() => {
-  //           setShowingDraftAlert(false);
-  //           navigate("/recipe/create?recipeDraft=true");
-  //         }}
-  //         extraClasses="text-[11px] py-1 bg-white hover:bg-primary-light !text-black hover:!text-white"
-  //       >
-  //         Continuar con mi receta
-  //       </Button>
-  //       <Button
-  //         color="danger"
-  //         extraClasses="text-[11px] py-1"
-  //         onClick={() => {
-  //           localStorage.removeItem("recipeDraft");
-  //           setIsThereADraft(false);
-  //         }}
-  //       >
-  //         Eliminar borrador
-  //       </Button>
-  //     </div>
-  //     <div
-  //       className="absolute right-0"
-  //       onClick={() => {
-  //         console.log("close");
-  //         setShowingDraftAlert(false);
-  //       }}
-  //     >
-  //       <Icon
-  //         name="closeIcon"
-  //         className=" w-5 cursor-pointer rounded-full border fill-white p-1"
-  //       />
-  //     </div>
-  //   </div>
-  // </div>
-
   return (
     <>
-      <nav className="shadow-light relative z-[1] bg-white p-0 lg:p-4">
+      <nav className="shadow-light relative z-[15] bg-white p-0 lg:p-4">
         <div className="container flex items-center justify-between">
           <LinkContainer className="w-[106px]" to="/">
             <Icon
@@ -180,7 +129,6 @@ const Navbar: React.FC = () => {
                 <div
                   className="absolute right-0 rounded-full border border-white"
                   onClick={() => {
-                    console.log("close");
                     setShowingDraftAlert(false);
                   }}
                 >

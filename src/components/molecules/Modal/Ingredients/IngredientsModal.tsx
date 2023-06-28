@@ -52,8 +52,6 @@ const IngredientsModal = ({
         ...ingredient,
         quantity: ingredientQuantity,
       };
-      console.log("ingredientToAdd", ingredientToAdd);
-      console.log("formik", formik.values);
       formik.setFieldValue("ingredients", [
         ...formik.values.ingredients,
         ingredientToAdd,

@@ -31,8 +31,6 @@ const IngredientsSelect = ({
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const getIngredients = (value: string): Promise<Ingredient[]> => {
-    console.log("disparo a la api", value);
-
     return getAllIngredientsByName(value)
       .then((response) => response) // Assuming the response contains the data property with the array of ingredients
       .catch((error) => {

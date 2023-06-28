@@ -80,7 +80,6 @@ const SortIsotope = ({
       sortBy: sortKey || "original-order",
       sortAscending: sortAscOrDesc,
     });
-    // cleanup
     return () => isotope.current?.destroy();
   }, [posts]);
 
@@ -91,23 +90,18 @@ const SortIsotope = ({
       sortBy: sortKey,
       sortAscending: sortAscOrDesc,
     });
-    // console.log(isotope.current);
   }, [filterKey, sortKey, sortAscOrDesc]);
 
   const handleFilterKeyChange = (key: Category | "*") => {
-    console.log("handleFilterKeyChange", key);
     setFilterKey(key);
   };
 
   const handleSortKeyChange = (key: PosibleSortKeys) => {
     if (key === "original-order") {
-      console.log("original-order?", key);
       setSortKey("original-order");
       setSortAscOrDesc(true);
     } else {
       const [sortKey, sortAscOrDesc] = key.split("-");
-      console.log("sortKey", sortKey);
-      console.log("sortAscOrDesc", sortAscOrDesc);
       setSortKey(sortKey as PosibleSortKeys);
       setSortAscOrDesc(sortAscOrDesc === "asc" ? true : false);
     }

@@ -102,8 +102,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error: any) {
-      console.dir("catch sign in", error);
-      console.dir(error);
+      console.log(error);
       const response =
         loginErrorCodes[error.code as keyof typeof loginErrorCodes];
       return {

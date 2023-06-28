@@ -70,8 +70,6 @@ const RecipeEdit = () => {
       },
     };
 
-    console.log("post", projectedPost);
-
     updateRecipe(projectedPost)
       .then((res) => {
         responseModal.showResultModal("success", {

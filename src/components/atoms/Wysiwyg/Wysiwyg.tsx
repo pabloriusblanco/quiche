@@ -58,8 +58,6 @@ const Wysiwyg = ({ field, formik }: WysiwygProps) => {
         config={editorConfig}
         data={formik.values[field]}
         onReady={(editor: any) => {
-          console.log("Editor is ready to use!", editor);
-
           // Guarda una referencia al editor para utilizarlo en el componente Toolbar
           setEditor(editor);
 

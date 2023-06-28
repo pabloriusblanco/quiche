@@ -10,19 +10,6 @@ interface ResendCodeFormProps {
   className?: string;
 }
 
-// const confirmSignUpWithCode = async (code: string) => {
-//   auth.toggleConfirmationModal();
-//   spinnerModal.startLoading({ text: "Confirmando código de verificación"});
-//   const result = await auth.confirmSignUp(auth.username, code);
-//   if (result.success) {
-//     console.log("succes", result);
-//     spinnerModal.stopLoading();
-//   } else {
-//     console.log("error", result);
-//     spinnerModal.stopLoading();
-//   }
-// };
-
 const ResendCodeForm = ({
   onSubmitCallback,
   className,
