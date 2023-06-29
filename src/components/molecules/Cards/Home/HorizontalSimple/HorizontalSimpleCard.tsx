@@ -1,5 +1,4 @@
-import { Post } from "../../../../../types/Recipe";
-import Icon from "../../../../atoms/Icons/Icons";
+import { PostResponse } from "../../../../../types/Api";
 import TooltipIcons from "../../../../atoms/Icons/TooltipIcons/TooltipIcons";
 import LinkBasic from "../../../../atoms/Link/LinkBasic";
 import Paragraph from "../../../../atoms/Text/Paragraph";
@@ -9,7 +8,7 @@ import PostRatingWithValue from "../../PostRatingWithValue";
 import VerticalSimpleCardCommentsLikes from "../VerticalSimpleCard/VerticalSimpleCardCommentsLikes";
 
 interface HorizontalSimpleCardProps {
-  post: Post;
+  post: PostResponse;
 }
 
 const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
@@ -43,19 +42,19 @@ const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
                 tag="category"
                 className="w-[14px]"
                 tagKey={post.recipe.mainCategory.icon}
-                id={`HorizontalSimpleCard_${post.id}_${post.recipe.mainCategory.icon}`}
+                id={`HorizontalSimpleCard_Cate_${post.id}`}
               />
               <TooltipIcons
                 tag="time"
                 className="w-[14px]"
-                tagKey={post.recipe.time.reference.icon}
-                id={`HorizontalSimpleCard_${post.id}_${post.recipe.time.reference.icon}`}
+                tagKey={"short"}
+                id={`HorizontalSimpleCard_Time_${post.id}`}
               />
               <TooltipIcons
                 tag="difficulty"
                 className="w-[14px]"
                 tagKey={post.recipe.difficulty.icon}
-                id={`HorizontalSimpleCard_${post.id}_${post.recipe.difficulty.icon}`}
+                id={`HorizontalSimpleCard_Diff_${post.id}`}
               />
             </div>
           </div>
@@ -73,8 +72,8 @@ const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
             </div>
             <div className="flex items-center justify-end gap-4">
               <VerticalSimpleCardCommentsLikes
-                commentsAmount={post.comments.length}
-                likesAmount={post.comments.length}
+                commentsAmount={post.postsComments.length}
+                likesAmount={post.usersLikedPosts.length}
               />
             </div>
           </div>

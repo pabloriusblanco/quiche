@@ -19,7 +19,6 @@ const EditDeleteModal = ({ id }: EditDeleteModalProps) => {
     spinner.startLoading({ text: "Eliminando receta..." });
     deleteRecipe(id)
       .then((res) => {
-        console.log("delete recipe response", res);
         resultModal.showResultModal("success", {
           title: "Receta eliminada",
           showIcon: true,

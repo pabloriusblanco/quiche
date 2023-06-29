@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { dayPosts } from "../../../api/home";
+import { getFeaturedDailyPost } from "../../../api/home";
 import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import HorizontalDetailedCard from "../../../components/molecules/Cards/Home/HorizontalDetailedCard/HorizontalDetaildedCard";
 import HorizontalSimpleCard from "../../../components/molecules/Cards/Home/HorizontalSimple/HorizontalSimpleCard";
 import Skeleton from "../../../components/molecules/Skeleton/Skeleton";
-import { Post } from "../../../types/Recipe";
+import { PostResponse } from "../../../types/Api";
 
 interface DestacadosDiaProps {
   title: string;
@@ -13,12 +13,17 @@ interface DestacadosDiaProps {
 }
 
 const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
-  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [posts, setPosts] = useState<PostResponse[] | undefined>(undefined);
 
   useEffect(() => {
-    dayPosts().then((res) => {
-      setPosts(res);
-    });
+    getFeaturedDailyPost()
+      .then((res) => {
+        console.log(res);        
+        setPosts(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -42,7 +47,7 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
           />
         </div>
       )}
-      {posts && (
+      {posts && posts.length > 0 && (
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-1">
             <HorizontalDetailedCard post={posts[0]} />

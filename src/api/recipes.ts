@@ -9,11 +9,6 @@ import {
 import { Post } from "../types/Recipe";
 import { api } from "./index";
 
-export async function getMonthRecipes(): Promise<Post[]> {
-  const response = await api.get("/month-recipes");
-  return response.data;
-}
-
 export async function getRecipe(id: string): Promise<PostResponse> {
   const response = await api.get(`Post/GetById/?id=${id}`);
   return response.data.data;

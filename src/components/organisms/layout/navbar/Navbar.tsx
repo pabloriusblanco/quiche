@@ -44,7 +44,6 @@ const Navbar: React.FC = () => {
             <LinkBasic to="/">Home</LinkBasic>
             <LinkBasic to="/search">Buscar Recetas</LinkBasic>
             <LinkBasic to="/recipe/create">Crear Recetas</LinkBasic>
-            <LinkBasic to="/">Nosotros</LinkBasic>
             {!auth.isAuthenticated && (
               <Button
                 buttonStyle="outlined"

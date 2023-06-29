@@ -12,7 +12,6 @@ import { downloadIngredients } from "../../../../utils/DownloadIngredients";
 
 type RecipeActionsProps = {
   post: PostResponse;
-  //   comments: Comment[];
 };
 
 const RecipeActions = ({ post }: RecipeActionsProps) => {
@@ -22,6 +21,8 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
   const spinnerModal = useSpinner();
   const url = window.location.href;
   const responseModal = useResultModal();
+
+  console.log(post);
 
   useEffect(() => {
     if (auth.isAuthenticated) {

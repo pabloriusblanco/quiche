@@ -1,4 +1,4 @@
-import { Post } from "../../../../../types/Recipe";
+import { PostResponse } from "../../../../../types/Api";
 import Icon from "../../../../atoms/Icons/Icons";
 import TooltipIcons from "../../../../atoms/Icons/TooltipIcons/TooltipIcons";
 import LinkBasic from "../../../../atoms/Link/LinkBasic";
@@ -8,7 +8,7 @@ import Title from "../../../../atoms/Text/Title";
 import PostRatingWithValue from "../../PostRatingWithValue";
 
 interface HorizontalDetailedCardProps {
-  post: Post;
+  post: PostResponse;
 }
 
 const HorizontalDetailedCard = ({ post }: HorizontalDetailedCardProps) => {
@@ -33,19 +33,19 @@ const HorizontalDetailedCard = ({ post }: HorizontalDetailedCardProps) => {
                 tag="category"
                 className="w-[14px]"
                 tagKey={post.recipe.mainCategory.icon}
-                id={`HorizontalDetailed_${post.recipe.mainCategory.icon}`}
+                id={`HorizontalDetailed_Categ_${post.id}`}
               />
               <TooltipIcons
                 tag="time"
                 className="w-[14px]"
-                tagKey={post.recipe.time.reference.icon}
-                id={`HorizontalDetailed_${post.recipe.time.reference.icon}`}
+                tagKey={"short"}
+                id={`HorizontalDetailed_Time_${post.id}`}
               />
               <TooltipIcons
                 tag="difficulty"
                 className="w-[14px]"
                 tagKey={post.recipe.difficulty.icon}
-                id={`HorizontalDetailed_${post.recipe.difficulty.icon}`}
+                id={`HorizontalDetailed_Diff_${post.id}`}
               />
             </div>
           </div>
@@ -67,7 +67,7 @@ const HorizontalDetailedCard = ({ post }: HorizontalDetailedCardProps) => {
                   color="primary"
                   className="overflow-hidden text-ellipsis text-right text-[11px]"
                 >
-                  {` - ${post.owner.firstName} ${post.owner.lastName}`}
+                  {` - ${post.user.firstName} ${post.user.lastName}`}
                 </Paragraph>
               </div>
             </div>
