@@ -53,7 +53,7 @@ const VerticalSimpleCard = ({
           />
         </div>
         <div className="col-span-12">
-          <LinkContainer to={`/post/${post.id}`} className="w-full">
+          <LinkContainer to={`/recipe/${post.id}`} className="w-full">
             <Button
               color="primary"
               buttonStyle="outlined"
