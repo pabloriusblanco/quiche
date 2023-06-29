@@ -1,12 +1,10 @@
 //  @ts-nocheck
 
-import { RecipeSimilarTypes } from "../pages/recipe/detail/sections/RecipeSimilar";
 import {
   PostCreateComment,
   PostCreateUpdate,
   PostResponse,
 } from "../types/Api";
-import { Post } from "../types/Recipe";
 import { api } from "./index";
 
 export async function getRecipe(id: string): Promise<PostResponse> {
