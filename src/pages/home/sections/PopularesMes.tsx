@@ -1,4 +1,3 @@
-import { monthPosts } from "../../../api/home";
 import { TextWeightType } from "../../../components/atoms/Text/TextsTypes";
 import Title from "../../../components/atoms/Text/Title";
 import VerticalSimpleCard from "../../../components/molecules/Cards/Home/VerticalSimpleCard/VerticalSimpleCard";
@@ -15,11 +14,11 @@ interface PopularesMesProps {
 const PopularesMes = ({ title, description }: PopularesMesProps) => {
   const [posts, setPosts] = useState<Post[] | null>(null);
 
-  useEffect(() => {
-    monthPosts().then((res) => {
-      setPosts(res);
-    });
-  }, []);
+  // useEffect(() => {
+  //   monthPosts().then((res) => {
+  //     setPosts(res);
+  //   });
+  // }, []);
 
   return (
     <section className="container space-y-4">
