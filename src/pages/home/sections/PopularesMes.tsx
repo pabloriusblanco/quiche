@@ -15,8 +15,6 @@ interface PopularesMesProps {
 const PopularesMes = ({ title, description }: PopularesMesProps) => {
   const [posts, setPosts] = useState<PostResponse[] | undefined>(undefined);
 
-  console.log(posts);
-
   useEffect(() => {
     getMonthRecipes()
       .then((res) => {

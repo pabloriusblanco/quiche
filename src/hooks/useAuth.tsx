@@ -166,8 +166,6 @@ const useProvideAuth = (): UseAuth => {
     username: string,
     password: string
   ) => {
-    console.log("submit new password", code, username, password);
-
     try {
       const result = await Auth.forgotPasswordSubmit(username, code, password);
       console.dir(result);
