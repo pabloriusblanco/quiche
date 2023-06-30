@@ -206,7 +206,7 @@ export const TimeDictionary: TagValues = {
   },
   long: {
     name: "Largo",
-    icon: "hard",
+    icon: "long",
     time: "más de 45 minutos",
     description:
       "El tiempo de preparación de este plato es largo, por lo que es ideal para cuando dispones de mucho tiempo para cocinar.",

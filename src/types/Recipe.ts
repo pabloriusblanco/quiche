@@ -54,7 +54,7 @@ export type DurationReference = {
   name: "short" | "medium" | "long";
   displayName: "Corto" | "Medio" | "Largo";
   icon: "short" | "medium" | "long";
-  maxTime: number;
+  maxMinutes: number;
 };
 
 export type Owner = {

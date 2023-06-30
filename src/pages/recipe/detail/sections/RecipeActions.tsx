@@ -22,8 +22,6 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
   const url = window.location.href;
   const responseModal = useResultModal();
 
-  console.log(post);
-
   useEffect(() => {
     if (auth.isAuthenticated) {
       const isFavorite = post.usersLikedPosts.some(

@@ -33,7 +33,7 @@ const VerticalSimpleCard = ({
       <PostTagsWithTooltips
         id={id}
         category={post.recipe.mainCategory.icon}
-        time={"short"}
+        time={post.recipe.durationReference.icon}
         difficulty={post.recipe.difficulty.icon}
       />
       <div className="grid grid-cols-12 gap-2 p-[12px] pt-[28px]">

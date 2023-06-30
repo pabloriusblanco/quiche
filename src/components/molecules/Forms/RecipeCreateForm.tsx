@@ -58,6 +58,7 @@ const RecipeCreateForm = ({
       instructions: "",
     },
     validationSchema: createRecipeValidationForm,
+    isInitialValid: true,
     onSubmit: (values) => {
       onSubmitCallback({
         image:
@@ -390,7 +391,7 @@ const RecipeCreateForm = ({
                   ? "+ Agregar ingrediente"
                   : "+ Agregar otro ingrediente"}
               </Button>
-              {formik.errors.ingredients && (
+              {formik.errors.ingredients && formik.touched.ingredients && (
                 <div className="text-left">
                   <InputErrorText className="relative flex justify-start">
                     Debes agregar al menos un ingrediente

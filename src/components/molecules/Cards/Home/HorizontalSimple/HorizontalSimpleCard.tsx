@@ -47,7 +47,7 @@ const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
               <TooltipIcons
                 tag="time"
                 className="w-[14px]"
-                tagKey={"short"}
+                tagKey={post.recipe.durationReference.icon}
                 id={`HorizontalSimpleCard_Time_${post.id}`}
               />
               <TooltipIcons

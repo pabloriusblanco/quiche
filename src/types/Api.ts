@@ -74,6 +74,7 @@ export type PostResponseRecipe = {
   difficultyId: string;
   difficulty: Difficulty;
   minutes: string;
+  durationReference: DurationReference;
   recipesIngredients: ResponsePostIngredients[];
   instructions: string;
 };

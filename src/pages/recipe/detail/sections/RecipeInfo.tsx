@@ -18,6 +18,8 @@ type RecipeInfoProps = {
   post: PostResponse;
 };
 
+
+
 const RecipeInfo = ({ post }: RecipeInfoProps) => {
   return (
     <>
@@ -68,12 +70,13 @@ const RecipeInfo = ({ post }: RecipeInfoProps) => {
                 {post.recipe.description}
               </Paragraph>
               <div className="flex flex-col gap-2">
-                {/* <RecipeSectionTitle
-                  iconName={post.recipe.time.reference.icon}
+                <RecipeSectionTitle
+                  iconName={post.recipe.durationReference.icon}
                   titleText="Tiempo de preparación"
-                /> */}
+                />
                 <Paragraph color="gray" className="text-[11px]">
                   {/* ${post.recipe.time.reference.displayName} -  */}
+                  Corto - 
                   {`
                   ${post.recipe.minutes} minutos
                   `}
