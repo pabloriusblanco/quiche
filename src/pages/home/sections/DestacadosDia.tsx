@@ -18,7 +18,6 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
   useEffect(() => {
     getFeaturedDailyPost()
       .then((res) => {
-        console.log(res);
         setPosts(res);
       })
       .catch((err) => {
