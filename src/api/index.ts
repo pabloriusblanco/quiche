@@ -31,3 +31,16 @@ api.interceptors.request.use(
     Promise.reject(error);
   }
 );
+
+apiUpload.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get("authorization");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
