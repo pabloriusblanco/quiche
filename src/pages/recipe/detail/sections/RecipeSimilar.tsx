@@ -30,7 +30,7 @@ const RecipeSimilar = ({ posts, type }: RecipeSimilarProps) => {
           itemHeight={"370px"}
         />
       )}
-      {posts && (
+      {posts && posts.length > 0 && (
         <div className="flex flex-col gap-3">
           <Title
             color="black"

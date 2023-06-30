@@ -18,7 +18,7 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
   useEffect(() => {
     getFeaturedDailyPost()
       .then((res) => {
-        console.log(res);        
+        console.log(res);
         setPosts(res);
       })
       .catch((err) => {
@@ -28,7 +28,6 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
 
   return (
     <section className="container space-y-4">
-      <Title text={title} color="black" weight={TextWeightType.Bold} />
       {!posts && (
         <div className="grid grid-cols-2 gap-4">
           <Skeleton
@@ -48,15 +47,18 @@ const DestacadosDia = ({ title, description }: DestacadosDiaProps) => {
         </div>
       )}
       {posts && posts.length > 0 && (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-1">
-            <HorizontalDetailedCard post={posts[0]} />
+        <>
+          <Title text={title} color="black" weight={TextWeightType.Bold} />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-1">
+              <HorizontalDetailedCard post={posts[0]} />
+            </div>
+            <div className="col-span-1 flex flex-col gap-4">
+              <HorizontalSimpleCard post={posts[1]} />
+              <HorizontalSimpleCard post={posts[2]} />
+            </div>
           </div>
-          <div className="col-span-1 flex flex-col gap-4">
-            <HorizontalSimpleCard post={posts[1]} />
-            <HorizontalSimpleCard post={posts[2]} />
-          </div>
-        </div>
+        </>
       )}
     </section>
   );
