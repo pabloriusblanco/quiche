@@ -39,6 +39,7 @@ export async function getSimilarRecipes(
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
   api.defaults.headers["Content-Type"] = "multipart/form-data";
   const response = await api.post("Post/Create", recipe);
+  api.defaults.headers["Content-Type"] = "application/json";
   return response.data;
 }
 
@@ -48,6 +49,7 @@ export async function updateRecipe(recipe: {
 }) {
   api.defaults.headers["Content-Type"] = "multipart/form-data";
   const response = await api.put("Post/Update", recipe);
+  api.defaults.headers["Content-Type"] = "application/json";
   return response.data;
 }
 

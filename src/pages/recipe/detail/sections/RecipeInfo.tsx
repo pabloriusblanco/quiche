@@ -21,6 +21,7 @@ type RecipeInfoProps = {
 
 
 const RecipeInfo = ({ post }: RecipeInfoProps) => {
+
   return (
     <>
       {!post && (

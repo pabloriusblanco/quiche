@@ -29,7 +29,7 @@ const RecipeActions = ({ post }: RecipeActionsProps) => {
       );
       setIsFavorite(isFavorite);
     }
-  }, []);
+  }, [post]);
 
   const favoritePost = async () => {
     spinnerModal.startLoading({ text: "Guardando como favorito" });
