@@ -18,7 +18,6 @@ const PopularesMes = ({ title, description }: PopularesMesProps) => {
   useEffect(() => {
     getMonthRecipes()
       .then((res) => {
-        console.log(res);
         setPosts(res);
       })
       .catch((err) => {

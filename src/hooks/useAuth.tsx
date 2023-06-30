@@ -126,7 +126,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error) {
-      console.dir("catch resend confirmation link", error);
+      console.log(error);
       return {
         success: false,
         code: "resendedConfirmationCodeError",
@@ -148,8 +148,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error) {
-      console.dir("catch forgot password", error);
-      console.dir(error);
+      console.log(error);
       return {
         success: false,
         code: "forgotPasswordSendCodeError",
@@ -168,7 +167,6 @@ const useProvideAuth = (): UseAuth => {
   ) => {
     try {
       const result = await Auth.forgotPasswordSubmit(username, code, password);
-      console.dir(result);
       return {
         success: true,
         code: "forgotPasswordSubmit",
@@ -178,8 +176,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error) {
-      console.dir("catch submit new password", error);
-      console.dir(error);
+      console.log(error);
       return {
         success: false,
         code: "forgotPasswordSubmitError",
@@ -214,8 +211,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error: any) {
-      console.dir("catch signup", error);
-      console.dir(error);
+      console.log(error);
       let response: RegisterErrorCodeAttributes =
         {} as RegisterErrorCodeAttributes;
       if (error.response) {
@@ -252,7 +248,7 @@ const useProvideAuth = (): UseAuth => {
         data: result,
       };
     } catch (error) {
-      console.dir("catch logout", error);
+      console.log(error);
       return {
         success: false,
         code: "LoggedOutUserError",
