@@ -56,7 +56,7 @@ const ProfileModal = () => {
           ref={dropdownRef}
           className="fade-in absolute right-0 top-10 min-w-[160px] rounded-2xl bg-white p-3 text-[12px] shadow-md"
         >
-          <LinkContainer
+          {/* <LinkContainer
             to="/profile"
             className="group cursor-not-allowed rounded border-b border-b-gray-light bg-gray-light p-2"
           >
@@ -64,7 +64,7 @@ const ProfileModal = () => {
             <Paragraph color="black" className="text-gray transition-all  ">
               Perfil
             </Paragraph>
-          </LinkContainer>
+          </LinkContainer> */}
           <LinkContainer
             to="/favorites"
             className="group rounded border-b  border-b-gray-light p-2 "
