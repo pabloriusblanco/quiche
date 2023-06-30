@@ -5,7 +5,7 @@ import {
   PostCreateUpdate,
   PostResponse,
 } from "../types/Api";
-import { api } from "./index";
+import { api, apiUpload } from "./index";
 
 export async function getRecipe(id: string): Promise<PostResponse> {
   const response = await api.get(`Post/GetById/?id=${id}`);
@@ -37,9 +37,7 @@ export async function getSimilarRecipes(
 }
 
 export async function createRecipe(recipe: { recipe: PostCreateUpdate }) {
-  api.defaults.headers["Content-Type"] = "multipart/form-data";
-  const response = await api.post("Post/Create", recipe);
-  api.defaults.headers["Content-Type"] = "application/json";
+  const response = await apiUpload.post("Post/Create", recipe);
   return response.data;
 }
 
@@ -47,9 +45,7 @@ export async function updateRecipe(recipe: {
   id: string;
   recipe: PostCreateUpdate;
 }) {
-  api.defaults.headers["Content-Type"] = "multipart/form-data";
-  const response = await api.put("Post/Update", recipe);
-  api.defaults.headers["Content-Type"] = "application/json";
+  const response = await apiUpload.put("Post/Update", recipe);
   return response.data;
 }
 

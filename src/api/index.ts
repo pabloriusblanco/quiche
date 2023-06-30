@@ -10,6 +10,15 @@ export const api = axios.create({
   },
 });
 
+export const apiUpload = axios.create({
+  baseURL: process.env.API_URL,
+  headers: {
+    "Content-Type": "multipart/form-data",
+    "Allow-Cross-Origin": "*",
+    "Access-Control-Allow-Origin": "*",
+  },
+});
+
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get("authorization");
