@@ -44,6 +44,12 @@ const RecipeCreate = () => {
               </>
             ),
             showIcon: true,
+            allowClose: false,
+            cancelText: "Volver al inicio",
+            onCancel: () => {
+              navigator("/");
+              window.scrollTo(0, 0);
+            },
             confirmText: "Ver receta",
             onConfirm: () => navigator(`/recipe/${res.data}`),
           });
