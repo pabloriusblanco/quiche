@@ -73,7 +73,7 @@ const HorizontalExtendedCard = ({
                 <TooltipIcons
                   tag="time"
                   className="w-[14px]"
-                  tagKey={post.recipe.durationReference.icon} // TODO: Change this to the correct value
+                  tagKey={post.recipe.durationReference.icon}
                   id={`HorizontalSimpleCard_${post.id}_${post.recipe.minutes}`}
                 />
                 <TooltipIcons

@@ -35,7 +35,7 @@ const HorizontalSimpleCard = ({ post }: HorizontalSimpleCardProps) => {
               color="black"
               weight={TextWeightType.SemiBold}
               text={post.recipe.name}
-              className="w-9/12 truncate"
+              className="w-9/12 truncate line-clamp-2"
             />
             <div className="flex items-center justify-end gap-2">
               <TooltipIcons

@@ -38,8 +38,8 @@ const VerticalSimpleCard = ({
       />
       <div className="grid grid-cols-12 gap-2 p-[12px] pt-[28px]">
         <div className="col-span-12 ">
-          <p className="mb-2 h-8 text-[11px]">{post.recipe.name}</p>
-          <p className="h-[56px]  overflow-hidden text-ellipsis text-[10px] text-gray">
+          <p className="mb-2 h-8 text-[11px] line-clamp-2 text-ellipsis">{post.recipe.name}</p>
+          <p className="h-[56px] overflow-hidden text-ellipsis text-[10px] text-gray">
             {post.recipe.description}
           </p>
         </div>
