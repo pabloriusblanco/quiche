@@ -17,14 +17,14 @@ const EditDeleteModal = ({ id, isActive }: EditDeleteModalProps) => {
   const spinner = useSpinner();
 
   const tryDeleteRecipe = () => {
-    spinner.startLoading({ text: "Eliminando receta..." });
+    spinner.startLoading({ text: "Desactivando receta..." });
     deleteRecipe(id)
       .then((res) => {
         resultModal.showResultModal("success", {
-          title: "Receta eliminada",
+          title: "Receta desactivada",
           showIcon: true,
           allowClose: false,
-          message: "Se eliminó la receta correctamente.",
+          message: "Se desactivó la receta correctamente.",
           onCancel() {
             window.location.reload();
           },
@@ -33,9 +33,9 @@ const EditDeleteModal = ({ id, isActive }: EditDeleteModalProps) => {
       .catch((err) => {
         console.log("delete recipe error", err);
         resultModal.showResultModal("danger", {
-          title: "Error al eliminar receta",
+          title: "Error al desactivar receta",
           showIcon: true,
-          message: "No se pudo eliminar la receta, intenta de nuevo más tarde.",
+          message: "No se pudo desactivar la receta, intenta de nuevo más tarde.",
         });
       })
       .finally(() => {
@@ -158,7 +158,7 @@ const EditDeleteModal = ({ id, isActive }: EditDeleteModalProps) => {
               onConfirm() {
                 tryDeleteRecipe();
               },
-              confirmText: "Eliminar",
+              confirmText: "Desactivar",
             });
           }}
         >
