@@ -128,7 +128,7 @@ const EditDeleteModal = ({ id, isActive }: EditDeleteModalProps) => {
               onConfirm() {
                 tryActivateRecipe();
               },
-              confirmText: "Habilitar",
+              confirmText: "Activar",
             });
           }}
         >
