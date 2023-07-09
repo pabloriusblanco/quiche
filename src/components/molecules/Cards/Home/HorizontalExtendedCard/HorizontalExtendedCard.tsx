@@ -14,11 +14,13 @@ import VerticalSimpleCardCommentsLikes from "../VerticalSimpleCard/VerticalSimpl
 
 interface HorizontalExtendedCardProps {
   post: PostResponse;
+  isActive: boolean;
   allowActions: boolean;
 }
 
 const HorizontalExtendedCard = ({
   post,
+  isActive,
   allowActions = false,
 }: HorizontalExtendedCardProps) => {
   const auth = useAuth();
@@ -36,11 +38,15 @@ const HorizontalExtendedCard = ({
       data-favs={post.usersLikedPosts.length}
     >
       <LinkBasic
-        to={`/recipe/${post.id}`}
+        to={isActive ? `/recipe/${post.id}` : ""}
         key={`${post.id}_HorizontalExtendedCard`}
         extraClasses="w-full"
       >
-        <div className="shadow-light relative z-10 col-span-12 grid h-[146px] w-full grid-cols-10 overflow-hidden rounded-lg bg-white">
+        <div
+          className={`${
+            !isActive ? "saturate-0 cursor-not-allowed " : ""
+          } shadow-light relative z-10 col-span-12 grid h-[146px] w-full grid-cols-10 overflow-hidden rounded-lg bg-white`}
+        >
           <div className="relative col-span-2 flex items-center">
             <img
               src={post.recipe.image}
@@ -112,7 +118,7 @@ const HorizontalExtendedCard = ({
       </LinkBasic>
       {allowActions && (
         <div className="flex h-[146px] rounded-lg">
-          <EditDeleteModal id={post.id} />
+          <EditDeleteModal id={post.id} isActive={isActive} />
         </div>
       )}
     </div>

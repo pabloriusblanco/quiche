@@ -144,6 +144,7 @@ const SortIsotope = ({
           {posts.map((post) => (
             <HorizontalExtendedCard
               post={post}
+              isActive={post.deleteDate === null}
               key={post.id}
               allowActions={allowDeleteEdit}
             />

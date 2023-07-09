@@ -53,3 +53,8 @@ export async function deleteRecipe(id: string): Promise<void> {
   const response = await api.post("Post/Delete", { id: id });
   return response.data;
 }
+
+export async function enableRecipe(id: string): Promise<void> {
+  const response = await api.post("Post/Enable", { id: id });
+  return response.data;
+}

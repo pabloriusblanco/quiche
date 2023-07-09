@@ -18,6 +18,7 @@ import { useSpinner } from "../../hooks/useSpinner";
 import { PostResponse } from "../../types/Api";
 import { Category } from "../../types/Recipe";
 import SortIsotope from "../search/SortIsotope/SortIsotope";
+import AdvanceSearchNoResponse from "../search/AdvanceSearchNoResponse";
 
 const Favorites = () => {
   const auth = useAuth();
@@ -96,7 +97,13 @@ const Favorites = () => {
                 />
               </div>
             )}
-            {posts && (
+            {posts && posts.length < 1 && (
+              <AdvanceSearchNoResponse
+                title="¡Aún no tienes recetas favoritas!"
+                message="Todas las recetas que guardes como favoritas aparecerán en esta sección."
+              />
+            )}
+            {posts && posts.length > 0 && (
               <div className="w-full">
                 <SortIsotope posts={posts} categories={categories} />
               </div>

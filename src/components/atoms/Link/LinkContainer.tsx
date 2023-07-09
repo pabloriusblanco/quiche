@@ -7,6 +7,10 @@ type LinkContainer = {
 };
 
 const LinkContainer = ({ to, children, className }: LinkContainer) => {
+  if (!to)
+  return (
+    <div className={`flex items-center ${className}`}>{children}</div>
+  );
   return (
     <Link to={to} className={`flex items-center ${className}`}>
       {children}

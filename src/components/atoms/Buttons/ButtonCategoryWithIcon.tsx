@@ -24,7 +24,7 @@ const ButtonCategoryWithIcon = ({
     <div
       key={iconName}
       className="col-span-1 cursor-pointer"
-      onClick={() => navigate("/search", { state: { category: categoryId } })}
+      onClick={() => navigate(`/search?category=${categoryId}`)}
     >
       <div
         className={`group flex w-44 items-center justify-center gap-2 rounded-lg

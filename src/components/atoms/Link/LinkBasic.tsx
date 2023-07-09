@@ -15,6 +15,10 @@ const LinkBasic = ({
   extraClasses = "hover:text-black-dark",
   children,
 }: LinkBasicProps) => {
+  if (!to)
+    return (
+      <div className={`${fontSize} ${color} ${extraClasses}`}>{children}</div>
+    );
   return (
     <Link to={to} className={`${fontSize} ${color} ${extraClasses}`}>
       {children}
