@@ -240,6 +240,7 @@ const useProvideAuth = (): UseAuth => {
       Cookies.remove("authorization");
       setUsername("");
       setIsAuthenticated(false);
+      window.location.reload();
       return {
         success: true,
         code: "LoggedOutUser",

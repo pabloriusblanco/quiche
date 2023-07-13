@@ -147,3 +147,13 @@ export type SimilarResponsePost = {
   difficulty: Difficulty;
   minutes: DurationReference;
 };
+
+export type RecipeDraftQuery = {
+  recipeDraft: string;
+};
+
+export type RecipeDraftResponse = {
+  draft: string;
+  id: number;
+  userId: number;
+};

@@ -12,6 +12,7 @@ import ProfileModal from "../../../molecules/Modal/Auth/ProfileModal";
 import RequiredAuthModal from "../../../molecules/Modal/Auth/RequiredAuthModal";
 import NavLinksContainer from "./NavLinksContainer";
 import "./navbar.css";
+import { deleteDraft, getDraft } from "../../../../api/drafts";
 
 const Navbar: React.FC = () => {
   const loginModal = useModal();
@@ -24,11 +25,38 @@ const Navbar: React.FC = () => {
   const [showingDraftAlert, setShowingDraftAlert] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("recipeDraft")) {
-      setIsThereADraft(true);
-      setShowingDraftAlert(true);
+    if (auth.isAuthenticated && !auth.isLoading) {
+      getDraft()
+        .then((res) => {
+          if (res != null) {
+            sessionStorage.setItem("recipeDraft", res.draft);
+            setIsThereADraft(true);
+            setShowingDraftAlert(true);
+          } else {
+            sessionStorage.removeItem("recipeDraft");
+            setIsThereADraft(false);
+            setShowingDraftAlert(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          sessionStorage.removeItem("recipeDraft");
+          setIsThereADraft(false);
+          setShowingDraftAlert(false);
+        });
     }
-  }, []);
+  }, [auth.isAuthenticated]);
+
+  const deleteCurrentDraft = () => {
+    sessionStorage.removeItem("recipeDraft");
+    deleteDraft()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -118,7 +146,8 @@ const Navbar: React.FC = () => {
                     color="danger"
                     extraClasses="text-[11px] !py-1"
                     onClick={() => {
-                      localStorage.removeItem("recipeDraft");
+                      sessionStorage.removeItem("recipeDraft");
+                      deleteCurrentDraft();
                       setIsThereADraft(false);
                     }}
                   >

@@ -26,7 +26,7 @@ import {
 import { useLocation } from "react-router-dom";
 
 export type RecipeFormProps = {
-  onSubmitCallback: (values: any) => void;
+  onSubmitCallback: (values: any, isDraft: boolean) => void;
   className?: string;
   post?: PostResponse | null;
   saveAsDraft?: (formikValues) => void;
@@ -60,20 +60,23 @@ const RecipeCreateForm = ({
     validationSchema: createRecipeValidationForm,
     isInitialValid: true,
     onSubmit: (values) => {
-      onSubmitCallback({
-        image:
-          defaultRecipe && defaultRecipe.image == values.image
-            ? null
-            : values.image,
-        name: values.name,
-        description: values.description,
-        mainCategoryId: values.mainCategoryId,
-        subcategories: values.subcategories,
-        difficultyId: values.difficultyId,
-        prepTime: values.prepTime,
-        ingredients: values.ingredients,
-        instructions: values.instructions,
-      });
+      onSubmitCallback(
+        {
+          image:
+            defaultRecipe && defaultRecipe.image == values.image
+              ? null
+              : values.image,
+          name: values.name,
+          description: values.description,
+          mainCategoryId: values.mainCategoryId,
+          subcategories: values.subcategories,
+          difficultyId: values.difficultyId,
+          prepTime: values.prepTime,
+          ingredients: values.ingredients,
+          instructions: values.instructions,
+        },
+        isDraft
+      );
     },
   });
 
@@ -133,7 +136,7 @@ const RecipeCreateForm = ({
 
   useEffect(() => {
     if (isDraft) {
-      formik.setValues(JSON.parse(localStorage.getItem("recipeDraft")));
+      formik.setValues(JSON.parse(sessionStorage.getItem("recipeDraft")));
     }
   }, []);
 

@@ -13,6 +13,7 @@ import { useResultModal } from "../../../hooks/useResultModal";
 import { useSpinner } from "../../../hooks/useSpinner";
 import { PostCreateUpdate } from "../../../types/Api";
 import { useAuth } from "../../../hooks/useAuth";
+import { createDraft, deleteDraft } from "../../../api/drafts";
 
 const RecipeCreate = () => {
   const resposeModal = useResultModal();
@@ -20,7 +21,7 @@ const RecipeCreate = () => {
   const spinner = useSpinner();
   const auth = useAuth();
 
-  const publishPost = async (post: PostCreateUpdate) => {
+  const publishPost = async (post: PostCreateUpdate, isDraft = false) => {
     if (!auth.isAuthenticated) {
       auth.toggleAuthModal();
     } else {
@@ -34,6 +35,9 @@ const RecipeCreate = () => {
 
       createRecipe(projectedPost)
         .then((res) => {
+          if (isDraft) {
+            deleteCurrentDraft();
+          }
           resposeModal.showResultModal("success", {
             title: "Receta creada",
             message: (
@@ -49,9 +53,13 @@ const RecipeCreate = () => {
             onCancel: () => {
               navigator("/");
               window.scrollTo(0, 0);
+              window.location.reload();
             },
             confirmText: "Ver receta",
-            onConfirm: () => navigator(`/recipe/${res.data}`),
+            onConfirm: () => {
+              navigator(`/recipe/${res.data}`);
+              window.location.reload();
+            },
           });
         })
         .catch((err) => {
@@ -74,30 +82,86 @@ const RecipeCreate = () => {
     }
   };
 
-  const saveAsDraft = (formikValues) => {
+  const saveDraft = (formikValues) => {
+    spinner.startLoading({ text: "Guardando borrador..." });
+    formikValues.image = null;
+    createDraft({ recipeDraft: JSON.stringify(formikValues) })
+      .then((res) => {
+        console.log(res);
+        resposeModal.showResultModal("success", {
+          showIcon: true,
+          allowClose: false,
+          title: "Borrador guardado",
+          message: (
+            <>
+              Se ha guardado la receta como borrador.
+              <br />
+              ¡La verás debajo de la barra de navegación!
+            </>
+          ),
+          onCancel: () => {
+            navigator("/");
+            window.location.reload();
+            window.scrollTo(0, 0);
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        resposeModal.showResultModal("danger", {
+          showIcon: true,
+          allowClose: false,
+          title: "Error al guardar borrador",
+          message: (
+            <>
+              No se ha podido guardar la receta como borrador.
+              <br />
+              Por favor intente más tarde.
+            </>
+          ),
+          onCancel: () => {
+            navigator("/");
+            window.location.reload();
+            window.scrollTo(0, 0);
+          },
+        });
+      })
+      .finally(() => {
+        spinner.stopLoading();
+      });
+  };
+
+  const confirmSaveDraft = (formikValues) => {
     if (!auth.isAuthenticated) {
       auth.toggleAuthModal();
     } else {
-      formikValues.image = null;
-      localStorage.setItem("recipeDraft", JSON.stringify(formikValues));
-      resposeModal.showResultModal("success", {
-        showIcon: true,
-        allowClose: false,
-        title: "Receta guardada",
+      resposeModal.showResultModal("warning", {
+        title: "Guardar borrador",
         message: (
           <>
-            Se ha guardado la receta como borrador.
+            ¿Estás seguro de que quieres guardar la receta como borrador?
             <br />
-            ¡La verás debajo de la barra de navegación!
+            Si tenía un borrador anterior, se sobreescribirá.
           </>
         ),
-        onCancel: () => {
-          navigator("/");
-          window.location.reload();
-          window.scrollTo(0, 0);
+        showIcon: true,
+        confirmText: "Guardar",
+        onConfirm: () => {
+          saveDraft(formikValues);
         },
       });
     }
+  };
+
+  const deleteCurrentDraft = () => {
+    sessionStorage.removeItem("recipeDraft");
+    deleteDraft()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -122,7 +186,7 @@ const RecipeCreate = () => {
             <RecipeCreateForm
               onSubmitCallback={publishPost}
               className="col-span-12"
-              saveAsDraft={saveAsDraft}
+              saveAsDraft={confirmSaveDraft}
             />
           </div>
         </div>
