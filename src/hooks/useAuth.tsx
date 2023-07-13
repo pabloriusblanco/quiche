@@ -8,6 +8,7 @@ import {
   RegisterErrorCodeAttributes,
   registerErrorCodes,
 } from "../components/molecules/Modal/Auth/ResultsConfigAuth/RegisterResultsMapper";
+import { hideDraftEvent } from "../components/organisms/layout/navbar/recipeDraft/draftUtils";
 
 Amplify.configure(awsConfig);
 
@@ -240,7 +241,7 @@ const useProvideAuth = (): UseAuth => {
       Cookies.remove("authorization");
       setUsername("");
       setIsAuthenticated(false);
-      window.location.reload();
+      hideDraftEvent();
       return {
         success: true,
         code: "LoggedOutUser",

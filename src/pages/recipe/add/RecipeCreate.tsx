@@ -14,6 +14,7 @@ import { useSpinner } from "../../../hooks/useSpinner";
 import { PostCreateUpdate } from "../../../types/Api";
 import { useAuth } from "../../../hooks/useAuth";
 import { createDraft, deleteDraft } from "../../../api/drafts";
+import { hideDraftEvent } from "../../../components/organisms/layout/navbar/recipeDraft/draftUtils";
 
 const RecipeCreate = () => {
   const resposeModal = useResultModal();
@@ -37,6 +38,7 @@ const RecipeCreate = () => {
         .then((res) => {
           if (isDraft) {
             deleteCurrentDraft();
+            hideDraftEvent();
           }
           resposeModal.showResultModal("success", {
             title: "Receta creada",
@@ -57,8 +59,7 @@ const RecipeCreate = () => {
             },
             confirmText: "Ver receta",
             onConfirm: () => {
-              navigator(`/recipe/${res.data}`);
-              window.location.reload();
+              navigator(`/recipe/${res.data}`);              
             },
           });
         })
